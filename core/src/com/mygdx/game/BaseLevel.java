@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public abstract class BaseLevel extends GameObject {
 
-    ArrayList<GameObject> levelObjects;
+    private ArrayList<GameObject> levelObjects;
 
     @Override
     public void render(SpriteBatch batch) {
@@ -23,10 +23,13 @@ public abstract class BaseLevel extends GameObject {
 
     @Override
     public void update(float elpasedTime) {
+        LevelUpdate();
         for(GameObject gameObject : levelObjects){
             gameObject.update(elpasedTime);
         }
     }
 
     public abstract void GUI();
+
+    public abstract void LevelUpdate();
 }
