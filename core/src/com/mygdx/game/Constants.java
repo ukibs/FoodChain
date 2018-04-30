@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 public class Constants {
 
 	public final static int SPRITE_NUMBER = 5;
-	public final static int SPRITE_SPEED = 5;
+	public final static int SPRITE_SPEED = 20;
 
 	public final static float LEVEL_TIME = 15;
 	

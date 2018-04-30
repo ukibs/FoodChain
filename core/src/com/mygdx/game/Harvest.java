@@ -18,19 +18,15 @@ public class Harvest extends BaseLevel {
     public void init(WorldController wC)
     {
         worldController = wC;
-        fruits = new ArrayList<Fruit>(10);
-        for(int i = 0; i < fruits.size(); i++){ fruits.add(new Fruit());}
+        fruits = new ArrayList<Fruit>();
+        for(int i = 0; i < 10; i++){ fruits.add(new Fruit());}
         basket = new Basket();
     }
 
     @Override
     public void GUI(SpriteBatch batch)
     {
-        for(Fruit fruit: fruits)
-        {
-            fruit.render(batch);
-        }
-
+        for(int i = 0; i < fruits.size(); i++) {fruits.get(i).render(batch);}
         basket.render(batch);
     }
 
@@ -40,7 +36,7 @@ public class Harvest extends BaseLevel {
 
         if(time < Constants.LEVEL_TIME)
         {
-            for(Fruit fruit: fruits) {fruit.update(elapsedTime);}
+            for(int i = 0; i < fruits.size(); i++) {fruits.get(i).update(elapsedTime);}
             basket.update(elapsedTime);
         }
         else worldController.finishLevel();

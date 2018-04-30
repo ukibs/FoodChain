@@ -45,7 +45,7 @@ public class WorldController {
 				menu.update(delta);
 				break;
 			case Harvest:
-
+				harvestLevel.update(delta);
 				break;
 			case Restaurant:
 
