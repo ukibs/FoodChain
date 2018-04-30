@@ -53,6 +53,23 @@ public class WorldRenderer {
 		shape.setColor(Color.RED);
 
 		// Render de los game objects
+		switch (controller.gameMode){
+			case MainMenu:
+				controller.menu.render(batch);
+				break;
+			case Harvest:
+				controller.harvestLevel.render(batch);
+				break;
+			case Restaurant:
+
+				break;
+			case Transport:
+
+				break;
+			case Supermarket:
+
+				break;
+		}
 		
 		batch.end();
 		shape.end();

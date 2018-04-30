@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.math.Vector3;
 
 /**
  * Created by Martin on 29/04/2018.
@@ -106,7 +107,10 @@ public class Input implements InputProcessor {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        worldController.setTouch(screenX, screenY);
+        Vector3 pos = new Vector3();
+        pos.set(screenX, screenY, 0);
+        worldController.camera.unproject(pos);
+        worldController.setTouch(pos.x, pos.y);
         return false;
     }
 

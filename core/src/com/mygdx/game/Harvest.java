@@ -43,7 +43,8 @@ public class Harvest extends BaseLevel {
             for(Fruit fruit: fruits) {fruit.update(elapsedTime);}
             basket.update(elapsedTime);
         }
+        else worldController.finishLevel();
     }
 
-    
+
 }

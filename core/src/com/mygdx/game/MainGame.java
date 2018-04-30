@@ -10,6 +10,7 @@ public class MainGame implements ApplicationListener {
 	
 	WorldController controller;
 	WorldRenderer renderer;
+	Input input;
 	
 	
 	@Override
@@ -17,7 +18,8 @@ public class MainGame implements ApplicationListener {
 		controller = new WorldController();
 		renderer = new WorldRenderer(controller);
 		controller.camera = renderer.camera;
-
+		controller.init();
+		input = new Input(controller);
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 	}
 

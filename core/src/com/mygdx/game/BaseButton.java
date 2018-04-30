@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.sun.org.apache.xpath.internal.operations.String;
 
 /**
  * Created by Martin on 30/04/2018.
@@ -20,6 +19,8 @@ public abstract class BaseButton extends GameObject {
         this.buttonText = buttonText;
         this.buttonImage = buttonImage;
         this.worldController = worldController;
+        position = new Vector2( 0, 0);
+        dimension = new Vector2(2,1);
     }
 
     @Override

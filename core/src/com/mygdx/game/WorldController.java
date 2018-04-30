@@ -3,6 +3,8 @@ package com.mygdx.game;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.ArrayList;
+
 
 public class WorldController {
 
@@ -15,30 +17,32 @@ public class WorldController {
 		Restaurant,
 		Transport,
 		Supermarket
-
 	}
+
+	MainMenu menu;
+	Harvest harvestLevel;
+
+	int state = 0;
 
 	public OrthographicCamera camera;
 
 	public GameMode gameMode;
 
-	public WorldController() {
-
-
+	public WorldController()
+	{
+		currentTouch = new Vector2(-1,-1);
+		gameMode = GameMode.MainMenu;
 	}
 
 	void init(){
-
+		menu = new MainMenu(this);
+		harvestLevel = new Harvest();
 	}
 
 	public void update(float delta) {
-		currentTouch = new Vector2(-1, -1);
-	}
-
-	void InitiateLevel(){
 		switch (gameMode){
 			case MainMenu:
-
+				menu.update(delta);
 				break;
 			case Harvest:
 
@@ -53,9 +57,32 @@ public class WorldController {
 
 				break;
 		}
+		currentTouch = new Vector2(-1, -1);
 	}
 
-	void setTouch(float x, float y){
+	void InitiateLevel(){
+		switch (gameMode){
+			case MainMenu:
+				state = 0;
+				break;
+			case Harvest:
+				state = 1;
+				harvestLevel.init(this);
+				break;
+			case Restaurant:
+
+				break;
+			case Transport:
+
+				break;
+			case Supermarket:
+
+				break;
+		}
+	}
+
+	void setTouch(float x, float y)
+	{
 		currentTouch = new Vector2(x,y);
 	}
 
@@ -63,7 +90,7 @@ public class WorldController {
 		return currentTouch;
 	}
 
-	void FinishLevel(){
+	public void finishLevel(){
 
 	}
 }

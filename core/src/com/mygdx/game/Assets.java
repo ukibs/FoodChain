@@ -12,11 +12,12 @@ public class Assets {
 
 
 	ArrayList<Texture> fruitHarvest;
+	Texture button;
 	static Assets instance;
 
 	
 	private Assets() {
-		
+		button = new Texture(Gdx.files.internal("button.png"));
 
 		
 		Gdx.app.debug("ASSETS", "Assets created");
