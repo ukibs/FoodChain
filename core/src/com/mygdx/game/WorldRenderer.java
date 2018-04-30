@@ -36,7 +36,7 @@ public class WorldRenderer {
 		//batch.enableBlending();
 		//batch.setBlendFunction(GL20.GL_SRC_ALPHA,  GL20.GL_ONE_MINUS_SRC_ALPHA );
 
-		camera.setToOrtho(false,Constants.VIEWPORT_WIDTH,Constants.VIEWPORT_HEIGTH);
+		camera.setToOrtho(false,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
 		camera.position.set(0,0,0);
 		camera.update();
 
@@ -67,7 +67,7 @@ public class WorldRenderer {
 
 				break;
 			case Supermarket:
-
+				controller.supermarketLevel.render(batch);
 				break;
 		}
 		
@@ -78,8 +78,8 @@ public class WorldRenderer {
 	
 	public void resize(int width, int height) {
 		
-		camera.viewportWidth = (Constants.VIEWPORT_HEIGTH/height) * width;
-		camera.update();
+		//camera.viewportWidth = (Constants.VIEWPORT_HEIGTH/height) * width;
+		//camera.update();
 		
 	}
 	

@@ -44,14 +44,14 @@ public class Supermarket extends BaseLevel {
                     break;
             }
             final String finalPackName = packName;
-            shelfButtons[i] = new BaseButton(Assets.getInstance().button, finalPackName, worldController){
+            /*shelfButtons[i] = new BaseButton(Assets.getInstance().button, finalPackName, worldController){
                 @Override
                 public void buttonFuction() {
                     System.out.println("Comprando " + finalPackName);
                 }
-            };
-            shelfButtons[i].position.x = i * 1;
-            shelfButtons[i].position.y = 0;
+            };*/
+            //shelfButtons[i].position.x = i * 1;
+            //shelfButtons[i].position.y = 0;
         }
     }
 

@@ -21,8 +21,7 @@ public class WorldController {
 
 	MainMenu menu;
 	Harvest harvestLevel;
-
-	int state = 0;
+	Supermarket supermarketLevel;
 
 	public OrthographicCamera camera;
 
@@ -37,6 +36,7 @@ public class WorldController {
 	void init(){
 		menu = new MainMenu(this);
 		harvestLevel = new Harvest();
+		supermarketLevel = new Supermarket(this);
 	}
 
 	public void update(float delta) {
@@ -54,7 +54,7 @@ public class WorldController {
 
 				break;
 			case Supermarket:
-
+				supermarketLevel.update(delta);
 				break;
 		}
 		currentTouch = new Vector2(-1, -1);
@@ -63,10 +63,8 @@ public class WorldController {
 	void InitiateLevel(){
 		switch (gameMode){
 			case MainMenu:
-				state = 0;
 				break;
 			case Harvest:
-				state = 1;
 				harvestLevel.init(this);
 				break;
 			case Restaurant:
@@ -76,7 +74,7 @@ public class WorldController {
 
 				break;
 			case Supermarket:
-
+				supermarketLevel.init();
 				break;
 		}
 	}

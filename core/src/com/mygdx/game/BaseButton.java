@@ -1,6 +1,8 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -13,19 +15,23 @@ public abstract class BaseButton extends GameObject {
 
     Texture buttonImage;
     String buttonText;
+    BitmapFont font;
     WorldController worldController;
 
-    public BaseButton(Texture buttonImage, String buttonText, WorldController worldController){
+    public BaseButton(Texture buttonImage, String buttonText, WorldController worldController, Vector2 position, Vector2 dimension){
+        font = new BitmapFont();
         this.buttonText = buttonText;
         this.buttonImage = buttonImage;
         this.worldController = worldController;
-        position = new Vector2( 0, 0);
-        dimension = new Vector2(2,1);
+        this.position = new Vector2(position);
+        this.dimension = new Vector2(dimension);
     }
 
     @Override
     public void render(SpriteBatch batch) {
         batch.draw(buttonImage, position.x, position.y, dimension.x, dimension.y);
+        font.setColor(Color.BLACK);
+        font.draw(batch, buttonText, position.x, position.y+dimension.y);
     }
 
     @Override

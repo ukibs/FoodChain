@@ -17,17 +17,17 @@ public abstract class BaseLevel extends GameObject {
     public void render(SpriteBatch batch) {
         GUI(batch);
         //Cabecera
-        for(GameObject gameObject : levelObjects){
+       /* for(GameObject gameObject : levelObjects){
             gameObject.render(batch);
-        }
+        }*/
     }
 
     @Override
     public void update(float elpasedTime) {
         LevelUpdate(elpasedTime);
-        for(GameObject gameObject : levelObjects){
+        /*for(GameObject gameObject : levelObjects){
             gameObject.update(elpasedTime);
-        }
+        }*/
     }
 
     public abstract void GUI(SpriteBatch batch);
