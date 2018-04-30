@@ -9,8 +9,15 @@ import com.badlogic.gdx.InputProcessor;
 
 public class Input implements InputProcessor {
 
-    private void init() {
+    private WorldController worldController;
 
+    Input(WorldController worldController){
+        this.worldController = worldController;
+
+        init();
+    }
+
+    private void init() {
 
         Gdx.input.setInputProcessor(this);
 
@@ -93,16 +100,19 @@ public class Input implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        worldController.setTouch(screenX, screenY);
         return false;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        worldController.setTouch(screenX, screenY);
         return false;
     }
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
+        worldController.setTouch(screenX, screenY);
         return false;
     }
 
