@@ -19,7 +19,9 @@ public class MainMenu extends GameObject {
     MainMenu(WorldController worldController)
     {
         this.worldController = worldController;
-        play = new BaseButton(Assets.getInstance().button, "Play", worldController, new Vector2(-Constants.WIDTH_RATIO*4, Constants.HEIGHT_RATIO), new Vector2(Constants.WIDTH_RATIO*3, Constants.HEIGHT_RATIO*2)) {
+        play = new BaseButton(Assets.getInstance().button, "Play", worldController,
+                new Vector2(-Constants.WIDTH_RATIO*4, Constants.HEIGHT_RATIO), new Vector2(Constants.WIDTH_RATIO*3,
+                Constants.HEIGHT_RATIO*2)) {
             @Override
             public void buttonFuction() {
                 worldController.gameMode = WorldController.GameMode.Harvest;
@@ -27,7 +29,9 @@ public class MainMenu extends GameObject {
             }
         };
 
-        supermarket = new BaseButton(Assets.getInstance().button, "Super", worldController, new Vector2(-Constants.WIDTH_RATIO*4, -Constants.HEIGHT_RATIO*2), new Vector2(Constants.WIDTH_RATIO*3, Constants.HEIGHT_RATIO*2)) {
+        supermarket = new BaseButton(Assets.getInstance().button, "Super", worldController,
+                new Vector2(-Constants.WIDTH_RATIO*4, -Constants.HEIGHT_RATIO*2), new Vector2(Constants.WIDTH_RATIO*3,
+                Constants.HEIGHT_RATIO*2)) {
             @Override
             public void buttonFuction() {
                 worldController.gameMode = WorldController.GameMode.Supermarket;

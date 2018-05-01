@@ -30,13 +30,8 @@ public class Supermarket extends BaseLevel {
     BaseButton salesButton;
     BaseButton donateButton;
 
-    public Supermarket(WorldController worldController){
-        this.worldController = worldController;
-        init();
-
-    }
-
-    void init(){
+    @Override
+    public void init(){
 
         //
         String packName = "";
@@ -60,8 +55,6 @@ public class Supermarket extends BaseLevel {
                     CreateFruitPack(finalI);
                 }
             };
-            //shelfButtons[i].position.x = i * 1;
-            //shelfButtons[i].position.y = 0;
         }
         // Then the fruit pack buttons
         // TODO: Remember to revise the shlef lenght
@@ -84,14 +77,41 @@ public class Supermarket extends BaseLevel {
 
     @Override
     public void GUI(SpriteBatch batch) {
-
+        //
+        for(int i = 0; i < shelfButtons.length; i++){
+            shelfButtons[i].render(batch);
+        }
+        //
+        for (int i = 0; i < fruitPackButtons.length; i++){
+            for (int j = 0; j < fruitPackButtons[i].length; j++){
+                if(fruitPackButtons[i][j] != null)
+                    fruitPackButtons[i][j].render(batch);
+            }
+        }
+        //
+        donateButton.render(batch);
+        salesButton.render(batch);
     }
 
     @Override
     public void LevelUpdate(float elapsedTime) {
-
+        //
+        for(int i = 0; i < shelfButtons.length; i++){
+            shelfButtons[i].update(elapsedTime);
+        }
+        //
+        for (int i = 0; i < fruitPackButtons.length; i++){
+            for (int j = 0; j < fruitPackButtons[i].length; j++){
+                if(fruitPackButtons[i][j] != null)
+                    fruitPackButtons[i][j].update(elapsedTime);
+            }
+        }
+        //
+        donateButton.update(elapsedTime);
+        salesButton.update(elapsedTime);
     }
 
+    //
     void CreateFruitPack(int shelfIndex){
         int fruitPackPosition = 0;
         // TODO: Make a class FruitPackButton
