@@ -26,32 +26,12 @@ public class Input implements InputProcessor {
 
     public void update(float delta) {
 
-        if(Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.C)){
-
-        }
-
-        if(Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.PERIOD)) {
-
-        }
-        if(Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.MINUS)) {
-
-        }
-
-        if(Gdx.input.isKeyPressed(com.badlogic.gdx.Input.Keys.UP)) {
-
-        }
-        if(Gdx.input.isKeyPressed(com.badlogic.gdx.Input.Keys.DOWN)) {
-
-        }
-        if(Gdx.input.isKeyPressed(com.badlogic.gdx.Input.Keys.LEFT)) {
-
-        }
-        if(Gdx.input.isKeyPressed(com.badlogic.gdx.Input.Keys.RIGHT)) {
-
-        }
-
-        if(Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.SPACE)) {
-            System.out.println("SPACE PROCESSED");
+        if(Gdx.input.isTouched())
+        {
+            Vector3 pos = new Vector3();
+            pos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            worldController.camera.unproject(pos);
+            worldController.setLongTouch(pos.x, pos.y);
         }
     }
 
@@ -129,4 +109,6 @@ public class Input implements InputProcessor {
     public boolean scrolled(int amount) {
         return false;
     }
+
+
 }

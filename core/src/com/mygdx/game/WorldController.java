@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class WorldController {
 
 	Vector2 currentTouch;
+	Vector2 longTouch;
 
 	public enum GameMode{
 
@@ -23,6 +24,8 @@ public class WorldController {
 	Harvest harvestLevel;
 	Supermarket supermarketLevel;
 
+	float currentScore = 0;
+
 	public OrthographicCamera camera;
 
 	public GameMode gameMode;
@@ -36,7 +39,7 @@ public class WorldController {
 	void init(){
 		menu = new MainMenu(this);
 		harvestLevel = new Harvest();
-		supermarketLevel = new Supermarket(this);
+		supermarketLevel = new Supermarket();
 	}
 
 	public void update(float delta) {
@@ -84,8 +87,18 @@ public class WorldController {
 		currentTouch = new Vector2(x,y);
 	}
 
+	void setLongTouch(float x, float y)
+	{
+		longTouch = new Vector2(x, y);
+	}
+
 	public Vector2 getTouch(){
 		return currentTouch;
+	}
+
+	public Vector2 longTouch()
+	{
+		return longTouch;
 	}
 
 	public void finishLevel(){

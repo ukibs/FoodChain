@@ -23,7 +23,7 @@ public abstract class BaseLevel extends GameObject {
                 new Vector2(-Constants.WIDTH_RATIO*4, Constants.HEIGHT_RATIO*4+Constants.HEIGHT_RATIO/4),new Vector2(Constants.WIDTH_RATIO, Constants.HEIGHT_RATIO/2)) {
             @Override
             public void buttonFuction() {
-
+                worldController.gameMode = WorldController.GameMode.MainMenu;
             }
         };
         init();
@@ -36,12 +36,13 @@ public abstract class BaseLevel extends GameObject {
        /* for(GameObject gameObject : levelObjects){
             gameObject.render(batch);
         }*/
-        batch.draw(Assets.getInstance().button, -Constants.WIDTH_RATIO*5, Constants.HEIGHT_RATIO*4, Constants.WIDTH_RATIO*10, Constants.HEIGHT_RATIO);
+        batch.draw(Assets.getInstance().button, Constants.dimension(-5,4).x,Constants.dimension(-5,4).y, Constants.WIDTH_RATIO*10, Constants.HEIGHT_RATIO);
         menuButton.render(batch);
     }
 
     @Override
     public void update(float elpasedTime) {
+        menuButton.update(elpasedTime);
         LevelUpdate(elpasedTime);
         /*for(GameObject gameObject : levelObjects){
             gameObject.update(elpasedTime);

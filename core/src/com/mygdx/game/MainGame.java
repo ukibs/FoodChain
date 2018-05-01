@@ -25,7 +25,7 @@ public class MainGame implements ApplicationListener {
 
 	@Override
 	public void render () {
-		
+		input.update(Gdx.graphics.getDeltaTime());
 		controller.update(Gdx.graphics.getDeltaTime());
 		
 		Gdx.gl.glClearColor(1f, 1f, 1f, 1);
