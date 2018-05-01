@@ -65,7 +65,7 @@ public class WorldController {
 			case MainMenu:
 				break;
 			case Harvest:
-				harvestLevel.init(this);
+				harvestLevel.baseInit(this);
 				break;
 			case Restaurant:
 
@@ -74,7 +74,7 @@ public class WorldController {
 
 				break;
 			case Supermarket:
-				supermarketLevel.init();
+				supermarketLevel.baseInit(this);
 				break;
 		}
 	}

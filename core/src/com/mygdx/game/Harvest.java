@@ -15,9 +15,9 @@ public class Harvest extends BaseLevel {
 
     float time;
 
-    public void init(WorldController wC)
+
+    public void init()
     {
-        worldController = wC;
         fruits = new ArrayList<Fruit>();
         for(int i = 0; i < 10; i++){ fruits.add(new Fruit());}
         basket = new Basket();
