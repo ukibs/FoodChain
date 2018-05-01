@@ -28,6 +28,10 @@ public class Supermarket extends BaseLevel {
     BaseButton salesButton;
     BaseButton donateButton;
 
+    //
+    int currentShelfIndex = -1;
+    int currentPackIndex = -1;
+
     @Override
     public void init(){
 
@@ -68,16 +72,18 @@ public class Supermarket extends BaseLevel {
 
         // And finally the sales/donate
         salesButton = new BaseButton(Assets.getInstance().button, "Sales", worldController,
-                new Vector2(Constants.WIDTH_RATIO * (-5),Constants.HEIGHT_RATIO * (-5)), buttonDimension) {
+                new Vector2(Constants.WIDTH_RATIO * 10,Constants.HEIGHT_RATIO * 10), buttonDimension) {
             @Override
             public void buttonFuction() {
+                PutPackInSales();
                 System.out.println("Moving to sales ");
             }
         };
         donateButton = new BaseButton(Assets.getInstance().button, "Donate", worldController,
-                new Vector2(Constants.WIDTH_RATIO * (2),Constants.HEIGHT_RATIO * (-5)), buttonDimension) {
+                new Vector2(Constants.WIDTH_RATIO * 10,Constants.HEIGHT_RATIO * 10), buttonDimension) {
             @Override
             public void buttonFuction() {
+                DonatePack();
                 System.out.println("Donating ");
             }
         };
@@ -154,5 +160,24 @@ public class Supermarket extends BaseLevel {
                 fruitPackButtons[shelfIndex][packIndex].position.y - offsetY);
         donateButton.position = new Vector2(shelfButtons[shelfIndex].position.x + offsetX,
                 fruitPackButtons[shelfIndex][packIndex].position.y - offsetY);
+        currentPackIndex = packIndex;
+        currentShelfIndex = shelfIndex;
+    }
+
+    //
+    void DonatePack(){
+        fruitPackButtons[currentShelfIndex][currentPackIndex] = null;
+        HideSalesAndDonateButtons();
+    }
+
+    //
+    void PutPackInSales(){
+        HideSalesAndDonateButtons();
+    }
+
+    //
+    void HideSalesAndDonateButtons(){
+        salesButton.position = new Vector2(Constants.WIDTH_RATIO * 10, Constants.HEIGHT_RATIO * 10);
+        donateButton.position = new Vector2(Constants.WIDTH_RATIO * 10, Constants.HEIGHT_RATIO * 10);
     }
 }
