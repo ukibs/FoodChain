@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.shaders.BaseShader;
 import com.badlogic.gdx.math.Vector2;
@@ -22,15 +24,19 @@ public class Supermarket extends BaseLevel {
     BaseButton[] shelfButtons;
 
     // Buttons to interact with the fruit packs
-    BaseButton[][] fruitPackButtons;
+    FruitPackButton[][] fruitPackButtons;
 
     // Buttons to sales/donate
     BaseButton salesButton;
     BaseButton donateButton;
+    BaseButton trashButton;
 
     //
     int currentShelfIndex = -1;
     int currentPackIndex = -1;
+
+    //
+    int currentMoney = 1000;
 
     @Override
     public void init(){
@@ -68,9 +74,9 @@ public class Supermarket extends BaseLevel {
             };
         }
         // Then the fruit pack buttons
-        fruitPackButtons = new BaseButton[shelvesAmount][3];
+        fruitPackButtons = new FruitPackButton[shelvesAmount][3];
 
-        // And finally the sales/donate
+        // And finally the sales/donate, and trash
         salesButton = new BaseButton(Assets.getInstance().button, "Sales", worldController,
                 new Vector2(Constants.WIDTH_RATIO * 10,Constants.HEIGHT_RATIO * 10), buttonDimension) {
             @Override
@@ -85,6 +91,14 @@ public class Supermarket extends BaseLevel {
             public void buttonFuction() {
                 DonatePack();
                 System.out.println("Donating ");
+            }
+        };
+        trashButton = new BaseButton(Assets.getInstance().button, "Trash", worldController,
+                new Vector2(Constants.WIDTH_RATIO * 10,Constants.HEIGHT_RATIO * 10), buttonDimension) {
+            @Override
+            public void buttonFuction() {
+                ThrowPackToTrash();
+                System.out.println("Throwing food ");
             }
         };
     }
@@ -105,6 +119,12 @@ public class Supermarket extends BaseLevel {
         //
         donateButton.render(batch);
         salesButton.render(batch);
+        trashButton.render(batch);
+
+        //
+        BitmapFont font = new BitmapFont();
+        font.setColor(Color.BLACK);
+        font.draw(batch, currentMoney + "", Constants.WIDTH_RATIO * 4, Constants.HEIGHT_RATIO * 4);
     }
 
     @Override
@@ -123,10 +143,11 @@ public class Supermarket extends BaseLevel {
         //
         donateButton.update(elapsedTime);
         salesButton.update(elapsedTime);
+        trashButton.update(elapsedTime);
     }
 
     //
-    void CreateFruitPack(int shelfIndex, String packName){
+    void CreateFruitPack(int shelfIndex, final String packName){
 
         //
         int packIndex;
@@ -139,7 +160,7 @@ public class Supermarket extends BaseLevel {
         //
         Vector2 position = new Vector2(shelfButtons[shelfIndex].position.x,
                 Constants.HEIGHT_RATIO *((-packIndex * 1.5f)));
-        System.out.println("Comprando " + packName);
+        System.out.println("Buying " + packName);
 
         //
         fruitPackButtons[shelfIndex][packIndex] = new FruitPackButton(Assets.getInstance().button, packName,
@@ -147,7 +168,10 @@ public class Supermarket extends BaseLevel {
             @Override
             public void buttonFuction() {
                 // Here we will move the donate and sales buttons to their correspondant postion
-                MoveSalesAndDonateButtons(shelfIndex, packIndex);
+                if(timeToExpire > 0.0f)
+                    MoveSalesAndDonateButtons(shelfIndex, packIndex);
+                else
+                    MoveTrashButton(shelfIndex, packIndex);
             }
         };
     }
@@ -165,6 +189,15 @@ public class Supermarket extends BaseLevel {
     }
 
     //
+    void MoveTrashButton(int shelfIndex, int packIndex){
+        float offsetY =  buttonDimension.y / 2;
+        trashButton.position = new Vector2(shelfButtons[shelfIndex].position.x,
+                fruitPackButtons[shelfIndex][packIndex].position.y - offsetY);
+        currentPackIndex = packIndex;
+        currentShelfIndex = shelfIndex;
+    }
+
+    //
     void DonatePack(){
         fruitPackButtons[currentShelfIndex][currentPackIndex] = null;
         HideSalesAndDonateButtons();
@@ -176,8 +209,15 @@ public class Supermarket extends BaseLevel {
     }
 
     //
+    private void ThrowPackToTrash() {
+        fruitPackButtons[currentShelfIndex][currentPackIndex] = null;
+        HideSalesAndDonateButtons();
+    }
+
+    //
     void HideSalesAndDonateButtons(){
         salesButton.position = new Vector2(Constants.WIDTH_RATIO * 10, Constants.HEIGHT_RATIO * 10);
         donateButton.position = new Vector2(Constants.WIDTH_RATIO * 10, Constants.HEIGHT_RATIO * 10);
+        trashButton.position = new Vector2(Constants.WIDTH_RATIO * 10, Constants.HEIGHT_RATIO * 10);
     }
 }
