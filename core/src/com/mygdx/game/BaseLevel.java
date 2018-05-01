@@ -24,6 +24,7 @@ public abstract class BaseLevel extends GameObject {
             @Override
             public void buttonFuction() {
                 worldController.gameMode = WorldController.GameMode.MainMenu;
+                worldController.InitiateLevel();
             }
         };
         init();
@@ -33,9 +34,6 @@ public abstract class BaseLevel extends GameObject {
     public void render(SpriteBatch batch) {
         GUI(batch);
         //Cabecera
-       /* for(GameObject gameObject : levelObjects){
-            gameObject.render(batch);
-        }*/
         batch.draw(Assets.getInstance().button, Constants.dimension(-5,4).x,Constants.dimension(-5,4).y, Constants.WIDTH_RATIO*10, Constants.HEIGHT_RATIO);
         menuButton.render(batch);
     }
@@ -44,9 +42,6 @@ public abstract class BaseLevel extends GameObject {
     public void update(float elpasedTime) {
         menuButton.update(elpasedTime);
         LevelUpdate(elpasedTime);
-        /*for(GameObject gameObject : levelObjects){
-            gameObject.update(elpasedTime);
-        }*/
     }
 
     public abstract void GUI(SpriteBatch batch);

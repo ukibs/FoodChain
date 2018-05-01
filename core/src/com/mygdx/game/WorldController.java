@@ -22,6 +22,7 @@ public class WorldController {
 
 	MainMenu menu;
 	Harvest harvestLevel;
+
 	Supermarket supermarketLevel;
 
 	float currentScore = 0;
@@ -66,6 +67,7 @@ public class WorldController {
 	void InitiateLevel(){
 		switch (gameMode){
 			case MainMenu:
+				menu.init();
 				break;
 			case Harvest:
 				harvestLevel.baseInit(this);
@@ -102,6 +104,20 @@ public class WorldController {
 	}
 
 	public void finishLevel(){
+		switch (gameMode){
+			case Harvest:
+				gameMode = GameMode.Supermarket;
+				InitiateLevel();
+				break;
+			case Restaurant:
 
+				break;
+			case Transport:
+
+				break;
+			case Supermarket:
+				supermarketLevel.baseInit(this);
+				break;
+		}
 	}
 }

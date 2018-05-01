@@ -65,5 +65,16 @@ public class Harvest extends BaseLevel {
                 fruits.remove(i);
             }
         }
+
+        for(int i = 0; i < fruits.size(); i++)
+        {
+            Fruit currentFruit = fruits.get(i);
+            if(currentFruit.position.y < basket.position.y)
+            {
+                fruits.remove(i);
+                worldController.currentScore += 20;
+                System.out.println(worldController.currentScore);
+            }
+        }
     }
 }
