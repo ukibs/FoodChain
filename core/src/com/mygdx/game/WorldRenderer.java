@@ -60,11 +60,11 @@ public class WorldRenderer {
 			case Harvest:
 				controller.harvestLevel.render(batch);
 				break;
-			case Restaurant:
-
-				break;
 			case Transport:
 
+				break;
+			case Restaurant:
+				controller.restaurantLevel.render(batch);
 				break;
 			case Supermarket:
 				controller.supermarketLevel.render(batch);

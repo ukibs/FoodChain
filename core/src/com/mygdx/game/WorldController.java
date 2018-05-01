@@ -22,9 +22,10 @@ public class WorldController {
 
 	MainMenu menu;
 	Harvest harvestLevel;
-
+	Restaurant restaurantLevel;
 	Supermarket supermarketLevel;
 
+	boolean inPractice = false;
 	float currentScore = 0;
 
 	public OrthographicCamera camera;
@@ -40,6 +41,7 @@ public class WorldController {
 	void init(){
 		menu = new MainMenu(this);
 		harvestLevel = new Harvest();
+		restaurantLevel = new Restaurant();
 		supermarketLevel = new Supermarket();
 	}
 
@@ -51,11 +53,11 @@ public class WorldController {
 			case Harvest:
 				harvestLevel.update(delta);
 				break;
-			case Restaurant:
-
-				break;
 			case Transport:
 
+				break;
+			case Restaurant:
+				restaurantLevel.update(delta);
 				break;
 			case Supermarket:
 				supermarketLevel.update(delta);
@@ -72,11 +74,11 @@ public class WorldController {
 			case Harvest:
 				harvestLevel.baseInit(this);
 				break;
-			case Restaurant:
-
-				break;
 			case Transport:
 
+				break;
+			case Restaurant:
+				restaurantLevel.baseInit(this);
 				break;
 			case Supermarket:
 				supermarketLevel.baseInit(this);
@@ -104,20 +106,29 @@ public class WorldController {
 	}
 
 	public void finishLevel(){
-		switch (gameMode){
-			case Harvest:
-				gameMode = GameMode.Supermarket;
-				InitiateLevel();
-				break;
-			case Restaurant:
+		if(inPractice)
+		{
+			gameMode = GameMode.MainMenu;
+			InitiateLevel();
+		}
+		else {
+			switch (gameMode) {
+				case Harvest:
+					gameMode = GameMode.Restaurant;
+					InitiateLevel();
+					break;
+				case Transport:
 
-				break;
-			case Transport:
-
-				break;
-			case Supermarket:
-				supermarketLevel.baseInit(this);
-				break;
+					break;
+				case Restaurant:
+					gameMode = GameMode.Supermarket;
+					InitiateLevel();
+					break;
+				case Supermarket:
+					gameMode = GameMode.MainMenu;
+					InitiateLevel();
+					break;
+			}
 		}
 	}
 }

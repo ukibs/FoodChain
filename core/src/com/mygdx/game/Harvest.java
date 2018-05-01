@@ -12,12 +12,14 @@ public class Harvest extends BaseLevel {
 
     ArrayList<Fruit> fruits;
     Basket basket;
-    float spawnTime = 0;
+    float spawnTime;
 
     float time;
 
     public void init()
     {
+        time = 0;
+        spawnTime = 0;
         fruits = new ArrayList<Fruit>();
         fruits.add(new Fruit());
         basket = new Basket(worldController);

@@ -21,8 +21,6 @@ public class MainMenu extends GameObject {
     BaseButton restaurant;
     BaseButton supermarket;
 
-    boolean inPractice = false;
-
     MainMenu(WorldController worldController)
     {
         this.worldController = worldController;
@@ -41,7 +39,7 @@ public class MainMenu extends GameObject {
                 Constants.HEIGHT_RATIO*2)) {
             @Override
             public void buttonFuction() {
-                inPractice = true;
+                worldController.inPractice = true;
             }
         };
 
@@ -55,6 +53,25 @@ public class MainMenu extends GameObject {
             }
         };
 
+        transport = new BaseButton(Assets.getInstance().button, "Transport", worldController,
+                new Vector2(Constants.WIDTH_RATIO, Constants.HEIGHT_RATIO), new Vector2(Constants.WIDTH_RATIO*3,
+                Constants.HEIGHT_RATIO*2)) {
+            @Override
+            public void buttonFuction() {
+                worldController.gameMode = WorldController.GameMode.Transport;
+                worldController.InitiateLevel();
+            }
+        };
+
+        restaurant = new BaseButton(Assets.getInstance().button, "Restaurant", worldController,
+                new Vector2(-Constants.WIDTH_RATIO*4, -Constants.HEIGHT_RATIO*2), new Vector2(Constants.WIDTH_RATIO*3,
+                Constants.HEIGHT_RATIO*2)) {
+            @Override
+            public void buttonFuction() {
+                worldController.gameMode = WorldController.GameMode.Restaurant;
+                worldController.InitiateLevel();
+            }
+        };
 
         supermarket = new BaseButton(Assets.getInstance().button, "Super", worldController,
                 new Vector2(Constants.WIDTH_RATIO, -Constants.HEIGHT_RATIO*2), new Vector2(Constants.WIDTH_RATIO*3,
@@ -66,37 +83,53 @@ public class MainMenu extends GameObject {
             }
         };
 
+        backMenu = new BaseButton(Assets.getInstance().button, "Menu", worldController,
+                new Vector2(-Constants.WIDTH_RATIO*4.5f, -Constants.HEIGHT_RATIO*4), new Vector2(Constants.WIDTH_RATIO*1.5f,
+                Constants.HEIGHT_RATIO*1)) {
+            @Override
+            public void buttonFuction() {
+                worldController.gameMode = WorldController.GameMode.MainMenu;
+                worldController.InitiateLevel();
+            }
+        };
+
     }
 
     public void init()
     {
-        inPractice = false;
+        worldController.inPractice = false;
     }
 
     @Override
     public void render(SpriteBatch batch) {
         batch.draw(Assets.getInstance().button, -Gdx.graphics.getWidth() / 2, -Gdx.graphics.getHeight() / 2, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        if(!inPractice)
+        if(!worldController.inPractice)
         {
             play.render(batch);
             practice.render(batch);
         }
         else {
             harvest.render(batch);
+            transport.render(batch);
+            restaurant.render(batch);
             supermarket.render(batch);
+            backMenu.render(batch);
         }
     }
 
     @Override
     public void update(float elpasedTime) {
-        if(!inPractice)
+        if(!worldController.inPractice)
         {
             play.update(elpasedTime);
             practice.update(elpasedTime);
         }
         else {
             harvest.update(elpasedTime);
+            transport.update(elpasedTime);
+            restaurant.update(elpasedTime);
             supermarket.update(elpasedTime);
+            backMenu.update(elpasedTime);
         }
     }
 }
