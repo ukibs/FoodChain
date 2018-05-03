@@ -63,7 +63,7 @@ public class WorldController {
 				supermarketLevel.update(delta);
 				break;
 		}
-		currentTouch = new Vector2(-1, -1);
+		currentTouch = new Vector2(-100000, -10000000);
 	}
 
 	void InitiateLevel(){
