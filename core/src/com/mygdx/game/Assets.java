@@ -12,7 +12,7 @@ public class Assets {
 
 
 	ArrayList<Texture> fruitHarvest;
-	Texture button;
+	public Texture button;
 	static Assets instance;
 
 	

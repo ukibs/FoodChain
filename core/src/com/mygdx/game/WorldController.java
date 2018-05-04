@@ -2,8 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
-
-import java.util.ArrayList;
+import com.mygdx.game.Harvest.Harvest;
 
 
 public class WorldController {
@@ -26,7 +25,7 @@ public class WorldController {
 	Supermarket supermarketLevel;
 
 	boolean inPractice = false;
-	float currentScore = 0;
+	public float currentScore = 0;
 
 	public OrthographicCamera camera;
 

@@ -7,8 +7,8 @@ import com.badlogic.gdx.math.Vector2;
 public abstract class GameObject {
 
 	
-	Vector2 position;
-	Vector2 dimension;
+	public Vector2 position;
+	public Vector2 dimension;
 	
 	Vector2 origin;
 	float rotation;
@@ -16,7 +16,7 @@ public abstract class GameObject {
 	Vector2 speed;
 	private Rectangle bounds;
 
-	GameObject(){
+	public GameObject(){
 		bounds = new Rectangle();
 	}
 

@@ -1,6 +1,8 @@
-package com.mygdx.game;
+package com.mygdx.game.Harvest;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.BaseLevel;
+import com.mygdx.game.Constants;
 
 import java.util.ArrayList;
 
