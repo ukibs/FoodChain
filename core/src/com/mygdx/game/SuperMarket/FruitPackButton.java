@@ -1,10 +1,12 @@
-package com.mygdx.game;
+package com.mygdx.game.SuperMarket;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.BaseButton;
+import com.mygdx.game.WorldController;
 
 /**
  * Created by Martin on 01/05/2018.

@@ -15,7 +15,7 @@ public abstract class BaseButton extends GameObject {
 
     Texture buttonImage;
     String buttonText;
-    BitmapFont font;
+    public BitmapFont font;
     WorldController worldController;
 
     public BaseButton(Texture buttonImage, String buttonText, WorldController worldController, Vector2 position, Vector2 dimension){

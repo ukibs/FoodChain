@@ -16,6 +16,8 @@ public abstract class GameObject {
 	Vector2 speed;
 	private Rectangle bounds;
 
+	public boolean active = true;
+
 	public GameObject(){
 		bounds = new Rectangle();
 	}

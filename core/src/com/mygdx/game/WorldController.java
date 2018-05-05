@@ -22,7 +22,7 @@ public class WorldController {
 	MainMenu menu;
 	Harvest harvestLevel;
 	Restaurant restaurantLevel;
-	Supermarket supermarketLevel;
+	com.mygdx.game.SuperMarket.Supermarket supermarketLevel;
 
 	boolean inPractice = false;
 	public float currentScore = 0;
@@ -41,7 +41,7 @@ public class WorldController {
 		menu = new MainMenu(this);
 		harvestLevel = new Harvest();
 		restaurantLevel = new Restaurant();
-		supermarketLevel = new Supermarket();
+		supermarketLevel = new com.mygdx.game.SuperMarket.Supermarket();
 	}
 
 	public void update(float delta) {

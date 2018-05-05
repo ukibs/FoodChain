@@ -1,14 +1,13 @@
-package com.mygdx.game;
+package com.mygdx.game.SuperMarket;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g3d.shaders.BaseShader;
 import com.badlogic.gdx.math.Vector2;
-
-import java.util.ArrayList;
-
-import sun.rmi.runtime.Log;
+import com.mygdx.game.Assets;
+import com.mygdx.game.BaseButton;
+import com.mygdx.game.BaseLevel;
+import com.mygdx.game.Constants;
 
 /**
  * Created by Martin on 30/04/2018.
@@ -38,8 +37,14 @@ public class Supermarket extends BaseLevel {
     //
     int currentMoney = 1000;
 
+    //
+    ClientManager clientManager;
+
     @Override
     public void init(){
+
+        //
+        clientManager = new ClientManager(this);
 
         //
         String packName = "";
@@ -125,10 +130,15 @@ public class Supermarket extends BaseLevel {
         BitmapFont font = new BitmapFont();
         font.setColor(Color.BLACK);
         font.draw(batch, currentMoney + "", Constants.WIDTH_RATIO * 4, Constants.HEIGHT_RATIO * 4);
+
+        //
+        clientManager.render(batch);
     }
 
     @Override
     public void LevelUpdate(float elapsedTime) {
+        //
+        clientManager.update(elapsedTime);
         //
         for(int i = 0; i < shelfButtons.length; i++){
             shelfButtons[i].update(elapsedTime);
