@@ -19,14 +19,14 @@ public class ClientManager extends GameObject {
     Supermarket supermarket;
     ArrayList<Client> clients;
     int clientsAmount = 10;
-    float clientCooldown = 1;
+    float clientCooldown = 0.5f;
     float elapsedTime;
 
     public ClientManager(Supermarket supermarket){
         this.supermarket = supermarket;
         clients = new ArrayList<Client>(clientsAmount);
         for(int i = 0; i < clientsAmount; i++){
-            clients.add(new Client());
+            clients.add(new Client(supermarket));
         }
     }
 
@@ -63,13 +63,14 @@ public class ClientManager extends GameObject {
     void ActivateClient(int shelfToUse){
         for(int i = 0; i < clientsAmount; i++){
             if(!clients.get(i).active){
-                Client activatedClient = clients.get(i);
-                activatedClient.position = new Vector2(supermarket.shelfButtons[shelfToUse].position.x,
-                        supermarket.shelfButtons[shelfToUse].position.y - Constants.HEIGHT_RATIO *(2));
+                //Client activatedClient = clients.get(i);
+                clients.get(i).position = new Vector2(supermarket.shelfButtons[shelfToUse].position.x,
+                        supermarket.shelfButtons[shelfToUse].position.y - Constants.HEIGHT_RATIO *(6));
                 //activatedClient.position = new Vector2(0,0);
-                activatedClient.face = new Sprite(Assets.getInstance().GetRandomFace());
-                activatedClient.active = true;
-                break;
+                clients.get(i).face = new Sprite(Assets.getInstance().GetRandomFace());
+                clients.get(i).active = true;
+                clients.get(i).currentShelf = shelfToUse;
+                return;
             }
         }
 

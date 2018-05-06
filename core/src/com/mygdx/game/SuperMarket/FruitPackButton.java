@@ -27,16 +27,23 @@ public abstract class FruitPackButton extends BaseButton {
         super(buttonImage, buttonText, worldController, position, dimension);
         this.shelfIndex = shelfIndex;
         this.packIndex = packIndex;
+        active = false;
     }
 
     @Override
     public void update(float elapsedTime){
+        //
+        if(!active) return;
+        //
         timeToExpire -= elapsedTime;
         super.update(elapsedTime);
     }
 
     @Override
     public void render(SpriteBatch batch){
+        //
+        if(!active) return;
+        //
         super.render(batch);
         font.draw(batch, quantity + "", position.x, position.y+dimension.y - 10);
         font.draw(batch, (int)timeToExpire + "", position.x, position.y+dimension.y - 20);
@@ -49,6 +56,8 @@ public abstract class FruitPackButton extends BaseButton {
         int piecesToBuy = MathUtils.random(1, 10);
         //
         piecesToBuy = Math.min(piecesToBuy, quantity);
+        quantity -= piecesToBuy;
+        if(quantity == 0) active = false;
         //
         int moneySpent;
         if(!onSale) moneySpent = piecesToBuy * 10;

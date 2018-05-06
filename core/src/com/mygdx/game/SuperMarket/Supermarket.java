@@ -3,6 +3,7 @@ package com.mygdx.game.SuperMarket;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Assets;
 import com.mygdx.game.BaseButton;
@@ -36,6 +37,7 @@ public class Supermarket extends BaseLevel {
 
     //
     int currentMoney = 1000;
+    int clientSatisfaction = 1000;
 
     //
     ClientManager clientManager;
@@ -80,6 +82,12 @@ public class Supermarket extends BaseLevel {
         }
         // Then the fruit pack buttons
         fruitPackButtons = new FruitPackButton[shelvesAmount][3];
+        /*for (int i = 0; i < fruitPackButtons.length; i++) {
+            for (int j = 0; j < fruitPackButtons[i].length; j++) {
+                CreateFruitPack(i, shelfButtons[i].);
+            }
+        }*/
+
 
         // And finally the sales/donate, and trash
         salesButton = new BaseButton(Assets.getInstance().button, "Sales", worldController,
@@ -130,7 +138,7 @@ public class Supermarket extends BaseLevel {
         BitmapFont font = new BitmapFont();
         font.setColor(Color.BLACK);
         font.draw(batch, currentMoney + "", Constants.WIDTH_RATIO * 4, Constants.HEIGHT_RATIO * 4);
-
+        font.draw(batch, clientSatisfaction + "", Constants.WIDTH_RATIO * -4, Constants.HEIGHT_RATIO * 4);
         //
         clientManager.render(batch);
     }
@@ -162,9 +170,10 @@ public class Supermarket extends BaseLevel {
         //
         int packIndex;
         for(packIndex = 0; packIndex < fruitPackButtons[shelfIndex].length; packIndex++){
-            if(fruitPackButtons[shelfIndex][packIndex] == null)
+            if(fruitPackButtons[shelfIndex][packIndex] == null || !fruitPackButtons[shelfIndex][packIndex].active)
                 break;
         }
+        //
         if(packIndex == fruitPackButtons[shelfIndex].length) return;
 
         //
@@ -184,6 +193,12 @@ public class Supermarket extends BaseLevel {
                     MoveTrashButton(shelfIndex, packIndex);
             }
         };
+        fruitPackButtons[shelfIndex][packIndex].active = true;
+    }
+
+    //
+    void ActivateFruitPack(int shelfIndex){
+
     }
 
     //
@@ -229,5 +244,39 @@ public class Supermarket extends BaseLevel {
         salesButton.position = new Vector2(Constants.WIDTH_RATIO * 10, Constants.HEIGHT_RATIO * 10);
         donateButton.position = new Vector2(Constants.WIDTH_RATIO * 10, Constants.HEIGHT_RATIO * 10);
         trashButton.position = new Vector2(Constants.WIDTH_RATIO * 10, Constants.HEIGHT_RATIO * 10);
+    }
+
+    //
+    public void BuyProduct(int shelfIndex, int purchaseType){
+        // For now don't use the type of
+
+        //
+        if(CheckIfContainsOutOfDateFood(shelfIndex)) clientSatisfaction -= 10;
+        //
+        int i;
+        for(i = 0; i < fruitPackButtons[shelfIndex].length; i++){
+            if(fruitPackButtons[shelfIndex][i] != null && fruitPackButtons[shelfIndex][i].active){
+                //int amount = MathUtils.random(1, 10);
+                currentMoney += fruitPackButtons[shelfIndex][i].BuyStuff();
+                break;
+            }
+        }
+        // If there is no food in the shelf
+        if(i == fruitPackButtons[shelfIndex].length){
+            clientSatisfaction -= 10;
+        }
+    }
+
+    //
+    boolean CheckIfContainsOutOfDateFood(int shelfIndex){
+        int i;
+        for(i = 0; i < fruitPackButtons[shelfIndex].length; i++){
+            if(fruitPackButtons[shelfIndex][i] != null &&
+                    fruitPackButtons[shelfIndex][i].active &&
+                    fruitPackButtons[shelfIndex][i].timeToExpire <= 0) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -14,7 +14,7 @@ import com.badlogic.gdx.math.Vector2;
 public abstract class BaseButton extends GameObject {
 
     Texture buttonImage;
-    String buttonText;
+    public String buttonText;
     public BitmapFont font;
     WorldController worldController;
 

@@ -13,10 +13,14 @@ import com.mygdx.game.GameObject;
 public class Client extends GameObject {
 
     public Sprite face;
+    float elapsedTime;
+    Supermarket supermarket;
+    public int currentShelf;
 
-    public Client(){
+    public Client(Supermarket supermarket){
         active = false;
         this.dimension = new Vector2(Constants.WIDTH_RATIO * 1, Constants.HEIGHT_RATIO * 1);
+        this.supermarket = supermarket;
     }
 
     @Override
@@ -24,13 +28,26 @@ public class Client extends GameObject {
         if(!active)
             return;
         //
-        face.draw(batch);
+        batch.draw(face, position.x, position.y, dimension.x, dimension.y);
     }
 
     @Override
     public void update(float elpasedTime) {
         if(!active)
             return;
+        //
+        this.elapsedTime += elpasedTime;
+        if(this.elapsedTime > 1){
+            this.elapsedTime = 0;
+            BuyStuffAndLeave();
+        }
+    }
 
+    //
+    void BuyStuffAndLeave(){
+        //
+        supermarket.BuyProduct(currentShelf, 0);
+        // And deactivate
+        active = false;
     }
 }
