@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\USUARIO\\Documents\\FoodChain\\android\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_launcher.png",
+        "source": "C:\\Users\\USUARIO\\Documents\\FoodChain\\android\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
         "merged": "C:\\libGDX\\FoodChain\\android\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_launcher.png",
         "source": "C:\\libGDX\\FoodChain\\android\\res\\drawable-mdpi\\ic_launcher.png"
     }
