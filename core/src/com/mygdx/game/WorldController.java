@@ -3,6 +3,8 @@ package com.mygdx.game;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Harvest.Harvest;
+import com.mygdx.game.RestaurantCode.Restaurant;
+import com.mygdx.game.SuperMarket.Supermarket;
 
 
 public class WorldController {
@@ -21,8 +23,8 @@ public class WorldController {
 
 	MainMenu menu;
 	Harvest harvestLevel;
-	RestaurantCode.Restaurant restaurantLevel;
-	com.mygdx.game.SuperMarket.Supermarket supermarketLevel;
+	Restaurant restaurantLevel;
+	Supermarket supermarketLevel;
 
 	boolean inPractice = false;
 	public float currentScore = 0;
@@ -40,8 +42,8 @@ public class WorldController {
 	void init(){
 		menu = new MainMenu(this);
 		harvestLevel = new Harvest();
-		restaurantLevel = new RestaurantCode.Restaurant();
-		supermarketLevel = new com.mygdx.game.SuperMarket.Supermarket();
+		restaurantLevel = new Restaurant();
+		supermarketLevel = new Supermarket();
 	}
 
 	public void update(float delta) {

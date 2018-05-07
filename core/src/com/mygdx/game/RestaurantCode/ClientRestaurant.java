@@ -1,5 +1,6 @@
 package com.mygdx.game.RestaurantCode;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -17,15 +18,27 @@ public class ClientRestaurant extends GameObject {
     Restaurant restaurantLevel;
     public int currentOrder;
     public int numberOrders;
+    int actionTime;
+    ClientState clientState;
+    BitmapFont font;
 
-    public ClientRestaurant(Restaurant restaurant){
+    public enum ClientState{
+        Ordering,
+        Eating,
+        Going
+    }
+
+    public ClientRestaurant(Restaurant restaurant, Vector2 position){
         active = false;
         this.dimension = new Vector2(Constants.WIDTH_RATIO * 1, Constants.HEIGHT_RATIO * 1);
         this.restaurantLevel = restaurant;
+        this.position = position;
+        font = new BitmapFont();
     }
 
     public void init()
     {
+        clientState = ClientState.Ordering;
         active = true;
         numberOrders = MathUtils.random(1, 10);
         currentOrder = MathUtils.random(0, 3);
@@ -36,7 +49,21 @@ public class ClientRestaurant extends GameObject {
         if(!active)
             return;
         //
-        batch.draw(face, position.x, position.y, dimension.x, dimension.y);
+        batch.draw(Assets.getInstance().faces[0], position.x, position.y, dimension.x, dimension.y);
+        switch (clientState)
+        {
+            case Ordering:
+                batch.draw(Assets.getInstance().food[currentOrder], position.x, position.y+Constants.HEIGHT_RATIO*2, dimension.x, dimension.y);
+                break;
+            case Eating:
+
+                break;
+            case Going:
+                batch.draw(Assets.getInstance().food[4], position.x, position.y+Constants.HEIGHT_RATIO*2, dimension.x, dimension.y);
+                break;
+        }
+
+        font.draw(batch, (int)elapsedTime+"", position.x, position.y+Constants.HEIGHT_RATIO*3);
     }
 
     @Override
@@ -45,19 +72,50 @@ public class ClientRestaurant extends GameObject {
             return;
         //
         this.elapsedTime += elpasedTime;
-        if(this.elapsedTime > 5 && numberOrders > 0){
-            this.elapsedTime = 0;
-        }
-        else if(elapsedTime > 2 && numberOrders == 0)
-        {
 
+        switch (clientState)
+        {
+            case Ordering:
+            if(elapsedTime > 7)
+            {
+                elapsedTime = 0;
+                active = false;
+            }
+            break;
+            case Eating:
+                if(elapsedTime > 3)
+                {
+                    elapsedTime = 0;
+                    if(numberOrders == 0)
+                    {
+                        clientState = ClientState.Going;
+                    }
+                    else clientState = ClientState.Ordering;
+                }
+                break;
+            case Going:
+                if(elapsedTime > 2)
+                {
+                    restaurantLevel.wastedFood();
+                    active = false;
+                }
         }
     }
 
     //
     public void takeOrder()
     {
-        currentOrder = MathUtils.random(0, 3);
-        numberOrders--;
+        if(numberOrders>1) {
+            currentOrder = MathUtils.random(0, 3);
+            numberOrders--;
+            clientState = ClientState.Eating;
+        }
+        else if(numberOrders == 1)
+        {
+            numberOrders--;
+            currentOrder = 4;
+            clientState = ClientState.Eating;
+        }
+        else active = false;
     }
 }

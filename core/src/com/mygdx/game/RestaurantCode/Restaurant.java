@@ -1,6 +1,7 @@
 package com.mygdx.game.RestaurantCode;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.Assets;
 import com.mygdx.game.BaseButton;
 import com.mygdx.game.BaseLevel;
@@ -22,39 +23,44 @@ public class Restaurant extends BaseLevel {
 
     ClientRestaurant[] clients;
 
+    float elpassedTime = 0;
+
     @Override
     public void init() {
         clients = new ClientRestaurant[4];
-
-        food1 = new BaseButton(Assets.getInstance().button, "", worldController, Constants.dimension(-3, -4), Constants.dimension(0.8f, 2)) {
+        for(int i = 0; i < clients.length; i++)
+        {
+            clients[i] = new ClientRestaurant(this, Constants.dimension(2.5f+i*(-2), -1));
+        }
+        food1 = new BaseButton(Assets.getInstance().food[0], "", worldController, Constants.dimension(-3, -4), Constants.dimension(0.8f, 2)) {
             @Override
             public void buttonFuction() {
                 serveToClient(0);
             }
         };
 
-        food2 = new BaseButton(Assets.getInstance().button, "", worldController, Constants.dimension(-2, -4), Constants.dimension(0.8f, 2)) {
+        food2 = new BaseButton(Assets.getInstance().food[1], "", worldController, Constants.dimension(-2, -4), Constants.dimension(0.8f, 2)) {
             @Override
             public void buttonFuction() {
                 serveToClient(1);
             }
         };
 
-        food3 = new BaseButton(Assets.getInstance().button, "", worldController, Constants.dimension(-1, -4), Constants.dimension(0.8f, 2)) {
+        food3 = new BaseButton(Assets.getInstance().food[2], "", worldController, Constants.dimension(-1, -4), Constants.dimension(0.8f, 2)) {
             @Override
             public void buttonFuction() {
                 serveToClient(2);
             }
         };
 
-        food4 = new BaseButton(Assets.getInstance().button, "", worldController, Constants.dimension(0, -4), Constants.dimension(0.8f, 2)) {
+        food4 = new BaseButton(Assets.getInstance().food[3], "", worldController, Constants.dimension(0, -4), Constants.dimension(0.8f, 2)) {
             @Override
             public void buttonFuction() {
                 serveToClient(3);
             }
         };
 
-        foodBox = new BaseButton(Assets.getInstance().button, "", worldController, Constants.dimension(1.5f, -4.2f), Constants.dimension(3, 2.4f)) {
+        foodBox = new BaseButton(Assets.getInstance().food[4], "", worldController, Constants.dimension(1.5f, -4.2f), Constants.dimension(3, 2.4f)) {
             @Override
             public void buttonFuction() {
                 serveToClient(4);
@@ -69,25 +75,58 @@ public class Restaurant extends BaseLevel {
         food3.render(batch);
         food4.render(batch);
         foodBox.render(batch);
+
+        for(ClientRestaurant clientRestaurant: clients) clientRestaurant.render(batch);
     }
 
     @Override
     public void LevelUpdate(float elapsedTime) {
+        elpassedTime += elapsedTime;
         food1.update(elapsedTime);
         food2.update(elapsedTime);
         food3.update(elapsedTime);
         food4.update(elapsedTime);
         foodBox.update(elapsedTime);
+
+        for(ClientRestaurant clientRestaurant: clients) clientRestaurant.update(elapsedTime);
+
+        if(elpassedTime > 4)
+        {
+            elpassedTime = 0;
+            while(getSpace())
+            {
+                int random = MathUtils.random(0,3);
+                if(!clients[random].active)
+                {
+                    clients[random].init();
+                    break;
+                }
+            }
+        }
+    }
+
+    private boolean getSpace()
+    {
+        for (ClientRestaurant clientRestaurant: clients)
+            if(!clientRestaurant.active) return true;
+        return false;
     }
 
     private void serveToClient(int typeFood)
     {
         for(int i = 0; i < clients.length; i++)
         {
-            if(clients[i].currentOrder == typeFood)
+            if(clients[i].currentOrder == typeFood && clients[i].clientState != ClientRestaurant.ClientState.Eating)
             {
                 clients[i].takeOrder();
+                break;
             }
         }
+    }
+
+    public void wastedFood()
+    {
+        worldController.currentScore += 10;
+        System.out.print("jaja");
     }
 }
