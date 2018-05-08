@@ -17,8 +17,7 @@ public class Fruit extends GameObject {
 
     public Fruit()
     {
-        //fruitTexture = Assets.getInstance().fruitHarvest.get(MathUtils.random(0, Assets.getInstance().fruitHarvest.size()));
-        fruitTexture = Assets.getInstance().button;
+        fruitTexture = Assets.getInstance().fruitHarvest[MathUtils.random(0, 3)];
         dimension = new Vector2(Constants.WIDTH_RATIO, Constants.HEIGHT_RATIO);
         position = new Vector2(MathUtils.random(-Constants.WIDTH_RATIO*4, Constants.WIDTH_RATIO*4-dimension.x), Constants.dimension(0, 4).y);
     }

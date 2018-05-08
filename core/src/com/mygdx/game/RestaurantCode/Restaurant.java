@@ -24,6 +24,7 @@ public class Restaurant extends BaseLevel {
     ClientRestaurant[] clients;
 
     float elpasedTime = 0;
+    float time = 0;
 
     @Override
     public void init() {
@@ -32,35 +33,35 @@ public class Restaurant extends BaseLevel {
         {
             clients[i] = new ClientRestaurant(this, Constants.dimension(2.5f+i*(-2), -1));
         }
-        food1 = new BaseButton(Assets.getInstance().food[0], "", worldController, Constants.dimension(-3, -4), Constants.dimension(0.8f, 2)) {
+        food1 = new BaseButton(Assets.getInstance().food[0], "", worldController, Constants.dimension(-3.4f, -4), Constants.dimension(1f, 2)) {
             @Override
             public void buttonFuction() {
                 serveToClient(0);
             }
         };
 
-        food2 = new BaseButton(Assets.getInstance().food[1], "", worldController, Constants.dimension(-2, -4), Constants.dimension(0.8f, 2)) {
+        food2 = new BaseButton(Assets.getInstance().food[1], "", worldController, Constants.dimension(-2.2f, -4), Constants.dimension(1f, 2)) {
             @Override
             public void buttonFuction() {
                 serveToClient(1);
             }
         };
 
-        food3 = new BaseButton(Assets.getInstance().food[2], "", worldController, Constants.dimension(-1, -4), Constants.dimension(0.8f, 2)) {
+        food3 = new BaseButton(Assets.getInstance().food[2], "", worldController, Constants.dimension(-1f, -4), Constants.dimension(1f, 2)) {
             @Override
             public void buttonFuction() {
                 serveToClient(2);
             }
         };
 
-        food4 = new BaseButton(Assets.getInstance().food[3], "", worldController, Constants.dimension(0, -4), Constants.dimension(0.8f, 2)) {
+        food4 = new BaseButton(Assets.getInstance().food[3], "", worldController, Constants.dimension(0.4f, -4), Constants.dimension(1f, 2)) {
             @Override
             public void buttonFuction() {
                 serveToClient(3);
             }
         };
 
-        foodBox = new BaseButton(Assets.getInstance().food[4], "", worldController, Constants.dimension(1.5f, -4.2f), Constants.dimension(3, 2.4f)) {
+        foodBox = new BaseButton(Assets.getInstance().food[4], "", worldController, Constants.dimension(1.8f, -4.2f), Constants.dimension(2.5f, 2.4f)) {
             @Override
             public void buttonFuction() {
                 serveToClient(4);
@@ -81,28 +82,29 @@ public class Restaurant extends BaseLevel {
 
     @Override
     public void LevelUpdate(float elapsedTime) {
-        elpasedTime += elapsedTime;
-        food1.update(elapsedTime);
-        food2.update(elapsedTime);
-        food3.update(elapsedTime);
-        food4.update(elapsedTime);
-        foodBox.update(elapsedTime);
+        time += elapsedTime;
+        if(time < Constants.LEVEL_TIME) {
+            elpasedTime += elapsedTime;
+            food1.update(elapsedTime);
+            food2.update(elapsedTime);
+            food3.update(elapsedTime);
+            food4.update(elapsedTime);
+            foodBox.update(elapsedTime);
 
-        for(ClientRestaurant clientRestaurant: clients) clientRestaurant.update(elapsedTime);
+            for (ClientRestaurant clientRestaurant : clients) clientRestaurant.update(elapsedTime);
 
-        if(elpasedTime > 4)
-        {
-            elpasedTime = 0;
-            while(getSpace())
-            {
-                int random = MathUtils.random(0,3);
-                if(!clients[random].active)
-                {
-                    clients[random].init();
-                    break;
+            if (elpasedTime > 4) {
+                elpasedTime = 0;
+                while (getSpace()) {
+                    int random = MathUtils.random(0, 3);
+                    if (!clients[random].active) {
+                        clients[random].init();
+                        break;
+                    }
                 }
             }
         }
+        else worldController.finishLevel();
     }
 
     private boolean getSpace()

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Assets {
 
 
-	ArrayList<Texture> fruitHarvest;
+	public Texture[] fruitHarvest;
 	public Texture button;
 	public Texture[] faces;
 	public Texture[] food;
@@ -30,6 +30,12 @@ public class Assets {
 		wastedBar[1] = new Texture(Gdx.files.internal("waste.jpg"));
 		//
 		button = new Texture(Gdx.files.internal("button.png"));
+		//
+		fruitHarvest = new Texture[4];
+		fruitHarvest[0] = new Texture(Gdx.files.internal("Fruit/apple.png"));
+		fruitHarvest[1] = new Texture(Gdx.files.internal("Fruit/lemon.png"));
+		fruitHarvest[2] = new Texture(Gdx.files.internal("Fruit/grape.png"));
+		fruitHarvest[3] = new Texture(Gdx.files.internal("Fruit/watermelon.png"));
 		//
 		faces = new Texture[4];
 		faces[0] = new Texture(Gdx.files.internal("Clients/HappyFace.png"));
