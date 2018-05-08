@@ -23,7 +23,7 @@ public class Restaurant extends BaseLevel {
 
     ClientRestaurant[] clients;
 
-    float elpassedTime = 0;
+    float elpasedTime = 0;
 
     @Override
     public void init() {
@@ -81,7 +81,7 @@ public class Restaurant extends BaseLevel {
 
     @Override
     public void LevelUpdate(float elapsedTime) {
-        elpassedTime += elapsedTime;
+        elpasedTime += elapsedTime;
         food1.update(elapsedTime);
         food2.update(elapsedTime);
         food3.update(elapsedTime);
@@ -90,9 +90,9 @@ public class Restaurant extends BaseLevel {
 
         for(ClientRestaurant clientRestaurant: clients) clientRestaurant.update(elapsedTime);
 
-        if(elpassedTime > 4)
+        if(elpasedTime > 4)
         {
-            elpassedTime = 0;
+            elpasedTime = 0;
             while(getSpace())
             {
                 int random = MathUtils.random(0,3);
@@ -116,7 +116,7 @@ public class Restaurant extends BaseLevel {
     {
         for(int i = 0; i < clients.length; i++)
         {
-            if(clients[i].currentOrder == typeFood && clients[i].clientState != ClientRestaurant.ClientState.Eating)
+            if(clients[i].currentOrder == typeFood && clients[i].clientState != ClientRestaurant.ClientState.Eating && clients[i].active)
             {
                 clients[i].takeOrder();
                 break;
@@ -127,6 +127,5 @@ public class Restaurant extends BaseLevel {
     public void wastedFood()
     {
         worldController.currentScore += 10;
-        System.out.print("jaja");
     }
 }

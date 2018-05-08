@@ -20,7 +20,7 @@ public abstract class BaseLevel extends GameObject {
     {
         this.worldController = worldController;
         menuButton = new BaseButton(Assets.getInstance().button, "Menu",worldController,
-                new Vector2(-Constants.WIDTH_RATIO*4, Constants.HEIGHT_RATIO*4+Constants.HEIGHT_RATIO/4),new Vector2(Constants.WIDTH_RATIO, Constants.HEIGHT_RATIO/2)) {
+                new Vector2(-Constants.WIDTH_RATIO*4.5f, Constants.HEIGHT_RATIO*4+Constants.HEIGHT_RATIO/4),new Vector2(Constants.WIDTH_RATIO, Constants.HEIGHT_RATIO/2)) {
             @Override
             public void buttonFuction() {
                 worldController.gameMode = WorldController.GameMode.MainMenu;
@@ -34,7 +34,9 @@ public abstract class BaseLevel extends GameObject {
     public void render(SpriteBatch batch) {
         GUI(batch);
         //Cabecera
-        batch.draw(Assets.getInstance().button, Constants.dimension(-5,4).x,Constants.dimension(-5,4).y, Constants.WIDTH_RATIO*10, Constants.HEIGHT_RATIO);
+        batch.draw(Assets.getInstance().header, Constants.dimension(-5,4).x,Constants.dimension(-5,4).y, Constants.WIDTH_RATIO*10, Constants.HEIGHT_RATIO);
+        batch.draw(Assets.getInstance().wastedBar[0], Constants.WIDTH_RATIO*(-2), Constants.dimension(0, 4.1f).y, Constants.WIDTH_RATIO*6, Constants.HEIGHT_RATIO*0.75f);
+        batch.draw(Assets.getInstance().wastedBar[1], Constants.WIDTH_RATIO*(-2), Constants.dimension(0, 4.1f).y, Constants.WIDTH_RATIO*6*worldController.currentScore/100, Constants.HEIGHT_RATIO*0.75f);
         menuButton.render(batch);
     }
 

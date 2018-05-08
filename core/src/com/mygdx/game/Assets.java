@@ -18,9 +18,16 @@ public class Assets {
 	public Texture[] faces;
 	public Texture[] food;
 	static Assets instance;
+	public Texture header;
+	public Texture[] wastedBar;
 
 	
 	private Assets() {
+		//
+		header = new Texture(Gdx.files.internal("header.jpg"));
+		wastedBar = new Texture[2];
+		wastedBar[0] = new Texture(Gdx.files.internal("barFood.png"));
+		wastedBar[1] = new Texture(Gdx.files.internal("waste.jpg"));
 		//
 		button = new Texture(Gdx.files.internal("button.png"));
 		//
