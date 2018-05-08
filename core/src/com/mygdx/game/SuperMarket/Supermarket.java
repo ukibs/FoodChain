@@ -40,6 +40,9 @@ public class Supermarket extends BaseLevel {
     int clientSatisfaction = 1000;
 
     //
+    float elapsedTime = 0;
+
+    //
     ClientManager clientManager;
 
     @Override
@@ -139,12 +142,15 @@ public class Supermarket extends BaseLevel {
         font.setColor(Color.BLACK);
         font.draw(batch, currentMoney + "", Constants.WIDTH_RATIO * 4, Constants.HEIGHT_RATIO * 4);
         font.draw(batch, clientSatisfaction + "", Constants.WIDTH_RATIO * -4, Constants.HEIGHT_RATIO * 4);
+        font.draw(batch, elapsedTime + "", 0, Constants.HEIGHT_RATIO * 4);
         //
         clientManager.render(batch);
     }
 
     @Override
     public void LevelUpdate(float elapsedTime) {
+        //
+        this.elapsedTime += elapsedTime;
         //
         clientManager.update(elapsedTime);
         //
@@ -162,26 +168,34 @@ public class Supermarket extends BaseLevel {
         donateButton.update(elapsedTime);
         salesButton.update(elapsedTime);
         trashButton.update(elapsedTime);
+
+        //
+        CheckDefeat();
+        //
+        CheckVictory();
     }
 
     //
     void CreateFruitPack(int shelfIndex, final String packName){
 
         //
+        if(currentMoney < 100) return;
+
+        // Search for a free place
         int packIndex;
         for(packIndex = 0; packIndex < fruitPackButtons[shelfIndex].length; packIndex++){
             if(fruitPackButtons[shelfIndex][packIndex] == null || !fruitPackButtons[shelfIndex][packIndex].active)
                 break;
         }
-        //
+        // If there is no one return
         if(packIndex == fruitPackButtons[shelfIndex].length) return;
 
-        //
+        // Decide the position for the button
         Vector2 position = new Vector2(shelfButtons[shelfIndex].position.x,
                 Constants.HEIGHT_RATIO *((-packIndex * 1.5f)));
         System.out.println("Buying " + packName);
 
-        //
+        // And create it
         fruitPackButtons[shelfIndex][packIndex] = new FruitPackButton(Assets.getInstance().button, packName,
                 worldController, position, buttonDimension, shelfIndex, packIndex) {
             @Override
@@ -193,6 +207,9 @@ public class Supermarket extends BaseLevel {
                     MoveTrashButton(shelfIndex, packIndex);
             }
         };
+        //
+        currentMoney -= 100;
+        //
         fruitPackButtons[shelfIndex][packIndex].active = true;
     }
 
@@ -236,6 +253,8 @@ public class Supermarket extends BaseLevel {
     //
     private void ThrowPackToTrash() {
         fruitPackButtons[currentShelfIndex][currentPackIndex] = null;
+        // Lose global score
+        worldController.currentScore -= 10;
         HideSalesAndDonateButtons();
     }
 
@@ -279,4 +298,22 @@ public class Supermarket extends BaseLevel {
         }
         return false;
     }
+
+    //
+    void CheckDefeat(){
+        if(worldController.currentScore >= 100){
+            worldController.finishLevel();
+        }
+        if(clientSatisfaction <= 0){
+            worldController.finishLevel();
+        }
+    }
+
+    //
+    void CheckVictory(){
+        if(elapsedTime >= Constants.LEVEL_TIME){
+            worldController.finishLevel();
+        }
+    }
+
 }
