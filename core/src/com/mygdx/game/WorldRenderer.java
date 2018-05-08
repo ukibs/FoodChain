@@ -69,6 +69,9 @@ public class WorldRenderer {
 			case Supermarket:
 				controller.supermarketLevel.render(batch);
 				break;
+			case End:
+				controller.endLevel.render(batch);
+				break;
 		}
 		
 		batch.end();
