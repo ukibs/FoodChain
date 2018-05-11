@@ -19,6 +19,11 @@ public class EndLevel extends BaseLevel {
     Vector2 buttonDimension = new Vector2(Constants.WIDTH_RATIO*2, Constants.HEIGHT_RATIO*1.5f);
 
     @Override
+    public void changeLevel(SpriteBatch batch) {
+
+    }
+
+    @Override
     public void GUI(SpriteBatch batch) {
         BitmapFont font = new BitmapFont();
         font.setColor(Color.BLACK);

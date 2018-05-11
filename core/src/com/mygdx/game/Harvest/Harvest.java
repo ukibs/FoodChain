@@ -28,6 +28,11 @@ public class Harvest extends BaseLevel {
     }
 
     @Override
+    public void changeLevel(SpriteBatch batch) {
+        finishLevelText = "He terminado el harvest y me voy al restaurante";
+    }
+
+    @Override
     public void GUI(SpriteBatch batch)
     {
         for(int i = 0; i < fruits.size(); i++) {fruits.get(i).render(batch);}
@@ -49,7 +54,7 @@ public class Harvest extends BaseLevel {
             basket.update(elapsedTime);
             checkCollision();
         }
-        else worldController.finishLevel();
+        else nextLevel = true;
     }
 
     public void checkCollision()

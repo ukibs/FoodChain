@@ -104,7 +104,12 @@ public class Restaurant extends BaseLevel {
                 }
             }
         }
-        else worldController.finishLevel();
+        else nextLevel = true;
+    }
+
+    @Override
+    public void changeLevel(SpriteBatch batch) {
+        finishLevelText = "He terminado el restaurante y me voy al supermercado";
     }
 
     private boolean getSpace()

@@ -120,6 +120,11 @@ public class Supermarket extends BaseLevel {
     }
 
     @Override
+    public void changeLevel(SpriteBatch batch) {
+        finishLevelText = "He terminado el supermercado y he ganado o perdido";
+    }
+
+    @Override
     public void GUI(SpriteBatch batch) {
         //
         for(int i = 0; i < shelfButtons.length; i++){
@@ -312,7 +317,7 @@ public class Supermarket extends BaseLevel {
     //
     void CheckVictory(){
         if(elapsedTime >= Constants.LEVEL_TIME){
-            worldController.finishLevel();
+            nextLevel = true;
         }
     }
 
