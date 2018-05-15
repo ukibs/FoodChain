@@ -2,9 +2,12 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.utils.BaseAnimationController;
 import com.badlogic.gdx.math.Vector2;
+
+import java.util.ArrayList;
 
 /**
  * Created by USUARIO on 30/04/2018.
@@ -20,6 +23,9 @@ public class MainMenu extends GameObject {
     BaseButton transport;
     BaseButton restaurant;
     BaseButton supermarket;
+
+    ArrayList<String> scoreTable;
+    BitmapFont text;
 
     MainMenu(WorldController worldController)
     {
@@ -92,12 +98,19 @@ public class MainMenu extends GameObject {
                 worldController.InitiateLevel();
             }
         };
-
+        scoreTable = new ArrayList<String>();
+        scoreTable.add("2");
+        scoreTable.add("5");
+        scoreTable.add("7");
+        scoreTable.add("9");
+        scoreTable.add("100");
+        text = new BitmapFont();
     }
 
     public void init()
     {
         worldController.inPractice = false;
+        worldController.currentScore = 0;
     }
 
     @Override
@@ -107,6 +120,11 @@ public class MainMenu extends GameObject {
         {
             play.render(batch);
             practice.render(batch);
+            text.draw(batch, "Ranking:", Constants.WIDTH_RATIO *1f, Constants.HEIGHT_RATIO*3);
+            for(int i = 0; i < 5; i++)
+            {
+                text.draw(batch, scoreTable.get(i), Constants.WIDTH_RATIO * 0.5f, Constants.HEIGHT_RATIO * (2f - i * 1f));
+            }
         }
         else {
             harvest.render(batch);

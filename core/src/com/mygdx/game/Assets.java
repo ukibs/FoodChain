@@ -14,6 +14,7 @@ public class Assets {
 
 
 	public Texture[] fruitHarvest;
+	public Texture basket;
 	public Texture button;
 	public Texture[] faces;
 	public Texture[] food;
@@ -31,6 +32,7 @@ public class Assets {
 		//
 		button = new Texture(Gdx.files.internal("button.png"));
 		//
+		basket = new Texture(Gdx.files.internal("basket.png"));
 		fruitHarvest = new Texture[4];
 		fruitHarvest[0] = new Texture(Gdx.files.internal("Fruit/apple.png"));
 		fruitHarvest[1] = new Texture(Gdx.files.internal("Fruit/lemon.png"));

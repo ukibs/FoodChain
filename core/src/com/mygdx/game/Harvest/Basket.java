@@ -23,7 +23,7 @@ public class Basket extends GameObject
 
     @Override
     public void render(SpriteBatch batch) {
-        batch.draw(Assets.getInstance().button, position.x, position.y, dimension.x, dimension.y);
+        batch.draw(Assets.getInstance().basket, position.x, position.y, dimension.x, dimension.y);
     }
 
     @Override

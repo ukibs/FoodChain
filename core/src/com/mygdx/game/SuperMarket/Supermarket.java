@@ -40,7 +40,7 @@ public class Supermarket extends BaseLevel {
     int clientSatisfaction = 1000;
 
     //
-    float elapsedTime = 0;
+    //float elapsedTime = 0;
 
     //
     ClientManager clientManager;

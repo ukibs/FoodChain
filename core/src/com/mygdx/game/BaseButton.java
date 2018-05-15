@@ -31,7 +31,8 @@ public abstract class BaseButton extends GameObject {
     public void render(SpriteBatch batch) {
         batch.draw(buttonImage, position.x, position.y, dimension.x, dimension.y);
         font.setColor(Color.BLACK);
-        font.draw(batch, buttonText, position.x, position.y+dimension.y);
+        font.getData().setScale(dimension.x*0.01f, dimension.y*0.02f);
+        font.draw(batch, buttonText, position.x+dimension.x/5, position.y+dimension.y*2/3);
     }
 
     @Override
