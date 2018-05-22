@@ -7,6 +7,8 @@ import com.mygdx.game.Harvest.Harvest;
 import com.mygdx.game.RestaurantCode.Restaurant;
 import com.mygdx.game.SuperMarket.Supermarket;
 
+import java.util.ArrayList;
+
 
 public class WorldController {
 
@@ -30,11 +32,14 @@ public class WorldController {
 	EndLevel endLevel;
 
 	boolean inPractice = false;
-	public float currentScore = 0;
+	public int currentScore = 0;
 
 	public OrthographicCamera camera;
 
 	public GameMode gameMode;
+
+	ArrayList<String> scoreNames;
+	int[] scores = {5,4,3,2,1};
 
 	public WorldController()
 	{
@@ -145,5 +150,27 @@ public class WorldController {
 					break;
 			}
 		}
+	}
+
+	public void saveScore(String playerName){
+		//
+		int i;
+		for(i = 0; i < scores.length; i++){
+			if(currentScore > scores[i]){
+				return;
+			}
+		}
+		//
+		int[] newScores = new int[5];
+		for(int j = 0; j < 5; j++){
+			if(j == i)
+				newScores[j] = currentScore;
+			else if(j > i)
+				newScores[j+1] = scores[j];
+			else
+				newScores[j] = scores[j];
+		}
+		//
+		scoreNames.add(i, playerName);
 	}
 }
