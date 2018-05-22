@@ -176,8 +176,6 @@ public class Supermarket extends BaseLevel {
 
         //
         CheckDefeat();
-        //
-        CheckVictory();
     }
 
     //
@@ -306,19 +304,8 @@ public class Supermarket extends BaseLevel {
 
     //
     void CheckDefeat(){
-        if(worldController.currentScore >= 100){
-            worldController.finishLevel();
-        }
         if(clientSatisfaction <= 0){
-            worldController.finishLevel();
+            worldController.finishLevel(false);
         }
     }
-
-    //
-    void CheckVictory(){
-        if(elapsedTime >= Constants.LEVEL_TIME){
-            nextLevel = true;
-        }
-    }
-
 }

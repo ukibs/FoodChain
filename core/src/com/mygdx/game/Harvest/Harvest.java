@@ -16,11 +16,9 @@ public class Harvest extends BaseLevel {
     Basket basket;
     float spawnTime;
 
-    float time;
-
     public void init()
     {
-        time = 0;
+        elapsedTime = 0;
         spawnTime = 0;
         fruits = new ArrayList<Fruit>();
         fruits.add(new Fruit());
@@ -41,10 +39,8 @@ public class Harvest extends BaseLevel {
 
     @Override
     public void LevelUpdate(float elapsedTime) {
-        time += elapsedTime;
+        this.elapsedTime += elapsedTime;
         spawnTime += elapsedTime;
-        if(time < Constants.LEVEL_TIME)
-        {
             if(spawnTime > 2)
             {
                 fruits.add(new Fruit());
@@ -53,8 +49,6 @@ public class Harvest extends BaseLevel {
             for(int i = 0; i < fruits.size(); i++) {fruits.get(i).update(elapsedTime);}
             basket.update(elapsedTime);
             checkCollision();
-        }
-        else nextLevel = true;
     }
 
     public void checkCollision()

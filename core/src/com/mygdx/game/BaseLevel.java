@@ -24,10 +24,12 @@ public abstract class BaseLevel extends GameObject {
     protected BitmapFont textNextLevel;
     protected String finishLevelText;
     protected float elapsedTime = 0;
+    protected boolean win;
 
     public void baseInit(WorldController worldController)
     {
         this.worldController = worldController;
+        win = false;
         menuButton = new BaseButton(Assets.getInstance().button, "Menu",worldController,
                 new Vector2(-Constants.WIDTH_RATIO*4.5f, Constants.HEIGHT_RATIO*4+Constants.HEIGHT_RATIO/4),new Vector2(Constants.WIDTH_RATIO, Constants.HEIGHT_RATIO/2)) {
             @Override
@@ -41,7 +43,7 @@ public abstract class BaseLevel extends GameObject {
             @Override
             public void buttonFuction() {
                 nextLevel = false;
-                worldController.finishLevel();
+                worldController.finishLevel(win);
             }
         };
         textNextLevel = new BitmapFont();
@@ -76,6 +78,8 @@ public abstract class BaseLevel extends GameObject {
         {
             menuButton.update(elpasedTime);
             LevelUpdate(elpasedTime);
+            checkWasted();
+            checkVictory();
         }
         else nextLevelButton.update(elpasedTime);
     }
@@ -87,4 +91,22 @@ public abstract class BaseLevel extends GameObject {
     public abstract void LevelUpdate(float elapsedTime);
 
     public abstract void init();
+
+    public void checkWasted()
+    {
+        if(worldController.currentScore >= 100)
+        {
+            nextLevel = true;
+            win = false;
+        }
+    }
+
+    void checkVictory()
+    {
+        if(elapsedTime >= Constants.LEVEL_TIME)
+        {
+            nextLevel = true;
+            win = true;
+        }
+    }
 }

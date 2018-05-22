@@ -47,7 +47,7 @@ public class EndLevel extends BaseLevel {
                 new Vector2(Constants.WIDTH_RATIO * 0,Constants.HEIGHT_RATIO * -3), buttonDimension) {
             @Override
             public void buttonFuction() {
-                worldController.finishLevel();
+                worldController.finishLevel(true);
             }
         };
 

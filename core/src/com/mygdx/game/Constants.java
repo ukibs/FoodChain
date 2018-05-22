@@ -7,7 +7,7 @@ public class Constants {
 
 	public final static int SPRITE_SPEED = 80;
 
-	public final static float LEVEL_TIME = 10;
+	public final static float LEVEL_TIME =60;
 	
 	public final static float VIEWPORT_WIDTH = 10;
 	public final static float VIEWPORT_HEIGTH = 10;

@@ -24,7 +24,6 @@ public class Restaurant extends BaseLevel {
     ClientRestaurant[] clients;
 
     float elpasedTime = 0;
-    float time = 0;
 
     @Override
     public void init() {
@@ -82,29 +81,27 @@ public class Restaurant extends BaseLevel {
 
     @Override
     public void LevelUpdate(float elapsedTime) {
-        time += elapsedTime;
-        if(time < Constants.LEVEL_TIME) {
-            elpasedTime += elapsedTime;
-            food1.update(elapsedTime);
-            food2.update(elapsedTime);
-            food3.update(elapsedTime);
-            food4.update(elapsedTime);
-            foodBox.update(elapsedTime);
+        this.elapsedTime += elapsedTime;
+        elpasedTime += elapsedTime;
 
-            for (ClientRestaurant clientRestaurant : clients) clientRestaurant.update(elapsedTime);
+        food1.update(elapsedTime);
+        food2.update(elapsedTime);
+        food3.update(elapsedTime);
+        food4.update(elapsedTime);
+        foodBox.update(elapsedTime);
 
-            if (elpasedTime > 4) {
-                elpasedTime = 0;
-                while (getSpace()) {
-                    int random = MathUtils.random(0, 3);
-                    if (!clients[random].active) {
-                        clients[random].init();
-                        break;
-                    }
+        for (ClientRestaurant clientRestaurant : clients) clientRestaurant.update(elapsedTime);
+
+        if (elpasedTime > 4) {
+            elpasedTime = 0;
+            while (getSpace()) {
+                int random = MathUtils.random(0, 3);
+                if (!clients[random].active) {
+                    clients[random].init();
+                    break;
                 }
             }
         }
-        else nextLevel = true;
     }
 
     @Override

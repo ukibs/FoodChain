@@ -116,8 +116,8 @@ public class WorldController {
 		return longTouch;
 	}
 
-	public void finishLevel(){
-		if(inPractice)
+	public void finishLevel(boolean win){
+		if(inPractice || !win)
 		{
 			gameMode = GameMode.MainMenu;
 			InitiateLevel();
