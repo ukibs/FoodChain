@@ -24,15 +24,13 @@ public class MainMenu extends GameObject {
     BaseButton restaurant;
     BaseButton supermarket;
 
-    ArrayList<String> scoreTable;
+    //ArrayList<String> scoreTable;
     BitmapFont text;
 
     MainMenu(WorldController worldController)
     {
         this.worldController = worldController;
-        play = new BaseButton(Assets.getInstance().button, "Play", worldController,
-                new Vector2(-Constants.WIDTH_RATIO*4, Constants.HEIGHT_RATIO), new Vector2(Constants.WIDTH_RATIO*3,
-                Constants.HEIGHT_RATIO*2)) {
+        play = new BaseButton(Assets.getInstance().button, "Play", worldController, Constants.dimension(-4, 1), Constants.dimension(3, 2)) {
             @Override
             public void buttonFuction() {
                 worldController.gameMode = WorldController.GameMode.Harvest;
@@ -40,18 +38,14 @@ public class MainMenu extends GameObject {
             }
         };
 
-        practice = new BaseButton(Assets.getInstance().button, "Practice", worldController,
-                new Vector2(-Constants.WIDTH_RATIO*4, -Constants.HEIGHT_RATIO*2), new Vector2(Constants.WIDTH_RATIO*3,
-                Constants.HEIGHT_RATIO*2)) {
+        practice = new BaseButton(Assets.getInstance().button, "Practice", worldController, Constants.dimension(-4, -2), Constants.dimension(3, 2)) {
             @Override
             public void buttonFuction() {
                 worldController.inPractice = true;
             }
         };
 
-        harvest = new BaseButton(Assets.getInstance().button, "Harvest", worldController,
-                new Vector2(-Constants.WIDTH_RATIO*4, Constants.HEIGHT_RATIO), new Vector2(Constants.WIDTH_RATIO*3,
-                Constants.HEIGHT_RATIO*2)) {
+        harvest = new BaseButton(Assets.getInstance().button, "Harvest", worldController, Constants.dimension(-4, 1), Constants.dimension(3, 2)) {
             @Override
             public void buttonFuction() {
                 worldController.gameMode = WorldController.GameMode.Harvest;
@@ -59,9 +53,7 @@ public class MainMenu extends GameObject {
             }
         };
 
-        transport = new BaseButton(Assets.getInstance().button, "Transport", worldController,
-                new Vector2(Constants.WIDTH_RATIO, Constants.HEIGHT_RATIO), new Vector2(Constants.WIDTH_RATIO*3,
-                Constants.HEIGHT_RATIO*2)) {
+        transport = new BaseButton(Assets.getInstance().button, "Transport", worldController, Constants.dimension(1,1), Constants.dimension(3, 2)) {
             @Override
             public void buttonFuction() {
                 worldController.gameMode = WorldController.GameMode.Transport;
@@ -69,9 +61,7 @@ public class MainMenu extends GameObject {
             }
         };
 
-        restaurant = new BaseButton(Assets.getInstance().button, "Restaurant", worldController,
-                new Vector2(-Constants.WIDTH_RATIO*4, -Constants.HEIGHT_RATIO*2), new Vector2(Constants.WIDTH_RATIO*3,
-                Constants.HEIGHT_RATIO*2)) {
+        restaurant = new BaseButton(Assets.getInstance().button, "Restaurant", worldController, Constants.dimension(-4, -2), Constants.dimension(3,2)) {
             @Override
             public void buttonFuction() {
                 worldController.gameMode = WorldController.GameMode.Restaurant;
@@ -79,9 +69,7 @@ public class MainMenu extends GameObject {
             }
         };
 
-        supermarket = new BaseButton(Assets.getInstance().button, "Super", worldController,
-                new Vector2(Constants.WIDTH_RATIO, -Constants.HEIGHT_RATIO*2), new Vector2(Constants.WIDTH_RATIO*3,
-                Constants.HEIGHT_RATIO*2)) {
+        supermarket = new BaseButton(Assets.getInstance().button, "Super", worldController, Constants.dimension(1, -2), Constants.dimension(3,2)) {
             @Override
             public void buttonFuction() {
                 worldController.gameMode = WorldController.GameMode.Supermarket;
@@ -89,21 +77,19 @@ public class MainMenu extends GameObject {
             }
         };
 
-        backMenu = new BaseButton(Assets.getInstance().button, "Menu", worldController,
-                new Vector2(-Constants.WIDTH_RATIO*4.5f, -Constants.HEIGHT_RATIO*4), new Vector2(Constants.WIDTH_RATIO*1.5f,
-                Constants.HEIGHT_RATIO*1)) {
+        backMenu = new BaseButton(Assets.getInstance().button, "Menu", worldController, Constants.dimension(-4.5f, -4), Constants.dimension(1.5f, 1)) {
             @Override
             public void buttonFuction() {
                 worldController.gameMode = WorldController.GameMode.MainMenu;
                 worldController.InitiateLevel();
             }
         };
-        scoreTable = new ArrayList<String>();
+        /*scoreTable = new ArrayList<String>();
         scoreTable.add("2");
         scoreTable.add("5");
         scoreTable.add("7");
         scoreTable.add("9");
-        scoreTable.add("100");
+        scoreTable.add("100");*/
         text = new BitmapFont();
     }
 
@@ -123,7 +109,7 @@ public class MainMenu extends GameObject {
             text.draw(batch, "Ranking:", Constants.WIDTH_RATIO *1f, Constants.HEIGHT_RATIO*3);
             for(int i = 0; i < 5; i++)
             {
-                text.draw(batch, scoreTable.get(i), Constants.WIDTH_RATIO * 0.5f, Constants.HEIGHT_RATIO * (2f - i * 1f));
+                //text.draw(batch, scoreTable.get(i), Constants.WIDTH_RATIO * 0.5f, Constants.HEIGHT_RATIO * (2f - i * 1f));
             }
         }
         else {
