@@ -15,11 +15,20 @@ import java.util.ArrayList;
 
 public abstract class BaseLevel extends GameObject {
 
+    public enum LevelState
+    {
+        Tutorial,
+        InGame,
+        End
+    }
+
     private ArrayList<GameObject> levelObjects;
     private BitmapFont time;
     protected WorldController worldController;
     private BaseButton menuButton;
     private BaseButton nextLevelButton;
+
+    protected LevelState state;
     protected boolean nextLevel = false;
     protected BitmapFont textNextLevel;
     protected String finishLevelText;
@@ -48,40 +57,41 @@ public abstract class BaseLevel extends GameObject {
         };
         textNextLevel = new BitmapFont();
         time = new BitmapFont();
+        state = LevelState.InGame;
         init();
     }
 
     @Override
     public void render(SpriteBatch batch) {
-        GUI(batch);
-        //Cabecera
-        batch.draw(Assets.getInstance().header, Constants.dimension(-5,4).x,Constants.dimension(-5,4).y, Constants.WIDTH_RATIO*10, Constants.HEIGHT_RATIO);
-        batch.draw(Assets.getInstance().wastedBar[0], Constants.WIDTH_RATIO*(-2), Constants.dimension(0, 4.1f).y, Constants.WIDTH_RATIO*5.5f, Constants.HEIGHT_RATIO*0.75f);
-        batch.draw(Assets.getInstance().wastedBar[1], Constants.WIDTH_RATIO*(-2), Constants.dimension(0, 4.1f).y, Constants.WIDTH_RATIO*5.5f*worldController.currentScore/100, Constants.HEIGHT_RATIO*0.75f);
-        menuButton.render(batch);
-        time.getData().setScale(Gdx.graphics.getWidth()*0.0015f);
-        time.draw(batch, "Time: "+((int)elapsedTime), Constants.WIDTH_RATIO*(3.9f), Constants.dimension(0, 4.6f).y);
-
-        if(nextLevel)
+        drawHeader(batch);
+        switch (state)
         {
-            //Cuadro de texto
-            batch.draw(Assets.getInstance().button, Constants.WIDTH_RATIO*(-3.8f), Constants.HEIGHT_RATIO*(-3.8f), Constants.WIDTH_RATIO*7.5f, Constants.HEIGHT_RATIO*7.5f);
-            nextLevelButton.render(batch);
-            changeLevel(batch);
-            textNextLevel.draw(batch, finishLevelText, Constants.WIDTH_RATIO*(-3.6f), Constants.HEIGHT_RATIO*(3f));
+            case Tutorial: break;
+            case End:
+                //Cuadro de texto
+                batch.draw(Assets.getInstance().button, Constants.WIDTH_RATIO*(-3.8f), Constants.HEIGHT_RATIO*(-3.8f), Constants.WIDTH_RATIO*7.5f, Constants.HEIGHT_RATIO*7.5f);
+                nextLevelButton.render(batch);
+                changeLevel(batch);
+                textNextLevel.draw(batch, finishLevelText, Constants.WIDTH_RATIO*(-3.6f), Constants.HEIGHT_RATIO*(3f));
+                break;
         }
     }
 
     @Override
     public void update(float elpasedTime) {
-        if(!nextLevel)
+        switch (state)
         {
-            menuButton.update(elpasedTime);
-            LevelUpdate(elpasedTime);
-            checkWasted();
-            checkVictory();
+            case Tutorial: break;
+            case InGame:
+                menuButton.update(elpasedTime);
+                LevelUpdate(elpasedTime);
+                checkWasted();
+                checkVictory();
+                break;
+            case End:
+                nextLevelButton.update(elpasedTime);
+                break;
         }
-        else nextLevelButton.update(elpasedTime);
     }
 
     public abstract void changeLevel(SpriteBatch batch);
@@ -92,11 +102,23 @@ public abstract class BaseLevel extends GameObject {
 
     public abstract void init();
 
+    public void drawHeader(SpriteBatch batch)
+    {
+        GUI(batch);
+        //Cabecera
+        batch.draw(Assets.getInstance().header, Constants.dimension(-5,4).x,Constants.dimension(-5,4).y, Constants.WIDTH_RATIO*10, Constants.HEIGHT_RATIO);
+        batch.draw(Assets.getInstance().wastedBar[0], Constants.WIDTH_RATIO*(-2), Constants.dimension(0, 4.1f).y, Constants.WIDTH_RATIO*5.5f, Constants.HEIGHT_RATIO*0.75f);
+        batch.draw(Assets.getInstance().wastedBar[1], Constants.WIDTH_RATIO*(-2), Constants.dimension(0, 4.1f).y, Constants.WIDTH_RATIO*5.5f*worldController.currentScore/100, Constants.HEIGHT_RATIO*0.75f);
+        menuButton.render(batch);
+        time.getData().setScale(Gdx.graphics.getWidth()*0.0015f);
+        time.draw(batch, "Time: "+((int)elapsedTime), Constants.WIDTH_RATIO*(3.9f), Constants.dimension(0, 4.6f).y);
+    }
+
     public void checkWasted()
     {
         if(worldController.currentScore >= 100)
         {
-            nextLevel = true;
+            state = LevelState.End;
             win = false;
         }
     }
@@ -105,7 +127,7 @@ public abstract class BaseLevel extends GameObject {
     {
         if(elapsedTime >= Constants.LEVEL_TIME)
         {
-            nextLevel = true;
+            state = LevelState.End;
             win = true;
         }
     }
