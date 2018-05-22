@@ -109,7 +109,9 @@ public class MainMenu extends GameObject {
             text.draw(batch, "Ranking:", Constants.WIDTH_RATIO *1f, Constants.HEIGHT_RATIO*3);
             for(int i = 0; i < 5; i++)
             {
-                //text.draw(batch, scoreTable.get(i), Constants.WIDTH_RATIO * 0.5f, Constants.HEIGHT_RATIO * (2f - i * 1f));
+                text.draw(batch,
+                        worldController.scoreNames.get(i) + " - " + worldController.scores[i],
+                        Constants.WIDTH_RATIO * 0.5f, Constants.HEIGHT_RATIO * (2f - i * 1f));
             }
         }
         else {

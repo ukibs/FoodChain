@@ -32,14 +32,14 @@ public class WorldController {
 	EndLevel endLevel;
 
 	boolean inPractice = false;
-	public int currentScore = 0;
+	public int currentScore = 10;
 
 	public OrthographicCamera camera;
 
 	public GameMode gameMode;
 
-	ArrayList<String> scoreNames;
-	int[] scores = {5,4,3,2,1};
+	public ArrayList<String> scoreNames = new ArrayList<String>(5);
+	public int[] scores = {5,4,3,2,1};
 
 	public WorldController()
 	{
@@ -53,6 +53,9 @@ public class WorldController {
 		restaurantLevel = new Restaurant();
 		supermarketLevel = new Supermarket();
 		endLevel = new EndLevel();
+		//
+		for(int i = 0; i < 5; i++)
+			scoreNames.add("AAA");
 	}
 
 	public void update(float delta) {
