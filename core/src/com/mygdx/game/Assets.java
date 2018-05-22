@@ -15,9 +15,11 @@ public class Assets {
 
 	public Texture[] fruitHarvest;
 	public Texture basket;
+	public Texture harvestBackground;
 	public Texture button;
 	public Texture[] faces;
 	public Texture[] food;
+	public Texture restaurantBackground;
 	static Assets instance;
 	public Texture header;
 	public Texture[] wastedBar;
@@ -38,6 +40,7 @@ public class Assets {
 		fruitHarvest[1] = new Texture(Gdx.files.internal("Fruit/lemon.png"));
 		fruitHarvest[2] = new Texture(Gdx.files.internal("Fruit/grape.png"));
 		fruitHarvest[3] = new Texture(Gdx.files.internal("Fruit/watermelon.png"));
+		harvestBackground = new Texture(Gdx.files.internal("harvestBackground.jpg"));
 		//
 		faces = new Texture[4];
 		faces[0] = new Texture(Gdx.files.internal("Clients/HappyFace.png"));
@@ -51,6 +54,7 @@ public class Assets {
 		food[2] = new Texture(Gdx.files.internal("Food/meat.png"));
 		food[3] = new Texture(Gdx.files.internal("Food/pizza.png"));
 		food[4] = new Texture(Gdx.files.internal("Food/box.png"));
+		restaurantBackground = new Texture(Gdx.files.internal("restaurantBackground.jpg"));
 		//
 		Gdx.app.debug("ASSETS", "Assets created");
 	}

@@ -1,6 +1,7 @@
 package com.mygdx.game.Harvest;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Assets;
 import com.mygdx.game.BaseLevel;
 import com.mygdx.game.Constants;
 
@@ -33,6 +34,7 @@ public class Harvest extends BaseLevel {
     @Override
     public void GUI(SpriteBatch batch)
     {
+        batch.draw(Assets.getInstance().harvestBackground, Constants.WIDTH_RATIO*-5, Constants.HEIGHT_RATIO*-5, Constants.WIDTH_RATIO*10, Constants.HEIGHT_RATIO*10);
         for(int i = 0; i < fruits.size(); i++) {fruits.get(i).render(batch);}
         basket.render(batch);
     }

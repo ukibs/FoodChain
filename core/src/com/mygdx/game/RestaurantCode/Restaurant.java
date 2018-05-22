@@ -70,6 +70,9 @@ public class Restaurant extends BaseLevel {
 
     @Override
     public void GUI(SpriteBatch batch) {
+        batch.draw(Assets.getInstance().restaurantBackground, Constants.WIDTH_RATIO*-5, Constants.HEIGHT_RATIO*-3, Constants.WIDTH_RATIO*10, Constants.HEIGHT_RATIO*10);
+        batch.draw(Assets.getInstance().header, Constants.WIDTH_RATIO*-5, Constants.HEIGHT_RATIO*-5, Constants.WIDTH_RATIO*10, Constants.HEIGHT_RATIO*4);
+
         food1.render(batch);
         food2.render(batch);
         food3.render(batch);

@@ -115,7 +115,7 @@ public class MainMenu extends GameObject {
 
     @Override
     public void render(SpriteBatch batch) {
-        batch.draw(Assets.getInstance().button, -Gdx.graphics.getWidth() / 2, -Gdx.graphics.getHeight() / 2, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        batch.draw(Assets.getInstance().header, -Gdx.graphics.getWidth() / 2, -Gdx.graphics.getHeight() / 2, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         if(!worldController.inPractice)
         {
             play.render(batch);
