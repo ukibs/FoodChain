@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.EndLevel.EndLevel;
@@ -34,6 +36,8 @@ public class WorldController {
 	boolean inPractice = false;
 	public int currentScore = 10;
 
+	public int level;
+
 	public OrthographicCamera camera;
 
 	public GameMode gameMode;
@@ -41,10 +45,15 @@ public class WorldController {
 	public ArrayList<String> scoreNames = new ArrayList<String>(5);
 	public int[] scores = {5,4,3,2,1};
 
+	private Preferences prefs;
+
 	public WorldController()
 	{
 		currentTouch = new Vector2(-1,-1);
 		gameMode = GameMode.MainMenu;
+
+		prefs = Gdx.app.getPreferences("My Preferences");
+		level = prefs.getInteger("level");
 	}
 
 	void init(){
@@ -127,10 +136,16 @@ public class WorldController {
 	public void finishLevel(boolean win){
 		if(inPractice || !win)
 		{
+			if(!win) {
+				if(level != 0) level--;
+				prefs.putInteger("level", level);
+			}
 			gameMode = GameMode.MainMenu;
 			InitiateLevel();
 		}
 		else {
+			level++;
+			prefs.putInteger("level", level);
 			switch (gameMode) {
 				case Harvest:
 					gameMode = GameMode.Restaurant;
