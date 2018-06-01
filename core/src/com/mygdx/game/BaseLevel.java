@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.compression.lzma.Base;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,7 @@ public abstract class BaseLevel extends GameObject {
     protected WorldController worldController;
     private BaseButton menuButton;
     private BaseButton nextLevelButton;
+    private BaseButton startLevel;
 
     protected LevelState state;
     protected boolean nextLevel = false;
@@ -47,6 +49,15 @@ public abstract class BaseLevel extends GameObject {
                 worldController.InitiateLevel();
             }
         };
+
+        startLevel = new BaseButton(Assets.getInstance().button, "Start",worldController,
+                new Vector2(-Constants.WIDTH_RATIO, Constants.HEIGHT_RATIO*-3+Constants.HEIGHT_RATIO/4),new Vector2(Constants.WIDTH_RATIO, Constants.HEIGHT_RATIO/2)) {
+            @Override
+            public void buttonFuction() {
+                state = LevelState.InGame;
+            }
+        };
+
         nextLevelButton = new BaseButton(Assets.getInstance().button, "Next",worldController,
                 new Vector2(-Constants.WIDTH_RATIO, Constants.HEIGHT_RATIO*-3+Constants.HEIGHT_RATIO/4),new Vector2(Constants.WIDTH_RATIO, Constants.HEIGHT_RATIO/2)) {
             @Override
@@ -57,7 +68,7 @@ public abstract class BaseLevel extends GameObject {
         };
         textNextLevel = new BitmapFont();
         time = new BitmapFont();
-        state = LevelState.InGame;
+        state = LevelState.Tutorial;
         init();
     }
 
@@ -66,7 +77,11 @@ public abstract class BaseLevel extends GameObject {
         drawHeader(batch);
         switch (state)
         {
-            case Tutorial: break;
+            case Tutorial:
+                batch.draw(Assets.getInstance().button, Constants.WIDTH_RATIO*(-3.8f), Constants.HEIGHT_RATIO*(-3.8f), Constants.WIDTH_RATIO*7.5f, Constants.HEIGHT_RATIO*7.5f);
+                startLevel.render(batch);
+                tutorial(batch);
+                break;
             case End:
                 //Cuadro de texto
                 batch.draw(Assets.getInstance().button, Constants.WIDTH_RATIO*(-3.8f), Constants.HEIGHT_RATIO*(-3.8f), Constants.WIDTH_RATIO*7.5f, Constants.HEIGHT_RATIO*7.5f);
@@ -81,7 +96,9 @@ public abstract class BaseLevel extends GameObject {
     public void update(float elpasedTime) {
         switch (state)
         {
-            case Tutorial: break;
+            case Tutorial:
+                startLevel.update(elpasedTime);
+                break;
             case InGame:
                 menuButton.update(elpasedTime);
                 LevelUpdate(elpasedTime);
@@ -95,6 +112,8 @@ public abstract class BaseLevel extends GameObject {
     }
 
     public abstract void changeLevel(SpriteBatch batch);
+
+    public abstract void tutorial(SpriteBatch batch);
 
     public abstract void GUI(SpriteBatch batch);
 

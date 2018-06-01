@@ -125,6 +125,11 @@ public class Supermarket extends BaseLevel {
     }
 
     @Override
+    public void tutorial(SpriteBatch batch) {
+
+    }
+
+    @Override
     public void GUI(SpriteBatch batch) {
         //
         for(int i = 0; i < shelfButtons.length; i++){

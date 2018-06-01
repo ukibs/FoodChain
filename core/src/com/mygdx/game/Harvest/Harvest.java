@@ -32,6 +32,11 @@ public class Harvest extends BaseLevel {
     }
 
     @Override
+    public void tutorial(SpriteBatch batch) {
+        batch.draw(Assets.getInstance().basket, 5, 5, 50, 50);
+    }
+
+    @Override
     public void GUI(SpriteBatch batch)
     {
         batch.draw(Assets.getInstance().harvestBackground, Constants.WIDTH_RATIO*-5, Constants.HEIGHT_RATIO*-5, Constants.WIDTH_RATIO*10, Constants.HEIGHT_RATIO*10);

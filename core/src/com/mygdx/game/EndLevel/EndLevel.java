@@ -28,6 +28,11 @@ public class EndLevel extends BaseLevel {
     }
 
     @Override
+    public void tutorial(SpriteBatch batch) {
+
+    }
+
+    @Override
     public void GUI(SpriteBatch batch) {
         BitmapFont font = new BitmapFont();
         font.setColor(Color.BLACK);

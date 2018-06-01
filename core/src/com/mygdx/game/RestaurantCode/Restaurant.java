@@ -112,6 +112,11 @@ public class Restaurant extends BaseLevel {
         finishLevelText = "He terminado el restaurante y me voy al supermercado";
     }
 
+    @Override
+    public void tutorial(SpriteBatch batch) {
+
+    }
+
     private boolean getSpace()
     {
         for (ClientRestaurant clientRestaurant: clients)
