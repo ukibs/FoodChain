@@ -190,5 +190,6 @@ public class WorldController {
 		}
 		//
 		scoreNames.add(i, playerName);
+		scores = newScores;
 	}
 }
