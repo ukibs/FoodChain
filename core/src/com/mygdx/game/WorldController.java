@@ -144,8 +144,6 @@ public class WorldController {
 			InitiateLevel();
 		}
 		else {
-			level++;
-			prefs.putInteger("level", level);
 			switch (gameMode) {
 				case Harvest:
 					gameMode = GameMode.Restaurant;
@@ -164,6 +162,8 @@ public class WorldController {
 					break;
 				case End:
 					gameMode = GameMode.MainMenu;
+					level++;
+					prefs.putInteger("level", level);
 					InitiateLevel();
 					break;
 			}
@@ -191,5 +191,28 @@ public class WorldController {
 		//
 		scoreNames.add(i, playerName);
 		scores = newScores;
+	}
+
+	public void buttonClicked(int buttonCode)
+	{
+		switch (gameMode) {
+			case Harvest:
+				harvestLevel.arcadeButtonControllers(buttonCode);
+				break;
+			case Transport:
+				break;
+			case Restaurant:
+				restaurantLevel.arcadeButtonControllers(buttonCode);
+				break;
+			case Supermarket:
+				supermarketLevel.arcadeButtonControllers(buttonCode);
+				break;
+			case End:
+				endLevel.arcadeButtonControllers(buttonCode);
+				break;
+			default:
+				Gdx.app.exit();
+				break;
+		}
 	}
 }

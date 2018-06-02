@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.GL20;
 
 public class MainGame implements ApplicationListener {
@@ -21,6 +22,9 @@ public class MainGame implements ApplicationListener {
 		controller.init();
 		input = new Input(controller);
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
+
+		USJArcadeListener arcade = new USJArcadeListener(controller);
+		Controllers.addListener(arcade);
 	}
 
 	@Override

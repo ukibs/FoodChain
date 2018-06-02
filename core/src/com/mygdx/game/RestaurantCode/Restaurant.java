@@ -108,6 +108,29 @@ public class Restaurant extends BaseLevel {
     }
 
     @Override
+    public void arcadeButtonControllers(int buttonIndex) {
+        super.arcadeButtonControllers(buttonIndex);
+        switch (buttonIndex)
+        {
+            case 0:
+                food1.buttonFuction();
+                break;
+            case 1:
+                food2.buttonFuction();
+                break;
+            case 2:
+                food3.buttonFuction();
+                break;
+            case 3:
+                food4.buttonFuction();
+                break;
+            case 5:
+                foodBox.buttonFuction();
+                break;
+        }
+    }
+
+    @Override
     public void changeLevel(SpriteBatch batch) {
         finishLevelText = "He terminado el restaurante y me voy al supermercado";
     }

@@ -26,10 +26,11 @@ public abstract class BaseLevel extends GameObject {
     private ArrayList<GameObject> levelObjects;
     private BitmapFont time;
     protected WorldController worldController;
-    private BaseButton menuButton;
     private BaseButton nextLevelButton;
     private BaseButton startLevel;
 
+
+    protected BaseButton menuButton;
     protected LevelState state;
     protected boolean nextLevel = false;
     protected BitmapFont textNextLevel;
@@ -118,6 +119,14 @@ public abstract class BaseLevel extends GameObject {
     public abstract void GUI(SpriteBatch batch);
 
     public abstract void LevelUpdate(float elapsedTime);
+
+    public void arcadeButtonControllers(int buttonIndex)
+    {
+        if(buttonIndex == 9)
+        {
+            menuButton.buttonFuction();
+        }
+    }
 
     public abstract void init();
 
