@@ -175,7 +175,7 @@ public class WorldController {
 		int i;
 		for(i = 0; i < scores.length; i++){
 			if(currentScore > scores[i]){
-				return;
+				break;
 			}
 		}
 		//
@@ -184,7 +184,7 @@ public class WorldController {
 			if(j == i)
 				newScores[j] = currentScore;
 			else if(j > i)
-				newScores[j+1] = scores[j];
+				newScores[j] = scores[j-1];
 			else
 				newScores[j] = scores[j];
 		}
