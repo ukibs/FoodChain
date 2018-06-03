@@ -14,11 +14,16 @@ import com.mygdx.game.WorldController;
 public class Basket extends GameObject
 {
     WorldController controller;
+    float direction;
+    float basketSpeed;
+
     Basket(WorldController worldController)
     {
         controller = worldController;
         dimension = Constants.dimension(2,1);
         position = new Vector2(-dimension.x/2, Constants.HEIGHT_RATIO*(-4)-Constants.HEIGHT_RATIO/2);
+        direction = 0;
+        basketSpeed = 2 * (worldController.level + 1);
     }
 
     @Override
@@ -29,5 +34,11 @@ public class Basket extends GameObject
     @Override
     public void update(float elpasedTime) {
         position.x = controller.longTouch().x - dimension.x/2;
+        position.x += direction * basketSpeed * elpasedTime;
+    }
+
+    public void setDirection(float direction)
+    {
+        this.direction = direction;
     }
 }

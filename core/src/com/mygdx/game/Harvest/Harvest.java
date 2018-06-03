@@ -58,6 +58,15 @@ public class Harvest extends BaseLevel {
             checkCollision();
     }
 
+    @Override
+    public void arcadeAxis(char axis, int value)
+    {
+        if(axis == 'x')
+        {
+            basket.setDirection(value);
+        }
+    }
+
     public void checkCollision()
     {
         for(int i = 0; i < fruits.size(); i++)

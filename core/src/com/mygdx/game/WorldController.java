@@ -217,4 +217,21 @@ public class WorldController {
 				break;
 		}
 	}
+
+	public void axisMoved(char axis, int value)
+	{
+		switch (gameMode) {
+			case Harvest:
+				harvestLevel.arcadeAxis(axis, value);
+				break;
+			case Transport:
+				break;
+			case Supermarket:
+				supermarketLevel.arcadeAxis(axis, value);
+				break;
+			case End:
+				endLevel.arcadeAxis(axis, value);
+				break;
+		}
+	}
 }

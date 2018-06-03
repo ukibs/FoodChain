@@ -33,8 +33,7 @@ public abstract class BaseLevel extends GameObject {
     protected BaseButton menuButton;
     protected LevelState state;
     protected boolean nextLevel = false;
-    protected BitmapFont textNextLevel;
-    protected String finishLevelText;
+    protected BitmapFont textFont;
     protected float elapsedTime = 0;
     protected boolean win;
 
@@ -67,7 +66,6 @@ public abstract class BaseLevel extends GameObject {
                 worldController.finishLevel(win);
             }
         };
-        textNextLevel = new BitmapFont();
         time = new BitmapFont();
         state = LevelState.Tutorial;
         init();
@@ -88,7 +86,6 @@ public abstract class BaseLevel extends GameObject {
                 batch.draw(Assets.getInstance().button, Constants.WIDTH_RATIO*(-3.8f), Constants.HEIGHT_RATIO*(-3.8f), Constants.WIDTH_RATIO*7.5f, Constants.HEIGHT_RATIO*7.5f);
                 nextLevelButton.render(batch);
                 changeLevel(batch);
-                textNextLevel.draw(batch, finishLevelText, Constants.WIDTH_RATIO*(-3.6f), Constants.HEIGHT_RATIO*(3f));
                 break;
         }
     }
@@ -127,6 +124,8 @@ public abstract class BaseLevel extends GameObject {
             menuButton.buttonFuction();
         }
     }
+
+    public void arcadeAxis(char axis, int value) {}
 
     public abstract void init();
 

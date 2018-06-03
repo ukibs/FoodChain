@@ -57,14 +57,17 @@ public class USJArcadeListener implements ControllerListener {
 
                 //up
                 if(value == -1){
+                    worldController.axisMoved('y', -1);
                     return true;
                 }
                 //down
                 else if(value == 1){
+                    worldController.axisMoved('y', 1);
                     return true;
                 }
                 //center
                 else if(value <0.1 && value>-0.1){
+                    worldController.axisMoved('y', 0);
                     return true;
                 }
 
@@ -74,14 +77,17 @@ public class USJArcadeListener implements ControllerListener {
 
                 //left
                 if(value == -1){
+                    worldController.axisMoved('x', -1);
                     return true;
                 }
                 //rigth
                 else if(value == 1){
+                    worldController.axisMoved('x', 1);
                     return true;
                 }
                 //center
                 else if(value <0.1 && value>-0.1){
+                    worldController.axisMoved('x', 0);
                     return true;
                 }
 
