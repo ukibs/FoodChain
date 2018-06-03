@@ -21,13 +21,19 @@ public class ClientManager extends GameObject {
     int clientsAmount = 10;
     float clientCooldown = 0.5f;
     float elapsedTime;
+    float clientStayTime;
 
-    public ClientManager(Supermarket supermarket){
+    public ClientManager(Supermarket supermarket, int level){
+        //
         this.supermarket = supermarket;
+        //
+        clientStayTime = 3 - (level * 0.1f);
+        //
         clients = new ArrayList<Client>(clientsAmount);
         for(int i = 0; i < clientsAmount; i++){
-            clients.add(new Client(supermarket));
+            clients.add(new Client(supermarket, clientStayTime));
         }
+
     }
 
     @Override
@@ -56,6 +62,7 @@ public class ClientManager extends GameObject {
     //
     void DecideShelf(){
         int shelfToUse = MathUtils.random(supermarket.shelfButtons.length - 1);
+
         ActivateClient(shelfToUse);
     }
 
@@ -63,8 +70,15 @@ public class ClientManager extends GameObject {
     void ActivateClient(int shelfToUse){
         for(int i = 0; i < clientsAmount; i++){
             if(!clients.get(i).active){
+                //
+                int clientsInShelf = CheckClientsInShelf(shelfToUse);
+                float extraX = 0;
+                if(clientsInShelf == 1) extraX = Constants.HEIGHT_RATIO * 0.75f;
+                else if(clientsInShelf >= 2) return;
+
                 //Client activatedClient = clients.get(i);
-                clients.get(i).position = new Vector2(supermarket.shelfButtons[shelfToUse].position.x,
+                clients.get(i).position = new Vector2(
+                        supermarket.shelfButtons[shelfToUse].position.x + extraX,
                         supermarket.shelfButtons[shelfToUse].position.y - Constants.HEIGHT_RATIO *(6));
                 //activatedClient.position = new Vector2(0,0);
                 clients.get(i).face = new Sprite(Assets.getInstance().GetRandomFace());
@@ -74,5 +88,15 @@ public class ClientManager extends GameObject {
             }
         }
 
+    }
+
+    //
+    int CheckClientsInShelf(int shelfIndex){
+        int clientsInThisShelf = 0;
+        for(int i = 0; i < clients.size(); i++){
+            if(clients.get(i).currentShelf == shelfIndex)
+                clientsInThisShelf ++;
+        }
+        return clientsInThisShelf;
     }
 }

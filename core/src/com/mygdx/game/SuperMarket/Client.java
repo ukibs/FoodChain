@@ -16,11 +16,13 @@ public class Client extends GameObject {
     float elapsedTime;
     Supermarket supermarket;
     public int currentShelf;
+    public float stayTime;
 
-    public Client(Supermarket supermarket){
+    public Client(Supermarket supermarket, float stayTime){
         active = false;
         this.dimension = new Vector2(Constants.WIDTH_RATIO * 1, Constants.HEIGHT_RATIO * 1);
         this.supermarket = supermarket;
+        this.stayTime = stayTime;
     }
 
     @Override

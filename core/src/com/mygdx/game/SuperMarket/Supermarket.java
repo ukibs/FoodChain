@@ -49,7 +49,7 @@ public class Supermarket extends BaseLevel {
     public void init(){
 
         //
-        clientManager = new ClientManager(this);
+        clientManager = new ClientManager(this, worldController.level);
 
         //
         String packName = "";
