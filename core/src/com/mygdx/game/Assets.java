@@ -25,6 +25,7 @@ public class Assets {
 	public Texture[] faces;
 	public Texture[] food;
 	public Texture[] clients;
+	public Texture think;
 	public Texture restaurantBackground;
 	// Supermarket
 	public Texture shelf;
@@ -65,6 +66,8 @@ public class Assets {
 		clients[1] = new Texture(Gdx.files.internal("Clients/client2.png"));
 		clients[2] = new Texture(Gdx.files.internal("Clients/client3.png"));
 		clients[3] = new Texture(Gdx.files.internal("Clients/client4.png"));
+		//
+		think = new Texture(Gdx.files.internal("think.png"));
 		//
 		restaurantBackground = new Texture(Gdx.files.internal("restaurantBackground.jpg"));
 		// Supermarket
