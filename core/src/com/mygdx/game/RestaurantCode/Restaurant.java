@@ -159,6 +159,6 @@ public class Restaurant extends BaseLevel {
 
     public void wastedFood()
     {
-        worldController.currentScore += 10;
+        worldController.currentScore -= 10;
     }
 }

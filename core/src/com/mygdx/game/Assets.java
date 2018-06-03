@@ -18,6 +18,9 @@ public class Assets {
 	public Texture header;
 	public Texture[] wastedBar;
 	//
+	public Texture menuBackground;
+	public Texture score;
+	//
 	public Texture[] fruitHarvest;
 	public Texture basket;
 	public Texture harvestBackground;
@@ -39,6 +42,9 @@ public class Assets {
 		wastedBar[1] = new Texture(Gdx.files.internal("waste.jpg"));
 		//
 		button = new Texture(Gdx.files.internal("button.png"));
+		//
+		menuBackground = new Texture(Gdx.files.internal("menuBackground.png"));
+		score = new Texture(Gdx.files.internal("score.png"));
 		//
 		basket = new Texture(Gdx.files.internal("basket.png"));
 		fruitHarvest = new Texture[4];

@@ -69,7 +69,7 @@ public class EndLevel extends BaseLevel {
             public void buttonFuction() {
                 char characters[] = {(char)chars[0], (char)chars[1], (char)chars[2]};
                 String playerName =
-                        String.valueOf(characters[0]) + String.valueOf(characters[1]) + String.valueOf(characters[2]);
+                        String.valueOf(characters[0]) + "   " + String.valueOf(characters[1]) + "   " + String.valueOf(characters[2]);
                 worldController.saveScore(playerName);
                 worldController.finishLevel(true);
             }

@@ -64,9 +64,6 @@ public class WorldController {
 		endLevel = new EndLevel();
 		//
 		getScoresFromPrefs();
-		//
-		//for(int i = 0; i < 5; i++)
-		//	scoreNames.add("AAA");
 	}
 
 	public void update(float delta) {
@@ -102,7 +99,6 @@ public class WorldController {
 				harvestLevel.baseInit(this);
 				break;
 			case Transport:
-
 				break;
 			case Restaurant:
 				restaurantLevel.baseInit(this);
@@ -218,11 +214,11 @@ public class WorldController {
 
 	void getScoresFromPrefs(){
 		// Names
-		scoreNames.add(prefs.getString("Name0", "AAA"));
-		scoreNames.add(prefs.getString("Name1", "AAA"));
-		scoreNames.add(prefs.getString("Name2", "AAA"));
-		scoreNames.add(prefs.getString("Name3", "AAA"));
-		scoreNames.add(prefs.getString("Name4", "AAA"));
+		scoreNames.add(prefs.getString("Name0", "A   A   A"));
+		scoreNames.add(prefs.getString("Name1", "A   A   A"));
+		scoreNames.add(prefs.getString("Name2", "A   A   A"));
+		scoreNames.add(prefs.getString("Name3", "A   A   A"));
+		scoreNames.add(prefs.getString("Name4", "A   A   A"));
 		// Points
 		scores[0] = prefs.getInteger("Points0", 5);
 		scores[1] = prefs.getInteger("Points1", 4);
@@ -239,6 +235,9 @@ public class WorldController {
 		}
 
 		switch (gameMode) {
+			case MainMenu:
+				menu.arcadeButtonControl(buttonCode);
+				break;
 			case Harvest:
 				harvestLevel.baseButtonControllers(buttonCode);
 				break;
@@ -259,6 +258,9 @@ public class WorldController {
 	public void axisMoved(char axis, int value)
 	{
 		switch (gameMode) {
+			case MainMenu:
+				menu.arcadeMove(axis, value);
+				break;
 			case Harvest:
 				harvestLevel.arcadeAxis(axis, value);
 				break;
@@ -271,5 +273,10 @@ public class WorldController {
 				endLevel.arcadeAxis(axis, value);
 				break;
 		}
+	}
+
+	public int maxScore()
+	{
+		return 100 + (level * 10);
 	}
 }

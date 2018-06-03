@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Assets;
 import com.mygdx.game.Constants;
 import com.mygdx.game.GameObject;
+import com.mygdx.game.WorldController;
 
 /**
  * Created by USUARIO on 30/04/2018.
@@ -14,9 +15,11 @@ import com.mygdx.game.GameObject;
 
 public class Fruit extends GameObject {
     Texture fruitTexture;
+    WorldController worldController;
 
-    public Fruit()
+    public Fruit(WorldController worldController)
     {
+        this.worldController = worldController;
         fruitTexture = Assets.getInstance().fruitHarvest[MathUtils.random(0, 3)];
         dimension = new Vector2(Constants.WIDTH_RATIO, Constants.HEIGHT_RATIO);
         position = new Vector2(MathUtils.random(-Constants.WIDTH_RATIO*4, Constants.WIDTH_RATIO*4-dimension.x), Constants.dimension(0, 4).y);
@@ -30,6 +33,6 @@ public class Fruit extends GameObject {
 
     @Override
     public void update(float elpasedTime) {
-        position.y -= Constants.SPRITE_SPEED * elpasedTime;
+        position.y -= Constants.SPRITE_SPEED * elpasedTime * (worldController.level + 1.5f);
     }
 }

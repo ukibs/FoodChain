@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Constants {
 
-	public final static int SPRITE_SPEED = 80;
+	public final static int SPRITE_SPEED = 100;
 
 	public final static float LEVEL_TIME = 30;
 	

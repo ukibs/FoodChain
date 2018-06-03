@@ -22,7 +22,7 @@ public class Harvest extends BaseLevel {
         elapsedTime = 0;
         spawnTime = 0;
         fruits = new ArrayList<Fruit>();
-        fruits.add(new Fruit());
+        fruits.add(new Fruit(worldController));
         basket = new Basket(worldController);
     }
 
@@ -49,7 +49,7 @@ public class Harvest extends BaseLevel {
         spawnTime += elapsedTime;
             if(spawnTime > 2)
             {
-                fruits.add(new Fruit());
+                fruits.add(new Fruit(worldController));
                 spawnTime = 0;
             }
             for(int i = 0; i < fruits.size(); i++) {fruits.get(i).update(elapsedTime);}
@@ -90,7 +90,7 @@ public class Harvest extends BaseLevel {
             if(currentFruit.position.y < basket.position.y)
             {
                 fruits.remove(i);
-                worldController.currentScore += 20;
+                worldController.currentScore -= 20;
                 System.out.println(worldController.currentScore);
             }
         }
