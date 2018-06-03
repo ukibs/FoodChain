@@ -12,17 +12,20 @@ import java.util.ArrayList;
 
 public class Assets {
 
+	static Assets instance;
 
+	public Texture button;
+	public Texture header;
+	public Texture[] wastedBar;
+	//
 	public Texture[] fruitHarvest;
 	public Texture basket;
 	public Texture harvestBackground;
-	public Texture button;
+	//
 	public Texture[] faces;
 	public Texture[] food;
+	public Texture[] clients;
 	public Texture restaurantBackground;
-	static Assets instance;
-	public Texture header;
-	public Texture[] wastedBar;
 	// Supermarket
 	public Texture shelf;
 	public Texture[][] fruitPacks;
@@ -56,6 +59,13 @@ public class Assets {
 		food[2] = new Texture(Gdx.files.internal("Food/meat.png"));
 		food[3] = new Texture(Gdx.files.internal("Food/pizza.png"));
 		food[4] = new Texture(Gdx.files.internal("Food/box.png"));
+		//
+		clients = new Texture[4];
+		clients[0] = new Texture(Gdx.files.internal("Clients/client1.png"));
+		clients[1] = new Texture(Gdx.files.internal("Clients/client2.png"));
+		clients[2] = new Texture(Gdx.files.internal("Clients/client3.png"));
+		clients[3] = new Texture(Gdx.files.internal("Clients/client4.png"));
+		//
 		restaurantBackground = new Texture(Gdx.files.internal("restaurantBackground.jpg"));
 		// Supermarket
 		//Shelf
