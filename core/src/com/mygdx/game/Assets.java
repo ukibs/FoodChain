@@ -70,33 +70,33 @@ public class Assets {
 		fruitPacks[0][4] = new Texture("FruitShelves/Bananas4.png");
 		fruitPacks[0][5] = new Texture("FruitShelves/Bananas5.png");
 		// Apples
-		fruitPacks[0][0] = new Texture("FruitShelves/Apples0.png");
-		fruitPacks[0][1] = new Texture("FruitShelves/Apples1.png");
-		fruitPacks[0][2] = new Texture("FruitShelves/Apples2.png");
-		fruitPacks[0][3] = new Texture("FruitShelves/Apples3.png");
-		fruitPacks[0][4] = new Texture("FruitShelves/Apples4.png");
-		fruitPacks[0][5] = new Texture("FruitShelves/Apples5.png");
+		fruitPacks[1][0] = new Texture("FruitShelves/Apples0.png");
+		fruitPacks[1][1] = new Texture("FruitShelves/Apples1.png");
+		fruitPacks[1][2] = new Texture("FruitShelves/Apples2.png");
+		fruitPacks[1][3] = new Texture("FruitShelves/Apples3.png");
+		fruitPacks[1][4] = new Texture("FruitShelves/Apples4.png");
+		fruitPacks[1][5] = new Texture("FruitShelves/Apples5.png");
 		// Carrots
-		fruitPacks[0][0] = new Texture("FruitShelves/Carrots0.png");
-		fruitPacks[0][1] = new Texture("FruitShelves/Carrots1.png");
-		fruitPacks[0][2] = new Texture("FruitShelves/Carrots2.png");
-		fruitPacks[0][3] = new Texture("FruitShelves/Carrots3.png");
-		fruitPacks[0][4] = new Texture("FruitShelves/Carrots4.png");
-		fruitPacks[0][5] = new Texture("FruitShelves/Carrots5.png");
+		fruitPacks[2][0] = new Texture("FruitShelves/Carrot0.png");
+		fruitPacks[2][1] = new Texture("FruitShelves/Carrot1.png");
+		fruitPacks[2][2] = new Texture("FruitShelves/Carrot2.png");
+		fruitPacks[2][3] = new Texture("FruitShelves/Carrot3.png");
+		fruitPacks[2][4] = new Texture("FruitShelves/Carrot4.png");
+		fruitPacks[2][5] = new Texture("FruitShelves/Carrot5.png");
 		// Tomatoes
-		fruitPacks[0][0] = new Texture("FruitShelves/Tomatoes0.png");
-		fruitPacks[0][1] = new Texture("FruitShelves/Tomatoes1.png");
-		fruitPacks[0][2] = new Texture("FruitShelves/Tomatoes2.png");
-		fruitPacks[0][3] = new Texture("FruitShelves/Tomatoes3.png");
-		fruitPacks[0][4] = new Texture("FruitShelves/Tomatoes4.png");
-		fruitPacks[0][5] = new Texture("FruitShelves/Tomatoes5.png");
+		fruitPacks[3][0] = new Texture("FruitShelves/Tomatoes0.png");
+		fruitPacks[3][1] = new Texture("FruitShelves/Tomatoes1.png");
+		fruitPacks[3][2] = new Texture("FruitShelves/Tomatoes2.png");
+		fruitPacks[3][3] = new Texture("FruitShelves/Tomatoes3.png");
+		fruitPacks[3][4] = new Texture("FruitShelves/Tomatoes4.png");
+		fruitPacks[3][5] = new Texture("FruitShelves/Tomatoes5.png");
 		// Grapes
-		fruitPacks[0][0] = new Texture("FruitShelves/Grapes0.png");
-		fruitPacks[0][1] = new Texture("FruitShelves/Grapes1.png");
-		fruitPacks[0][2] = new Texture("FruitShelves/Grapes2.png");
-		fruitPacks[0][3] = new Texture("FruitShelves/Grapes3.png");
-		fruitPacks[0][4] = new Texture("FruitShelves/Grapes4.png");
-		fruitPacks[0][5] = new Texture("FruitShelves/Grapes5.png");
+		fruitPacks[4][0] = new Texture("FruitShelves/Grapes0.png");
+		fruitPacks[4][1] = new Texture("FruitShelves/Grapes1.png");
+		fruitPacks[4][2] = new Texture("FruitShelves/Grapes2.png");
+		fruitPacks[4][3] = new Texture("FruitShelves/Grapes3.png");
+		fruitPacks[4][4] = new Texture("FruitShelves/Grapes4.png");
+		fruitPacks[4][5] = new Texture("FruitShelves/Grapes5.png");
 		//
 		Gdx.app.debug("ASSETS", "Assets created");
 	}

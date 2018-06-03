@@ -63,8 +63,10 @@ public class WorldController {
 		supermarketLevel = new Supermarket();
 		endLevel = new EndLevel();
 		//
-		for(int i = 0; i < 5; i++)
-			scoreNames.add("AAA");
+		getScoresFromPrefs();
+		//
+		//for(int i = 0; i < 5; i++)
+		//	scoreNames.add("AAA");
 	}
 
 	public void update(float delta) {
@@ -139,6 +141,7 @@ public class WorldController {
 			if(!win) {
 				if(level != 0) level--;
 				prefs.putInteger("level", level);
+				prefs.flush();
 			}
 			gameMode = GameMode.MainMenu;
 			InitiateLevel();
@@ -164,6 +167,7 @@ public class WorldController {
 					gameMode = GameMode.MainMenu;
 					level++;
 					prefs.putInteger("level", level);
+					prefs.flush();
 					InitiateLevel();
 					break;
 			}
@@ -191,6 +195,40 @@ public class WorldController {
 		//
 		scoreNames.add(i, playerName);
 		scores = newScores;
+		//
+		saveScoresInPrefs();
+	}
+
+	void saveScoresInPrefs(){
+		// Names
+		prefs.putString("Name0", scoreNames.get(0));
+		prefs.putString("Name1", scoreNames.get(1));
+		prefs.putString("Name2", scoreNames.get(2));
+		prefs.putString("Name3", scoreNames.get(3));
+		prefs.putString("Name4", scoreNames.get(4));
+		// Points
+		prefs.putInteger("Points0", scores[0]);
+		prefs.putInteger("Points1", scores[1]);
+		prefs.putInteger("Points2", scores[2]);
+		prefs.putInteger("Points3", scores[3]);
+		prefs.putInteger("Points4", scores[4]);
+		//
+		prefs.flush();
+	}
+
+	void getScoresFromPrefs(){
+		// Names
+		scoreNames.add(prefs.getString("Name0", "AAA"));
+		scoreNames.add(prefs.getString("Name1", "AAA"));
+		scoreNames.add(prefs.getString("Name2", "AAA"));
+		scoreNames.add(prefs.getString("Name3", "AAA"));
+		scoreNames.add(prefs.getString("Name4", "AAA"));
+		// Points
+		scores[0] = prefs.getInteger("Points0", 5);
+		scores[1] = prefs.getInteger("Points1", 4);
+		scores[2] = prefs.getInteger("Points2", 3);
+		scores[3] = prefs.getInteger("Points3", 2);
+		scores[4] = prefs.getInteger("Points4", 1);
 	}
 
 	public void buttonClicked(int buttonCode)

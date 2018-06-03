@@ -96,7 +96,7 @@ public class MainMenu extends GameObject {
     public void init()
     {
         worldController.inPractice = false;
-        worldController.currentScore = 100;
+        worldController.currentScore = 100 + (worldController.level * 10);
     }
 
     @Override
