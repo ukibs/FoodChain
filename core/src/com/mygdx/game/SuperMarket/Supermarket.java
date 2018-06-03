@@ -291,7 +291,10 @@ public class Supermarket extends BaseLevel {
         // For now don't use the type of
 
         //
-        if(CheckIfContainsOutOfDateFood(shelfIndex)) clientSatisfaction -= 10;
+        if(CheckIfContainsOutOfDateFood(shelfIndex)) {
+            clientSatisfaction -= 10;
+            return;
+        }
         //
         int i;
         for(i = 0; i < fruitPackButtons[shelfIndex].length; i++){
