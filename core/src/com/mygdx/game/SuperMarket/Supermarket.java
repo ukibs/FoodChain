@@ -211,7 +211,7 @@ public class Supermarket extends BaseLevel {
         System.out.println("Buying " + packName);
 
         // And create it
-        fruitPackButtons[shelfIndex][packIndex] = new FruitPackButton(Assets.getInstance().fruitPack[0], "",
+        fruitPackButtons[shelfIndex][packIndex] = new FruitPackButton(Assets.getInstance().fruitPacks[shelfIndex][0], "",
                 worldController, position, buttonDimension, shelfIndex, packIndex) {
             @Override
             public void buttonFuction() {

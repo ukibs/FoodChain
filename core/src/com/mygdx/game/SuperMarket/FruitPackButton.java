@@ -66,7 +66,7 @@ public abstract class FruitPackButton extends BaseButton {
         //
         piecesToBuy = Math.min(piecesToBuy, quantity);
         quantity -= piecesToBuy;
-        buttonImage = Assets.getInstance().fruitPack[5 - quantity];
+        buttonImage = Assets.getInstance().fruitPacks[shelfIndex][5 - quantity];
         if(quantity == 0) active = false;
         //
         int moneySpent;
