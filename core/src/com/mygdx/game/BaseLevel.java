@@ -144,7 +144,7 @@ public abstract class BaseLevel extends GameObject {
 
     public void checkWasted()
     {
-        if(worldController.currentScore >= 100)
+        if(worldController.currentScore <= 0)
         {
             state = LevelState.End;
             win = false;

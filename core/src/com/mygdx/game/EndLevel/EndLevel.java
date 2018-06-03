@@ -62,12 +62,14 @@ public class EndLevel extends BaseLevel {
 
     @Override
     public void init() {
-
+        state = LevelState.InGame;
         returnButton = new BaseButton(Assets.getInstance().button, "Confirm", worldController,
                 Constants.dimension(-1, -4), buttonDimension) {
             @Override
             public void buttonFuction() {
-                String playerName = (char)chars[0] + (char)chars[1] + (char)chars[2] + "";
+                char characters[] = {(char)chars[0], (char)chars[1], (char)chars[2]};
+                String playerName =
+                        String.valueOf(characters[0]) + String.valueOf(characters[1]) + String.valueOf(characters[2]);
                 worldController.saveScore(playerName);
                 worldController.finishLevel(true);
             }
