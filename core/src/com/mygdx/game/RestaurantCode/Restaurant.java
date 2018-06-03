@@ -109,7 +109,6 @@ public class Restaurant extends BaseLevel {
 
     @Override
     public void arcadeButtonControllers(int buttonIndex) {
-        super.arcadeButtonControllers(buttonIndex);
         switch (buttonIndex)
         {
             case 0:
@@ -132,7 +131,6 @@ public class Restaurant extends BaseLevel {
 
     @Override
     public void changeLevel(SpriteBatch batch) {
-        finishLevelText = "He terminado el restaurante y me voy al supermercado";
     }
 
     @Override

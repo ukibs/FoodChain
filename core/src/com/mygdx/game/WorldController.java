@@ -202,18 +202,18 @@ public class WorldController {
 
 		switch (gameMode) {
 			case Harvest:
-				harvestLevel.arcadeButtonControllers(buttonCode);
+				harvestLevel.baseButtonControllers(buttonCode);
 				break;
 			case Transport:
 				break;
 			case Restaurant:
-				restaurantLevel.arcadeButtonControllers(buttonCode);
+				restaurantLevel.baseButtonControllers(buttonCode);
 				break;
 			case Supermarket:
-				supermarketLevel.arcadeButtonControllers(buttonCode);
+				supermarketLevel.baseButtonControllers(buttonCode);
 				break;
 			case End:
-				endLevel.arcadeButtonControllers(buttonCode);
+				endLevel.baseButtonControllers(buttonCode);
 				break;
 		}
 	}

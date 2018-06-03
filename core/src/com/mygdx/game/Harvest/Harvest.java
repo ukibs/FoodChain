@@ -28,7 +28,6 @@ public class Harvest extends BaseLevel {
 
     @Override
     public void changeLevel(SpriteBatch batch) {
-        finishLevelText = "He terminado el harvest y me voy al restaurante";
     }
 
     @Override

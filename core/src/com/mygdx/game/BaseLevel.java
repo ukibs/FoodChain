@@ -117,13 +117,31 @@ public abstract class BaseLevel extends GameObject {
 
     public abstract void LevelUpdate(float elapsedTime);
 
-    public void arcadeButtonControllers(int buttonIndex)
+    public void baseButtonControllers(int buttonIndex)
     {
-        if(buttonIndex == 9)
-        {
-            menuButton.buttonFuction();
+        switch (state) {
+            case Tutorial:
+                if(buttonIndex == 0)
+                {
+                    startLevel.buttonFuction();
+                }
+                break;
+            case InGame:
+                if(buttonIndex == 9)
+                {
+                    menuButton.buttonFuction();
+                }
+                break;
+            case End:
+                if(buttonIndex == 0)
+                {
+                    nextLevelButton.buttonFuction();
+                }
+                break;
         }
+        arcadeButtonControllers(buttonIndex);
     }
+    public void arcadeButtonControllers(int buttonIndex) {}
 
     public void arcadeAxis(char axis, int value) {}
 
