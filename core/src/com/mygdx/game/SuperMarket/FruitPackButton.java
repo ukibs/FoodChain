@@ -19,8 +19,8 @@ public abstract class FruitPackButton extends BaseButton {
     int packIndex;
 
     int quantity = 6;
-    float timeToExpire = 10;
-    float currentTimeToExpire = timeToExpire;
+    float timeToExpire;
+    float currentTimeToExpire;
 
 
     boolean onSale = false;
@@ -33,6 +33,9 @@ public abstract class FruitPackButton extends BaseButton {
         this.shelfIndex = shelfIndex;
         this.packIndex = packIndex;
         active = false;
+        // We'll work this
+        timeToExpire = 20 - (1 * worldController.level);
+        currentTimeToExpire = timeToExpire;
     }
 
     @Override

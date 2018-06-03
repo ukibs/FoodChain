@@ -37,7 +37,7 @@ public class Supermarket extends BaseLevel {
 
     //
     int currentMoney = 1000;
-    int clientSatisfaction = 1000;
+    int clientSatisfaction = 100;
 
     //
     //float elapsedTime = 0;
@@ -57,23 +57,23 @@ public class Supermarket extends BaseLevel {
         for (int i = 0; i < shelfButtons.length; i++){
             switch (i){
                 case 0:
-                    packName = "Meat";
+                    packName = "Bananas";
                     break;
                 case 1:
-                    packName = "Fish";
+                    packName = "Tomatoes";
                     break;
                 case 2:
-                    packName = "Frutalizas";
+                    packName = "Carrots";
                     break;
                 case 3:
-                    packName = "Corticoides";
+                    packName = "Apples";
                     break;
                 case 4:
-                    packName = "Gluten";
+                    packName = "Graples";
                     break;
             }
             final String finalPackName = packName;
-            Vector2 position = new Vector2(Constants.WIDTH_RATIO * (i * 2 - 5), Constants.HEIGHT_RATIO *(1.5f));
+            Vector2 position = new Vector2(Constants.WIDTH_RATIO * (i * 2 - 4.8f), Constants.HEIGHT_RATIO *(1.5f));
             final int finalI = i;
             shelfButtons[i] = new BaseButton(Assets.getInstance().button, "Buy: " + finalPackName,
                     worldController, position, buttonDimension){
@@ -117,6 +117,13 @@ public class Supermarket extends BaseLevel {
                 System.out.println("Throwing food ");
             }
         };
+
+        //
+        elapsedTime = 0;
+        clientSatisfaction = 100;
+        currentMoney = 1000;
+
+        // TODO: Decidir que aumentar con el nivel
     }
 
     @Override
@@ -159,7 +166,6 @@ public class Supermarket extends BaseLevel {
         font.setColor(Color.BLACK);
         font.draw(batch, currentMoney + "", Constants.WIDTH_RATIO * 4, Constants.HEIGHT_RATIO * 4);
         font.draw(batch, clientSatisfaction + "", Constants.WIDTH_RATIO * -4, Constants.HEIGHT_RATIO * 4);
-        font.draw(batch, elapsedTime + "", 0, Constants.HEIGHT_RATIO * 4);
         //
         clientManager.render(batch);
     }

@@ -37,10 +37,15 @@ public class Client extends GameObject {
             return;
         //
         this.elapsedTime += elpasedTime;
-        if(this.elapsedTime > 1){
+        if(this.elapsedTime > 1.5f){
             this.elapsedTime = 0;
             BuyStuffAndLeave();
         }
+    }
+
+    //
+    void CheckShelf(){
+
     }
 
     //
