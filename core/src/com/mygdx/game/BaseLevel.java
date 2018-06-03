@@ -136,7 +136,7 @@ public abstract class BaseLevel extends GameObject {
         //Cabecera
         batch.draw(Assets.getInstance().header, Constants.dimension(-5,4).x,Constants.dimension(-5,4).y, Constants.WIDTH_RATIO*10, Constants.HEIGHT_RATIO);
         batch.draw(Assets.getInstance().wastedBar[0], Constants.WIDTH_RATIO*(-2), Constants.dimension(0, 4.1f).y, Constants.WIDTH_RATIO*5.5f, Constants.HEIGHT_RATIO*0.75f);
-        batch.draw(Assets.getInstance().wastedBar[1], Constants.WIDTH_RATIO*(-2), Constants.dimension(0, 4.1f).y, Constants.WIDTH_RATIO*5.5f*worldController.currentScore/100, Constants.HEIGHT_RATIO*0.75f);
+        batch.draw(Assets.getInstance().wastedBar[1], Constants.WIDTH_RATIO*(-2), Constants.dimension(0, 4.1f).y, Constants.WIDTH_RATIO*5.5f*(100-worldController.currentScore)/100, Constants.HEIGHT_RATIO*0.75f);
         menuButton.render(batch);
         time.getData().setScale(Gdx.graphics.getWidth()*0.0015f);
         time.draw(batch, "Time: "+((int)elapsedTime), Constants.WIDTH_RATIO*(3.9f), Constants.dimension(0, 4.6f).y);

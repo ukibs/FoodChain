@@ -34,7 +34,7 @@ public class WorldController {
 	EndLevel endLevel;
 
 	boolean inPractice = false;
-	public int currentScore = 10;
+	public int currentScore = 100;
 
 	public int level;
 
@@ -195,6 +195,11 @@ public class WorldController {
 
 	public void buttonClicked(int buttonCode)
 	{
+		if(buttonCode == 9)
+		{
+			Gdx.app.exit();
+		}
+
 		switch (gameMode) {
 			case Harvest:
 				harvestLevel.arcadeButtonControllers(buttonCode);
@@ -209,9 +214,6 @@ public class WorldController {
 				break;
 			case End:
 				endLevel.arcadeButtonControllers(buttonCode);
-				break;
-			default:
-				Gdx.app.exit();
 				break;
 		}
 	}
