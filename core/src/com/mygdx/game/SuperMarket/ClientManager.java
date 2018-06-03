@@ -62,7 +62,7 @@ public class ClientManager extends GameObject {
     //
     void DecideShelf(){
         int shelfToUse = MathUtils.random(supermarket.shelfButtons.length - 1);
-
+        // System.out.println("Shelf to use: " + shelfToUse);
         ActivateClient(shelfToUse);
     }
 
@@ -81,7 +81,8 @@ public class ClientManager extends GameObject {
                         supermarket.shelfButtons[shelfToUse].position.x + extraX,
                         supermarket.shelfButtons[shelfToUse].position.y - Constants.HEIGHT_RATIO *(6));
                 //activatedClient.position = new Vector2(0,0);
-                clients.get(i).face = new Sprite(Assets.getInstance().GetRandomFace());
+                int clientIndex = MathUtils.random(Assets.getInstance().clients.length - 1);
+                clients.get(i).face = new Sprite(Assets.getInstance().clients[clientIndex]);
                 clients.get(i).active = true;
                 clients.get(i).currentShelf = shelfToUse;
                 return;

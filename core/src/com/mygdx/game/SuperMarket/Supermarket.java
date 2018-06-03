@@ -40,9 +40,6 @@ public class Supermarket extends BaseLevel {
     int clientSatisfaction = 100;
 
     //
-    //float elapsedTime = 0;
-
-    //
     ClientManager clientManager;
 
     @Override
@@ -172,6 +169,9 @@ public class Supermarket extends BaseLevel {
 
     @Override
     public void LevelUpdate(float elapsedTime) {
+
+        // TODO: Make arcade controls
+
         //
         this.elapsedTime += elapsedTime;
         //
@@ -194,6 +194,7 @@ public class Supermarket extends BaseLevel {
 
         //
         CheckDefeat();
+
     }
 
     //

@@ -15,7 +15,7 @@ public class Client extends GameObject {
     public Sprite face;
     float elapsedTime;
     Supermarket supermarket;
-    public int currentShelf;
+    public int currentShelf = -1;
     public float stayTime;
 
     public Client(Supermarket supermarket, float stayTime){
@@ -55,6 +55,7 @@ public class Client extends GameObject {
         //
         supermarket.BuyProduct(currentShelf, 0);
         // And deactivate
+        currentShelf = -1;
         active = false;
     }
 }
