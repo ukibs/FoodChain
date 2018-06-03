@@ -23,7 +23,9 @@ public class Assets {
 	static Assets instance;
 	public Texture header;
 	public Texture[] wastedBar;
-
+	// Supermarket
+	public Texture shelf;
+	public Texture[] fruitPack;
 	
 	private Assets() {
 		//
@@ -55,6 +57,17 @@ public class Assets {
 		food[3] = new Texture(Gdx.files.internal("Food/pizza.png"));
 		food[4] = new Texture(Gdx.files.internal("Food/box.png"));
 		restaurantBackground = new Texture(Gdx.files.internal("restaurantBackground.jpg"));
+		// Supermarket
+		//Shelf
+		shelf = new Texture(Gdx.files.internal("FruitShelves/Shelf.png"));
+		// Fruitpacks
+		fruitPack = new Texture[6];
+		fruitPack[0] = new Texture("FruitShelves/Bananas0.png");
+		fruitPack[1] = new Texture("FruitShelves/Bananas1.png");
+		fruitPack[2] = new Texture("FruitShelves/Bananas2.png");
+		fruitPack[3] = new Texture("FruitShelves/Bananas3.png");
+		fruitPack[4] = new Texture("FruitShelves/Bananas4.png");
+		fruitPack[5] = new Texture("FruitShelves/Bananas5.png");
 		//
 		Gdx.app.debug("ASSETS", "Assets created");
 	}

@@ -13,10 +13,10 @@ import com.badlogic.gdx.math.Vector2;
 
 public abstract class BaseButton extends GameObject {
 
-    Texture buttonImage;
+    protected Texture buttonImage;
     public String buttonText;
     public BitmapFont font;
-    WorldController worldController;
+    protected WorldController worldController;
 
     public BaseButton(Texture buttonImage, String buttonText, WorldController worldController, Vector2 position, Vector2 dimension){
         font = new BitmapFont();

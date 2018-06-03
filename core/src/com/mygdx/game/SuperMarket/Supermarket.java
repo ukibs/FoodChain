@@ -3,7 +3,6 @@ package com.mygdx.game.SuperMarket;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Assets;
 import com.mygdx.game.BaseButton;
@@ -17,7 +16,8 @@ import com.mygdx.game.Constants;
 public class Supermarket extends BaseLevel {
 
     //
-    Vector2 buttonDimension = new Vector2(Constants.WIDTH_RATIO*2, Constants.HEIGHT_RATIO*1.5f);
+    Vector2 buttonDimension = new Vector2(Constants.WIDTH_RATIO*1.5f, Constants.HEIGHT_RATIO*1);
+    Vector2 shelfDimension = new Vector2(Constants.WIDTH_RATIO*1.5f, Constants.HEIGHT_RATIO*4);
     private static final int shelvesAmount = 5;
 
     // Buttons to buy fruit
@@ -121,7 +121,7 @@ public class Supermarket extends BaseLevel {
 
     @Override
     public void changeLevel(SpriteBatch batch) {
-        finishLevelText = "He terminado el supermercado y he ganado o perdido";
+        // TODO: Pintar en GUI lo que pasa al perder/ganar
     }
 
     @Override
@@ -131,6 +131,13 @@ public class Supermarket extends BaseLevel {
 
     @Override
     public void GUI(SpriteBatch batch) {
+        //
+        for (int i = 0; i < shelfButtons.length; i++) {
+            batch.draw(Assets.getInstance().shelf,
+                    shelfButtons[i].position.x,
+                    shelfButtons[i].position.y - shelfDimension.y,
+                    shelfDimension.x, shelfDimension.y);
+        }
         //
         for(int i = 0; i < shelfButtons.length; i++){
             shelfButtons[i].render(batch);
@@ -204,12 +211,12 @@ public class Supermarket extends BaseLevel {
         System.out.println("Buying " + packName);
 
         // And create it
-        fruitPackButtons[shelfIndex][packIndex] = new FruitPackButton(Assets.getInstance().button, packName,
+        fruitPackButtons[shelfIndex][packIndex] = new FruitPackButton(Assets.getInstance().fruitPack[0], "",
                 worldController, position, buttonDimension, shelfIndex, packIndex) {
             @Override
             public void buttonFuction() {
                 // Here we will move the donate and sales buttons to their correspondant postion
-                if(timeToExpire > 0.0f)
+                if(currentTimeToExpire > 0.0f)
                     MoveSalesAndDonateButtons(shelfIndex, packIndex);
                 else
                     MoveTrashButton(shelfIndex, packIndex);
@@ -300,7 +307,7 @@ public class Supermarket extends BaseLevel {
         for(i = 0; i < fruitPackButtons[shelfIndex].length; i++){
             if(fruitPackButtons[shelfIndex][i] != null &&
                     fruitPackButtons[shelfIndex][i].active &&
-                    fruitPackButtons[shelfIndex][i].timeToExpire <= 0) {
+                    fruitPackButtons[shelfIndex][i].currentTimeToExpire <= 0) {
                 return true;
             }
         }
