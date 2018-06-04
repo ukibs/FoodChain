@@ -68,6 +68,7 @@ public abstract class BaseLevel extends GameObject {
         };
         time = new BitmapFont();
         state = LevelState.Tutorial;
+        elapsedTime = 0;
         init();
     }
 
@@ -109,14 +110,6 @@ public abstract class BaseLevel extends GameObject {
         }
     }
 
-    public abstract void changeLevel(SpriteBatch batch);
-
-    public abstract void tutorial(SpriteBatch batch);
-
-    public abstract void GUI(SpriteBatch batch);
-
-    public abstract void LevelUpdate(float elapsedTime);
-
     public void baseButtonControllers(int buttonIndex)
     {
         switch (state) {
@@ -127,7 +120,7 @@ public abstract class BaseLevel extends GameObject {
                 }
                 break;
             case InGame:
-                if(buttonIndex == 9)
+                if(buttonIndex == 6)
                 {
                     menuButton.buttonFuction();
                 }
@@ -141,11 +134,6 @@ public abstract class BaseLevel extends GameObject {
         }
         arcadeButtonControllers(buttonIndex);
     }
-    public void arcadeButtonControllers(int buttonIndex) {}
-
-    public void arcadeAxis(char axis, int value) {}
-
-    public abstract void init();
 
     public void drawHeader(SpriteBatch batch)
     {
@@ -176,4 +164,17 @@ public abstract class BaseLevel extends GameObject {
             win = true;
         }
     }
+
+    public abstract void changeLevel(SpriteBatch batch);
+
+    public abstract void tutorial(SpriteBatch batch);
+
+    public abstract void GUI(SpriteBatch batch);
+
+    public abstract void LevelUpdate(float elapsedTime);
+    public abstract void arcadeButtonControllers(int buttonIndex);
+
+    public abstract void arcadeAxis(char axis, int value);
+
+    public abstract void init();
 }

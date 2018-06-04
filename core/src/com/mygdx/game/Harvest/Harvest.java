@@ -26,6 +26,7 @@ public class Harvest extends BaseLevel {
         basket = new Basket(worldController);
     }
 
+    //TODO: Hacer tutorial y cambio de nivel
     @Override
     public void changeLevel(SpriteBatch batch) {
     }
@@ -58,6 +59,11 @@ public class Harvest extends BaseLevel {
     }
 
     @Override
+    public void arcadeButtonControllers(int buttonIndex) {
+
+    }
+
+    @Override
     public void arcadeAxis(char axis, int value)
     {
         if(axis == 'x')
@@ -77,8 +83,7 @@ public class Harvest extends BaseLevel {
                         currentFruit.position.x > basket.position.x &&
                         currentFruit.position.x+ currentFruit.dimension.x < basket.position.x+basket.dimension.x))
                 {
-                    worldController.currentScore += 20;
-                    System.out.println(worldController.currentScore);
+                    worldController.currentScore -= 20;
                 }
                 fruits.remove(i);
             }
@@ -91,7 +96,6 @@ public class Harvest extends BaseLevel {
             {
                 fruits.remove(i);
                 worldController.currentScore -= 20;
-                System.out.println(worldController.currentScore);
             }
         }
     }

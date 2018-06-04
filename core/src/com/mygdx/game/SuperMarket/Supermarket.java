@@ -197,6 +197,17 @@ public class Supermarket extends BaseLevel {
 
     }
 
+    //TODO: Hacer el controlador arcade del supermercado
+    @Override
+    public void arcadeButtonControllers(int buttonIndex) {
+
+    }
+
+    @Override
+    public void arcadeAxis(char axis, int value) {
+
+    }
+
     //
     void CreateFruitPack(int shelfIndex, final String packName){
 

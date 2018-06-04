@@ -19,9 +19,7 @@ public class Input implements InputProcessor {
     }
 
     private void init() {
-
         Gdx.input.setInputProcessor(this);
-
     }
 
     public void update(float delta) {
@@ -38,8 +36,6 @@ public class Input implements InputProcessor {
     @Override
     public boolean keyDown(int keycode) {
         //processInput
-        float speed = Constants.SPRITE_SPEED;
-        //man.setSpeed(0,0);
         if(keycode == (com.badlogic.gdx.Input.Keys.A)) {
             return true;
         }
@@ -57,7 +53,6 @@ public class Input implements InputProcessor {
 
     @Override
     public boolean keyUp(int keycode) {
-        float speed = Constants.SPRITE_SPEED;
 
         if(keycode == (com.badlogic.gdx.Input.Keys.A)) {
             return true;
@@ -81,7 +76,6 @@ public class Input implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        //worldController.setTouch(screenX, screenY);
         return false;
     }
 

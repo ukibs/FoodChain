@@ -19,7 +19,7 @@ public class ClientRestaurant extends GameObject {
     Restaurant restaurantLevel;
     public int currentOrder;
     public int numberOrders;
-    int actionTime;
+    public int totalOrders;
     ClientState clientState;
     BitmapFont font;
 
@@ -38,11 +38,12 @@ public class ClientRestaurant extends GameObject {
         face = Assets.getInstance().clients[MathUtils.random(0,3)];
     }
 
-    public void init()
+    public void init(int numOrders)
     {
         clientState = ClientState.Ordering;
         active = true;
-        numberOrders = MathUtils.random(1, 10);
+        numberOrders = numOrders;
+        totalOrders = numberOrders;
         currentOrder = MathUtils.random(0, 3);
     }
 
@@ -78,12 +79,11 @@ public class ClientRestaurant extends GameObject {
         switch (clientState)
         {
             case Ordering:
-            if(elapsedTime > 7)
-            {
-                elapsedTime = 0;
-                active = false;
-            }
-            break;
+                if(elapsedTime > 7)
+                {
+                    goOut();
+                }
+                break;
             case Eating:
                 if(elapsedTime > 3)
                 {
@@ -98,8 +98,7 @@ public class ClientRestaurant extends GameObject {
             case Going:
                 if(elapsedTime > 2)
                 {
-                    restaurantLevel.wastedFood();
-                    active = false;
+                    goOut();
                 }
         }
     }
@@ -107,7 +106,7 @@ public class ClientRestaurant extends GameObject {
     //
     public void takeOrder()
     {
-        if(numberOrders>1) {
+        if(numberOrders > 1) {
             currentOrder = MathUtils.random(0, 3);
             numberOrders--;
             clientState = ClientState.Eating;
@@ -119,5 +118,17 @@ public class ClientRestaurant extends GameObject {
             clientState = ClientState.Eating;
         }
         else active = false;
+    }
+
+    private int getOrdersDone()
+    {
+        return totalOrders - numberOrders;
+    }
+
+    private void goOut()
+    {
+        restaurantLevel.wastedFood(getOrdersDone());
+        active = false;
+        elapsedTime = 0;
     }
 }

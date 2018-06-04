@@ -61,6 +61,16 @@ public class EndLevel extends BaseLevel {
     }
 
     @Override
+    public void arcadeButtonControllers(int buttonIndex) {
+
+    }
+
+    @Override
+    public void arcadeAxis(char axis, int value) {
+
+    }
+
+    @Override
     public void init() {
         state = LevelState.InGame;
         returnButton = new BaseButton(Assets.getInstance().button, "Confirm", worldController,
@@ -106,4 +116,5 @@ public class EndLevel extends BaseLevel {
             };
         }
     }
+
 }

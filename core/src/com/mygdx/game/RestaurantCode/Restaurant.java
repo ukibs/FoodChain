@@ -100,7 +100,7 @@ public class Restaurant extends BaseLevel {
             while (getSpace()) {
                 int random = MathUtils.random(0, 3);
                 if (!clients[random].active) {
-                    clients[random].init();
+                    clients[random].init(MathUtils.random(1 + worldController.level, 10 + worldController.level*2));
                     break;
                 }
             }
@@ -130,6 +130,12 @@ public class Restaurant extends BaseLevel {
     }
 
     @Override
+    public void arcadeAxis(char axis, int value) {
+
+    }
+
+    //TODO: Hacer tutorial y cambio de nivel
+    @Override
     public void changeLevel(SpriteBatch batch) {
     }
 
@@ -145,6 +151,7 @@ public class Restaurant extends BaseLevel {
         return false;
     }
 
+    //TODO: Cambiar orden de comprobación
     private void serveToClient(int typeFood)
     {
         for(int i = 0; i < clients.length; i++)
@@ -157,8 +164,8 @@ public class Restaurant extends BaseLevel {
         }
     }
 
-    public void wastedFood()
+    public void wastedFood(int ordersDone)
     {
-        worldController.currentScore -= 10;
+        worldController.currentScore -= 5 * ordersDone;
     }
 }

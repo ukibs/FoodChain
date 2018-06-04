@@ -62,6 +62,7 @@ public class WorldController {
 		restaurantLevel = new Restaurant();
 		supermarketLevel = new Supermarket();
 		endLevel = new EndLevel();
+		currentScore = maxScore();
 		//
 		getScoresFromPrefs();
 	}

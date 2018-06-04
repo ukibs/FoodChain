@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.utils.BaseAnimationController;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class MainMenu extends GameObject {
             }
         };
 
-        practiceButtons[0][1] = new BaseButton(Assets.getInstance().button, "Transport", worldController, Constants.dimension(1,1), Constants.dimension(3, 2)) {
+        practiceButtons[1][0] = new BaseButton(Assets.getInstance().button, "Transport", worldController, Constants.dimension(1,1), Constants.dimension(3, 2)) {
             @Override
             public void buttonFuction() {
                 //worldController.gameMode = WorldController.GameMode.Transport;
@@ -62,7 +63,7 @@ public class MainMenu extends GameObject {
             }
         };
 
-        practiceButtons[1][0] = new BaseButton(Assets.getInstance().button, "Restaurant", worldController, Constants.dimension(-4, -2), Constants.dimension(3,2)) {
+        practiceButtons[0][1] = new BaseButton(Assets.getInstance().button, "Restaurant", worldController, Constants.dimension(-4, -2), Constants.dimension(3,2)) {
             @Override
             public void buttonFuction() {
                 worldController.gameMode = WorldController.GameMode.Restaurant;
@@ -126,7 +127,7 @@ public class MainMenu extends GameObject {
                     practiceButtons[practiceButtonsSelectedX][practiceButtonsSelectedY].position.y - Constants.WIDTH_RATIO * 0.1f,
                     practiceButtons[practiceButtonsSelectedX][practiceButtonsSelectedY].dimension.x + Constants.WIDTH_RATIO * 0.2f,
                     practiceButtons[practiceButtonsSelectedX][practiceButtonsSelectedY].dimension.y + Constants.WIDTH_RATIO * 0.2f);
-            
+
             for(int i = 0; i < 2; i++)
             {
                 for(int j = 0; j < 2; j++)
@@ -161,19 +162,21 @@ public class MainMenu extends GameObject {
     {
         if(worldController.inPractice)
         {
-            if(button == 8)
+            if(button == 7)
             {
                 practiceButtons[practiceButtonsSelectedX][practiceButtonsSelectedY].buttonFuction();
             }
-            if(button == 9)
+            if(button == 6)
             {
                 backMenu.buttonFuction();
             }
         }
         else
         {
-            if(button == 8)
+            System.out.print(button);
+            if(button == 7)
             {
+                System.out.print("GO!");
                 menuButtons[menuButtonSelected].buttonFuction();
             }
         }
@@ -185,21 +188,22 @@ public class MainMenu extends GameObject {
         {
             if(axis == 'x')
             {
-                if(practiceButtonsSelectedX != 2)
-                {
-                    practiceButtonsSelectedX += value %2;
-                }
+                practiceButtonsSelectedX += value;
+                practiceButtonsSelectedX = Math.abs(practiceButtonsSelectedX) % practiceButtons.length;
+
             }
             else
             {
-                practiceButtonsSelectedY += value %2;
+                practiceButtonsSelectedY += value;
+                practiceButtonsSelectedY = Math.abs(practiceButtonsSelectedY) % practiceButtons[0].length;
             }
         }
         else
         {
             if(axis == 'y')
             {
-                menuButtonSelected = menuButtonSelected + 1 % 2;
+                menuButtonSelected = menuButtonSelected + value;
+                menuButtonSelected = Math.abs(menuButtonSelected) % menuButtons.length;
             }
         }
     }

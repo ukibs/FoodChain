@@ -1,5 +1,7 @@
 package com.mygdx.game.Harvest;
 
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Assets;
@@ -23,7 +25,7 @@ public class Basket extends GameObject
         dimension = Constants.dimension(2,1);
         position = new Vector2(-dimension.x/2, Constants.HEIGHT_RATIO*(-4)-Constants.HEIGHT_RATIO/2);
         direction = 0;
-        basketSpeed = 2 * (worldController.level + 1);
+        basketSpeed = 20 * (worldController.level + 1);
     }
 
     @Override
@@ -33,8 +35,13 @@ public class Basket extends GameObject
 
     @Override
     public void update(float elpasedTime) {
-        position.x = controller.longTouch().x - dimension.x/2;
-        position.x += direction * basketSpeed * elpasedTime;
+        if(Gdx.app.getType() == Application.ApplicationType.Android)
+        {
+            position.x = controller.longTouch().x - dimension.x / 2;
+        }
+        else {
+            position.x += direction * basketSpeed * elpasedTime;
+        }
     }
 
     public void setDirection(float direction)
