@@ -25,7 +25,7 @@ public class Basket extends GameObject
         dimension = Constants.dimension(2,1);
         position = new Vector2(-dimension.x/2, Constants.HEIGHT_RATIO*(-4)-Constants.HEIGHT_RATIO/2);
         direction = 0;
-        basketSpeed = 50 * (worldController.level + 1);
+        basketSpeed = 500 * (worldController.level + 100);
     }
 
     @Override

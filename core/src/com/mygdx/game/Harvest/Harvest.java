@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Assets;
 import com.mygdx.game.BaseLevel;
 import com.mygdx.game.Constants;
+import com.mygdx.game.SoundManager;
 
 import java.util.ArrayList;
 
@@ -84,7 +85,9 @@ public class Harvest extends BaseLevel {
                         currentFruit.position.x+ currentFruit.dimension.x < basket.position.x+basket.dimension.x))
                 {
                     worldController.currentScore -= 20;
+                    SoundManager.getInstance().play(SoundManager.fruitLost);
                 }
+                else SoundManager.getInstance().play(SoundManager.getFruit);
                 fruits.remove(i);
             }
         }
@@ -96,6 +99,7 @@ public class Harvest extends BaseLevel {
             {
                 fruits.remove(i);
                 worldController.currentScore -= 20;
+                SoundManager.getInstance().play(SoundManager.fruitLost);
             }
         }
     }

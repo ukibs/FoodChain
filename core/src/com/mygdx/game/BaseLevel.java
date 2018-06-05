@@ -162,6 +162,7 @@ public abstract class BaseLevel extends GameObject {
         {
             state = LevelState.End;
             win = true;
+            SoundManager.getInstance().play(SoundManager.levelComplete);
         }
     }
 

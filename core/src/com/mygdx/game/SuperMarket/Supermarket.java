@@ -141,6 +141,18 @@ public class Supermarket extends BaseLevel {
 
     @Override
     public void GUI(SpriteBatch batch) {
+
+        //
+        if(arcadePackIndex == -1){
+            if(arcadeShelfIndex > -1)
+            batch.draw(Assets.getInstance().score, shelfButtons[arcadeShelfIndex].position.x, shelfButtons[arcadeShelfIndex].position.y,
+                    buttonDimension.x, buttonDimension.y);
+        }
+        else {
+            batch.draw(Assets.getInstance().score, fruitPackButtons[arcadeShelfIndex][arcadePackIndex].position.x,
+                    fruitPackButtons[arcadeShelfIndex][arcadePackIndex].position.y,
+                    buttonDimension.x, buttonDimension.y);
+        }
         //
         for (int i = 0; i < shelfButtons.length; i++) {
             batch.draw(Assets.getInstance().shelf,
@@ -204,13 +216,15 @@ public class Supermarket extends BaseLevel {
     //TODO: Hacer el controlador arcade del supermercado
     @Override
     public void arcadeButtonControllers(int buttonIndex) {
+        //
+        if(arcadeShelfIndex == -1) return;
         // Del 0 al 5
         //
         if(!arcadeInPack) {
             if (buttonIndex > 0) {
                 arcadeShelfIndex = buttonIndex - 1;
             } else {
-                if (arcadePackIndex > -1)
+                if (arcadePackIndex == -1)
                     shelfButtons[arcadeShelfIndex].buttonFuction();
                 else {
                     fruitPackButtons[arcadeShelfIndex][arcadePackIndex].buttonFuction();
