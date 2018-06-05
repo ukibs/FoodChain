@@ -3,6 +3,7 @@ package com.mygdx.game.SuperMarket;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Assets;
 import com.mygdx.game.BaseButton;
@@ -41,6 +42,11 @@ public class Supermarket extends BaseLevel {
 
     //
     ClientManager clientManager;
+
+    // Variables for the arcade
+    int arcadeShelfIndex = -1;
+    int arcadePackIndex = -1;
+    boolean arcadeInPack = false;
 
     @Override
     public void init(){
@@ -170,8 +176,6 @@ public class Supermarket extends BaseLevel {
     @Override
     public void LevelUpdate(float elapsedTime) {
 
-        // TODO: Make arcade controls
-
         //
         this.elapsedTime += elapsedTime;
         //
@@ -200,12 +204,54 @@ public class Supermarket extends BaseLevel {
     //TODO: Hacer el controlador arcade del supermercado
     @Override
     public void arcadeButtonControllers(int buttonIndex) {
-
+        // Del 0 al 5
+        //
+        if(!arcadeInPack) {
+            if (buttonIndex > 0) {
+                arcadeShelfIndex = buttonIndex - 1;
+            } else {
+                if (arcadePackIndex > -1)
+                    shelfButtons[arcadeShelfIndex].buttonFuction();
+                else {
+                    fruitPackButtons[arcadeShelfIndex][arcadePackIndex].buttonFuction();
+                    arcadeInPack = true;
+                }
+            }
+        }
+        else {
+            if(fruitPackButtons[arcadeShelfIndex][arcadePackIndex].currentTimeToExpire > 0) {
+                if (buttonIndex == 0) {
+                    salesButton.buttonFuction();
+                    arcadeInPack = false;
+                } else if (buttonIndex == 1) {
+                    donateButton.buttonFuction();
+                    arcadeInPack = false;
+                }
+            }
+            else{
+                if (buttonIndex == 0) {
+                    trashButton.buttonFuction();
+                    arcadeInPack = false;
+                }
+            }
+        }
     }
 
     @Override
     public void arcadeAxis(char axis, int value) {
-
+        // x - horizontal
+        // y - vertical
+        switch (axis)
+        {
+            case 'x':
+                arcadeShelfIndex += value;
+                arcadeShelfIndex = MathUtils.clamp(arcadeShelfIndex, 0, 4);
+                break;
+            case 'y':
+                arcadePackIndex += value;
+                arcadePackIndex = MathUtils.clamp(arcadePackIndex, -1, 2);
+                break;
+        }
     }
 
     //
