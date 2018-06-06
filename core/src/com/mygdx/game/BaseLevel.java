@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -153,6 +154,7 @@ public abstract class BaseLevel extends GameObject {
         {
             state = LevelState.End;
             win = false;
+            SoundManager.getInstance().play(SoundManager.levelLose);
         }
     }
 

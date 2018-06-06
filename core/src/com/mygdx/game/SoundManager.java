@@ -12,7 +12,11 @@ import java.util.ArrayList;
 public class SoundManager {
     public static final int fruitLost = 0;
     public static final int getFruit = 1;
-    public static final int levelComplete = 2;
+    public static final int levelLose = 2;
+    public static final int trash = 3;
+    public static final int angry = 4;
+    public static final int levelComplete = 5;
+
 
     static SoundManager instance;
     ArrayList<Sound> effects;
@@ -23,6 +27,9 @@ public class SoundManager {
         effects.add(Gdx.audio.newSound(Gdx.files.internal("Effects/fruitLost.wav")));
         effects.add(Gdx.audio.newSound(Gdx.files.internal("Effects/clientFin.wav")));
         effects.add(Gdx.audio.newSound(Gdx.files.internal("Effects/levelLose.mp3")));
+        effects.add(Gdx.audio.newSound(Gdx.files.internal("Effects/trash.wav")));
+        effects.add(Gdx.audio.newSound(Gdx.files.internal("Effects/angry.wav")));
+        effects.add(Gdx.audio.newSound(Gdx.files.internal("Effects/levelComplete.wav")));
 
     }
 

@@ -154,13 +154,20 @@ public class Restaurant extends BaseLevel {
     //TODO: Cambiar orden de comprobación
     private void serveToClient(int typeFood)
     {
+        boolean taked = false;
         for(int i = 0; i < clients.length; i++)
         {
             if(clients[i].currentOrder == typeFood && clients[i].clientState != ClientRestaurant.ClientState.Eating && clients[i].active)
             {
                 clients[i].takeOrder();
+                taked = true;
                 break;
             }
+        }
+
+        if(!taked)
+        {
+            wastedFood(1);
         }
     }
 

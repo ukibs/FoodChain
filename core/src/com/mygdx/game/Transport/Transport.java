@@ -166,6 +166,9 @@ public class Transport extends BaseLevel {
         indicatorDimension = Constants.WIDTH_RATIO * 0.5f;
         speedBarPosition = Constants.WIDTH_RATIO*1.5f;
 
+        x = 0;
+        currentSpeed = 0;
+
         increase = new BaseButton(Assets.getInstance().button,"",worldController,Constants.dimension(-4,-4),Constants.dimension(1,1)) {
             @Override
             public void buttonFuction() {

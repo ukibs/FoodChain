@@ -150,11 +150,11 @@ public class WorldController {
 		else {
 			switch (gameMode) {
 				case Harvest:
-					gameMode = GameMode.Restaurant;
+					gameMode = GameMode.Transport;
 					InitiateLevel();
 					break;
 				case Transport:
-					gameMode = GameMode.End;
+					gameMode = GameMode.Restaurant;
 					InitiateLevel();
 					break;
 				case Restaurant:

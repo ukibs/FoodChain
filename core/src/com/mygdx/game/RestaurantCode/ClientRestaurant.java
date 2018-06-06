@@ -117,7 +117,11 @@ public class ClientRestaurant extends GameObject {
             currentOrder = 4;
             clientState = ClientState.Eating;
         }
-        else active = false;
+        else
+        {
+            active = false;
+            SoundManager.getInstance().play(SoundManager.getFruit);
+        }
     }
 
     private int getOrdersDone()
@@ -130,5 +134,6 @@ public class ClientRestaurant extends GameObject {
         restaurantLevel.wastedFood(getOrdersDone());
         active = false;
         elapsedTime = 0;
+        SoundManager.getInstance().play(SoundManager.angry);
     }
 }

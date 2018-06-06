@@ -61,7 +61,7 @@ public class Assets {
 		harvestBackground = new Texture(Gdx.files.internal("harvestBackground.jpg"));
 		//
 		truck = new Texture(Gdx.files.internal("Transport/background.png"));
-		background = new Texture(Gdx.files.internal("Transport/Truck.png"));
+		background = new Texture(Gdx.files.internal("Transport/truck.png"));
 		temperature = new Texture(Gdx.files.internal("Transport/temperature.png"));
 		indicator = new Texture(Gdx.files.internal("Transport/indicator.png"));
 		speedometer = new Texture(Gdx.files.internal("Transport/speedometer.png"));
