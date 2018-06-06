@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -77,6 +78,10 @@ public class WorldController {
 				break;
 			case Harvest:
 				harvestLevel.update(delta);
+				if(Gdx.app.getType() == Application.ApplicationType.Android)
+				{
+					harvestLevel.moveBasket(currentTouch);
+				}
 				break;
 			case Transport:
 				transportLevel.update(delta);
