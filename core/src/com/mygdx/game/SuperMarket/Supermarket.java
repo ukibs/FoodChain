@@ -1,5 +1,6 @@
 package com.mygdx.game.SuperMarket;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -177,7 +178,9 @@ public class Supermarket extends BaseLevel {
         trashButton.render(batch);
 
         //
-        BitmapFont font = new BitmapFont();
+        BitmapFont font;
+        //font = new BitmapFont(Gdx.files.internal("Fonts/Nineteen Ninety Seven.otf"), false);
+        font = new BitmapFont(Gdx.files.internal("Fonts/Test.fnt"), false);
         font.setColor(Color.BLACK);
         font.draw(batch, currentMoney + "", Constants.WIDTH_RATIO * 4, Constants.HEIGHT_RATIO * 4);
         font.draw(batch, clientSatisfaction + "", Constants.WIDTH_RATIO * -4, Constants.HEIGHT_RATIO * 4);
