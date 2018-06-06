@@ -144,16 +144,28 @@ public class Supermarket extends BaseLevel {
     public void GUI(SpriteBatch batch) {
 
         //
+        batch.draw(Assets.getInstance().superBackground,
+                Constants.WIDTH_RATIO*-5, Constants.HEIGHT_RATIO*-5,
+                Constants.WIDTH_RATIO*10, Constants.HEIGHT_RATIO*10);
+
+        // Arcade squares
         if(arcadePackIndex == -1){
             if(arcadeShelfIndex > -1)
             batch.draw(Assets.getInstance().score, shelfButtons[arcadeShelfIndex].position.x, shelfButtons[arcadeShelfIndex].position.y,
                     buttonDimension.x, buttonDimension.y);
         }
         else {
+            //
+            if(fruitPackButtons[arcadeShelfIndex][arcadePackIndex] == null ||
+                    !fruitPackButtons[arcadeShelfIndex][arcadePackIndex].active) {
+                arcadeCheckNextAvailablePack(0);
+            }
+            //
             batch.draw(Assets.getInstance().score, fruitPackButtons[arcadeShelfIndex][arcadePackIndex].position.x,
                     fruitPackButtons[arcadeShelfIndex][arcadePackIndex].position.y,
                     buttonDimension.x, buttonDimension.y);
         }
+
         //
         for (int i = 0; i < shelfButtons.length; i++) {
             batch.draw(Assets.getInstance().shelf,
@@ -263,13 +275,36 @@ public class Supermarket extends BaseLevel {
             case 'x':
                 arcadeShelfIndex += value;
                 arcadeShelfIndex = MathUtils.clamp(arcadeShelfIndex, 0, 4);
+                arcadeCheckNextAvailablePack(0);
                 break;
             case 'y':
-                arcadePackIndex += value;
-                arcadePackIndex = MathUtils.clamp(arcadePackIndex, -1, 2);
+                //arcadePackIndex += value;
+                //arcadePackIndex = MathUtils.clamp(arcadePackIndex, -1, 2);
+                arcadeCheckNextAvailablePack(value);
                 break;
         }
     }
+
+    //
+    void arcadeCheckNextAvailablePack(int direction){
+        switch (direction){
+            case 0:
+                arcadePackIndex = -1;
+                break;
+            default:
+                do {
+                    arcadePackIndex += direction;
+                    if(arcadePackIndex > 2 || arcadePackIndex < -1) arcadePackIndex = -1;
+                } while (arcadePackIndex > -1 &&
+                    (fruitPackButtons[arcadeShelfIndex][arcadePackIndex] == null ||
+                            !fruitPackButtons[arcadeShelfIndex][arcadePackIndex].active));
+                //arcadePackIndex += direction;
+                //arcadePackIndex = MathUtils.clamp(arcadePackIndex, -1, 2);
+                break;
+        }
+    }
+
+    // -----------------------------
 
     //
     void CreateFruitPack(int shelfIndex, final String packName){
@@ -308,6 +343,8 @@ public class Supermarket extends BaseLevel {
         //
         fruitPackButtons[shelfIndex][packIndex].active = true;
     }
+
+
 
     //
     void ActivateFruitPack(int shelfIndex){

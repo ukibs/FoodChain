@@ -33,7 +33,7 @@ public abstract class BaseButton extends GameObject {
         batch.draw(buttonImage, position.x, position.y, dimension.x, dimension.y);
         font.setColor(Color.BLACK);
         font.getData().setScale(dimension.x*0.005f, dimension.y*0.01f);
-        font.draw(batch, buttonText, position.x+dimension.x/10, position.y+dimension.y*6/10);
+        font.draw(batch, buttonText, position.x, position.y+dimension.y*3/5, dimension.x, 1, false);
     }
 
     @Override
