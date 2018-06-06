@@ -143,17 +143,24 @@ public class Supermarket extends BaseLevel {
     @Override
     public void GUI(SpriteBatch batch) {
 
-        //
+        // Arcade squares
         if(arcadePackIndex == -1){
             if(arcadeShelfIndex > -1)
             batch.draw(Assets.getInstance().score, shelfButtons[arcadeShelfIndex].position.x, shelfButtons[arcadeShelfIndex].position.y,
                     buttonDimension.x, buttonDimension.y);
         }
         else {
+            //
+            if(fruitPackButtons[arcadeShelfIndex][arcadePackIndex] == null ||
+                    !fruitPackButtons[arcadeShelfIndex][arcadePackIndex].active) {
+                arcadeCheckNextAvailablePack(0);
+            }
+            //
             batch.draw(Assets.getInstance().score, fruitPackButtons[arcadeShelfIndex][arcadePackIndex].position.x,
                     fruitPackButtons[arcadeShelfIndex][arcadePackIndex].position.y,
                     buttonDimension.x, buttonDimension.y);
         }
+
         //
         for (int i = 0; i < shelfButtons.length; i++) {
             batch.draw(Assets.getInstance().shelf,
@@ -263,13 +270,34 @@ public class Supermarket extends BaseLevel {
             case 'x':
                 arcadeShelfIndex += value;
                 arcadeShelfIndex = MathUtils.clamp(arcadeShelfIndex, 0, 4);
+                arcadeCheckNextAvailablePack(0);
                 break;
             case 'y':
-                arcadePackIndex += value;
+                //arcadePackIndex += value;
+                //arcadePackIndex = MathUtils.clamp(arcadePackIndex, -1, 2);
+                arcadeCheckNextAvailablePack(value);
+                break;
+        }
+    }
+
+    //
+    void arcadeCheckNextAvailablePack(int direction){
+        switch (direction){
+            case 0:
+                arcadePackIndex = -1;
+                break;
+            default:
+                /*while (fruitPackButtons[arcadeShelfIndex][arcadePackIndex] == null ||
+                        !fruitPackButtons[arcadeShelfIndex][arcadePackIndex].active){
+
+                }*/
+                arcadePackIndex += direction;
                 arcadePackIndex = MathUtils.clamp(arcadePackIndex, -1, 2);
                 break;
         }
     }
+
+    // -----------------------------
 
     //
     void CreateFruitPack(int shelfIndex, final String packName){
@@ -308,6 +336,8 @@ public class Supermarket extends BaseLevel {
         //
         fruitPackButtons[shelfIndex][packIndex].active = true;
     }
+
+
 
     //
     void ActivateFruitPack(int shelfIndex){
