@@ -143,6 +143,11 @@ public class Supermarket extends BaseLevel {
     @Override
     public void GUI(SpriteBatch batch) {
 
+        //
+        batch.draw(Assets.getInstance().superBackground,
+                Constants.WIDTH_RATIO*-5, Constants.HEIGHT_RATIO*-5,
+                Constants.WIDTH_RATIO*10, Constants.HEIGHT_RATIO*10);
+
         // Arcade squares
         if(arcadePackIndex == -1){
             if(arcadeShelfIndex > -1)
@@ -287,12 +292,14 @@ public class Supermarket extends BaseLevel {
                 arcadePackIndex = -1;
                 break;
             default:
-                /*while (fruitPackButtons[arcadeShelfIndex][arcadePackIndex] == null ||
-                        !fruitPackButtons[arcadeShelfIndex][arcadePackIndex].active){
-
-                }*/
-                arcadePackIndex += direction;
-                arcadePackIndex = MathUtils.clamp(arcadePackIndex, -1, 2);
+                while (arcadePackIndex > -1 &&
+                        (fruitPackButtons[arcadeShelfIndex][arcadePackIndex] == null ||
+                        !fruitPackButtons[arcadeShelfIndex][arcadePackIndex].active)){
+                    arcadePackIndex += direction;
+                    if(arcadePackIndex > 2) arcadePackIndex = -1;
+                }
+                //arcadePackIndex += direction;
+                //arcadePackIndex = MathUtils.clamp(arcadePackIndex, -1, 2);
                 break;
         }
     }

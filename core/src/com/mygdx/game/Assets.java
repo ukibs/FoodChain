@@ -39,6 +39,7 @@ public class Assets {
 	// Supermarket
 	public Texture shelf;
 	public Texture[][] fruitPacks;
+	public Texture superBackground;
 
 	private Assets() {
 		//
@@ -132,6 +133,8 @@ public class Assets {
 		fruitPacks[4][3] = new Texture("FruitShelves/Grapes3.png");
 		fruitPacks[4][4] = new Texture("FruitShelves/Grapes4.png");
 		fruitPacks[4][5] = new Texture("FruitShelves/Grapes5.png");
+		// Background
+		superBackground = new Texture("superBackground.jpg");
 		//
 		Gdx.app.debug("ASSETS", "Assets created");
 	}
