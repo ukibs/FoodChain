@@ -18,6 +18,8 @@ public class Assets {
 	public Texture speedometer;
 	public Texture button;
 	public Texture header;
+	public Texture blueButton;
+	public Texture whiteButton;
 	public Texture[] wastedBar;
 	//
 	public Texture menuBackground;
@@ -60,10 +62,12 @@ public class Assets {
 		fruitHarvest[3] = new Texture(Gdx.files.internal("Fruit/watermelon.png"));
 		harvestBackground = new Texture(Gdx.files.internal("harvestBackground.jpg"));
 		//
-		truck = new Texture(Gdx.files.internal("Transport/background.png"));
-		background = new Texture(Gdx.files.internal("Transport/truck.png"));
+		truck = new Texture(Gdx.files.internal("Transport/truck.png"));
+		background = new Texture(Gdx.files.internal("Transport/background.png"));
 		temperature = new Texture(Gdx.files.internal("Transport/temperature.png"));
 		indicator = new Texture(Gdx.files.internal("Transport/indicator.png"));
+		blueButton = new Texture(Gdx.files.internal("Transport/blue_button.png"));
+		whiteButton = new Texture(Gdx.files.internal("Transport/white_button.png"));
 		speedometer = new Texture(Gdx.files.internal("Transport/speedometer.png"));
 		transport = new Texture[2];
 		transport[0] = new Texture(Gdx.files.internal("Transport/box.png"));

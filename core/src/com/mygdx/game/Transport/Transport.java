@@ -68,12 +68,13 @@ public class Transport extends BaseLevel {
     @Override
     public void GUI(SpriteBatch batch) {
         batch.draw(Assets.getInstance().background, Constants.WIDTH_RATIO * -5, Constants.HEIGHT_RATIO * -5, Constants.WIDTH_RATIO * 10, Constants.HEIGHT_RATIO * 10);
+        batch.draw(Assets.getInstance().truck,Constants.WIDTH_RATIO * -3, Constants.HEIGHT_RATIO * -3 , Constants.WIDTH_RATIO * 7, Constants.HEIGHT_RATIO* 7);
         //Temperature bar
-        batch.draw(Assets.getInstance().temperature, temperatureBarPosition, Constants.HEIGHT_RATIO * -3.5f, barDimension, Constants.HEIGHT_RATIO * 1);
-        batch.draw(Assets.getInstance().indicator, initialIndicator + x, Constants.HEIGHT_RATIO* -2.5f,indicatorDimension, Constants.HEIGHT_RATIO * 1);
+        batch.draw(Assets.getInstance().temperature, temperatureBarPosition, Constants.HEIGHT_RATIO * -2, barDimension, Constants.HEIGHT_RATIO * 1);
+        batch.draw(Assets.getInstance().indicator, initialIndicator + x, Constants.HEIGHT_RATIO* -3,indicatorDimension, Constants.HEIGHT_RATIO * 1);
         //Speed bar
-        batch.draw(Assets.getInstance().speedometer,speedBarPosition, Constants.HEIGHT_RATIO * -3.5f, barDimension, Constants.HEIGHT_RATIO * 1);
-        batch.draw(Assets.getInstance().indicator,initialSpeedX + currentSpeed,Constants.HEIGHT_RATIO* -2.5f,indicatorDimension, Constants.HEIGHT_RATIO * 1);
+        batch.draw(Assets.getInstance().speedometer,speedBarPosition, Constants.HEIGHT_RATIO * -2f, barDimension, Constants.HEIGHT_RATIO * 1);
+        batch.draw(Assets.getInstance().indicator,initialSpeedX + currentSpeed,Constants.HEIGHT_RATIO* -3,indicatorDimension, Constants.HEIGHT_RATIO * 1);
 
         speedDecrease.render(batch);
         speedIncrease.render(batch);
@@ -169,25 +170,25 @@ public class Transport extends BaseLevel {
         x = 0;
         currentSpeed = 0;
 
-        increase = new BaseButton(Assets.getInstance().button,"",worldController,Constants.dimension(-4,-4),Constants.dimension(1,1)) {
+        increase = new BaseButton(Assets.getInstance().blueButton,"",worldController,Constants.dimension(-2,-4),Constants.dimension(1,1)) {
             @Override
             public void buttonFuction() {
                 moveIndicator(move);
             }
         };
-        decrease = new BaseButton(Assets.getInstance().button,"",worldController,Constants.dimension(-2,-4),Constants.dimension(1,1)) {
+        decrease = new BaseButton(Assets.getInstance().whiteButton,"",worldController,Constants.dimension(-4,-4),Constants.dimension(1,1)) {
             @Override
             public void buttonFuction() {
                 moveIndicator(-move);
             }
         };
-        speedIncrease = new BaseButton(Assets.getInstance().button,"",worldController,Constants.dimension(2,-4),Constants.dimension(1,1)) {
+        speedIncrease = new BaseButton(Assets.getInstance().blueButton,"",worldController,Constants.dimension(4,-4),Constants.dimension(1,1)) {
             @Override
             public void buttonFuction() {
                 moveSpeedometer(speed);
             }
         };
-        speedDecrease = new BaseButton(Assets.getInstance().button,"",worldController,Constants.dimension(4,-4),Constants.dimension(1,1)) {
+        speedDecrease = new BaseButton(Assets.getInstance().whiteButton,"",worldController,Constants.dimension(2,-4),Constants.dimension(1,1)) {
             @Override
             public void buttonFuction() {
                 moveSpeedometer(-speed);
