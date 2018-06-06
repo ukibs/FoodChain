@@ -134,7 +134,20 @@ public class Transport extends BaseLevel {
 
     @Override
     public void arcadeButtonControllers(int buttonIndex) {
-
+        switch (buttonIndex){
+            case 0:
+                speedIncrease.buttonFuction();
+                break;
+            case 1:
+                speedDecrease.buttonFuction();
+                break;
+            case 3:
+                increase.buttonFuction();
+                break;
+            case 4:
+                decrease.buttonFuction();
+                break;
+        }
     }
 
     @Override
