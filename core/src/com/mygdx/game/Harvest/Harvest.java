@@ -1,12 +1,19 @@
 package com.mygdx.game.Harvest;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.mygdx.game.Assets;
 import com.mygdx.game.BaseLevel;
 import com.mygdx.game.Constants;
+import com.mygdx.game.GameObject;
 import com.mygdx.game.SoundManager;
 
 import java.util.ArrayList;
+
+import sun.rmi.runtime.Log;
 
 /**
  * Created by Martin on 29/04/2018.
@@ -46,7 +53,8 @@ public class Harvest extends BaseLevel {
     }
 
     @Override
-    public void LevelUpdate(float elapsedTime) {
+    public void LevelUpdate(float elapsedTime)
+    {
         this.elapsedTime += elapsedTime;
         spawnTime += elapsedTime;
             if(spawnTime > 2)
@@ -71,6 +79,25 @@ public class Harvest extends BaseLevel {
         {
             basket.setDirection(value);
         }
+    }
+
+    public void moveBasket(Vector2 position)
+    {
+        if(position.x == -100000)
+        {
+            basket.setDirection(0);
+        }
+        else if(position.x > 0)
+        {
+            basket.setDirection(1);
+            System.out.println("Derecha " + position.x);
+        }
+        else
+        {
+            basket.setDirection(-1);
+            System.out.println("Izquierda " + position.x);
+        }
+
     }
 
     public void checkCollision()

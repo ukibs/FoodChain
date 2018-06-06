@@ -23,8 +23,10 @@ public class MainGame implements ApplicationListener {
 		input = new Input(controller);
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 
-		USJArcadeListener arcade = new USJArcadeListener(controller);
-		Controllers.addListener(arcade);
+		if(Gdx.app.getType() != Application.ApplicationType.Android) {
+			USJArcadeListener arcade = new USJArcadeListener(controller);
+			Controllers.addListener(arcade);
+		}
 	}
 
 	@Override
