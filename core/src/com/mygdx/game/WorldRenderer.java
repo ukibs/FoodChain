@@ -17,20 +17,20 @@ public class WorldRenderer {
 	SpriteBatch batch;
 	WorldController controller;
 	ShapeRenderer shape;
-    FPSLogger fps;
+	FPSLogger fps;
 
-	
-	
+
+
 	public WorldRenderer(WorldController controller) {
-		
+
 		this.controller = controller;
-        batch = new SpriteBatch();
-        fps = new FPSLogger();
-        shape = new ShapeRenderer();
-        camera = new OrthographicCamera(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGTH);
+		batch = new SpriteBatch();
+		fps = new FPSLogger();
+		shape = new ShapeRenderer();
+		camera = new OrthographicCamera(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGTH);
 		init();
 	}
-	
+
 	private void init() {
 
 		//batch.enableBlending();
@@ -41,10 +41,10 @@ public class WorldRenderer {
 		camera.update();
 
 	}
-	
+
 	public void render() {
 
-        fps.log();
+		fps.log();
 
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
@@ -61,7 +61,7 @@ public class WorldRenderer {
 				controller.harvestLevel.render(batch);
 				break;
 			case Transport:
-
+				controller.transportLevel.render(batch);
 				break;
 			case Restaurant:
 				controller.restaurantLevel.render(batch);
@@ -73,21 +73,21 @@ public class WorldRenderer {
 				controller.endLevel.render(batch);
 				break;
 		}
-		
+
 		batch.end();
 		shape.end();
-			
+
 	}
-	
+
 	public void resize(int width, int height) {
-		
+
 		//camera.viewportWidth = (Constants.VIEWPORT_HEIGTH/height) * width;
 		//camera.update();
-		
+
 	}
-	
+
 	public void dispose() {
 		batch.dispose();
 	}
-	
+
 }

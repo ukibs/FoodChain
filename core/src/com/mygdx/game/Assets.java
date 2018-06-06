@@ -13,7 +13,9 @@ import java.util.ArrayList;
 public class Assets {
 
 	static Assets instance;
-
+	public Texture temperature;
+	public Texture indicator;
+	public Texture speedometer;
 	public Texture button;
 	public Texture header;
 	public Texture[] wastedBar;
@@ -25,6 +27,10 @@ public class Assets {
 	public Texture basket;
 	public Texture harvestBackground;
 	//
+	public Texture[] transport;
+	public Texture truck;
+	public Texture background;
+	//
 	public Texture[] faces;
 	public Texture[] food;
 	public Texture[] clients;
@@ -33,7 +39,7 @@ public class Assets {
 	// Supermarket
 	public Texture shelf;
 	public Texture[][] fruitPacks;
-	
+
 	private Assets() {
 		//
 		header = new Texture(Gdx.files.internal("header.jpg"));
@@ -53,6 +59,16 @@ public class Assets {
 		fruitHarvest[2] = new Texture(Gdx.files.internal("Fruit/grape.png"));
 		fruitHarvest[3] = new Texture(Gdx.files.internal("Fruit/watermelon.png"));
 		harvestBackground = new Texture(Gdx.files.internal("harvestBackground.jpg"));
+		//
+		truck = new Texture(Gdx.files.internal("Transport/background.png"));
+		background = new Texture(Gdx.files.internal("Transport/Truck.png"));
+		temperature = new Texture(Gdx.files.internal("Transport/temperature.png"));
+		indicator = new Texture(Gdx.files.internal("Transport/indicator.png"));
+		speedometer = new Texture(Gdx.files.internal("Transport/speedometer.png"));
+		transport = new Texture[2];
+		transport[0] = new Texture(Gdx.files.internal("Transport/box.png"));
+		//transport[1] = new Texture(Gdx.files.internal("Transport/box.png"));
+		//transport[2] = new Texture(Gdx.files.internal("Transport/box.png"));
 		//
 		faces = new Texture[4];
 		faces[0] = new Texture(Gdx.files.internal("Clients/HappyFace.png"));
@@ -119,16 +135,16 @@ public class Assets {
 		//
 		Gdx.app.debug("ASSETS", "Assets created");
 	}
-	
+
 	public static Assets getInstance() {
-		
+
 		if(instance == null)
 			instance = new Assets();
-		
+
 		return instance;
-		
+
 	}
-	
+
 	public Texture GetRandomFace(){
 		return faces[MathUtils.random(faces.length - 1)];
 	}

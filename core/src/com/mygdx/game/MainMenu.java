@@ -58,8 +58,8 @@ public class MainMenu extends GameObject {
         practiceButtons[1][0] = new BaseButton(Assets.getInstance().button, "Transport", worldController, Constants.dimension(1,1), Constants.dimension(3, 2)) {
             @Override
             public void buttonFuction() {
-                //worldController.gameMode = WorldController.GameMode.Transport;
-                //worldController.InitiateLevel();
+                worldController.gameMode = WorldController.GameMode.Transport;
+                worldController.InitiateLevel();
             }
         };
 

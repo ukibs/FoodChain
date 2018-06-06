@@ -8,6 +8,7 @@ import com.mygdx.game.EndLevel.EndLevel;
 import com.mygdx.game.Harvest.Harvest;
 import com.mygdx.game.RestaurantCode.Restaurant;
 import com.mygdx.game.SuperMarket.Supermarket;
+import com.mygdx.game.Transport.Transport;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,7 @@ public class WorldController {
 	Restaurant restaurantLevel;
 	Supermarket supermarketLevel;
 	EndLevel endLevel;
+	Transport transportLevel;
 
 	boolean inPractice = false;
 	public int currentScore = 100;
@@ -59,6 +61,7 @@ public class WorldController {
 	void init(){
 		menu = new MainMenu(this);
 		harvestLevel = new Harvest();
+		transportLevel = new Transport();
 		restaurantLevel = new Restaurant();
 		supermarketLevel = new Supermarket();
 		endLevel = new EndLevel();
@@ -76,7 +79,7 @@ public class WorldController {
 				harvestLevel.update(delta);
 				break;
 			case Transport:
-
+				transportLevel.update(delta);
 				break;
 			case Restaurant:
 				restaurantLevel.update(delta);
@@ -100,6 +103,7 @@ public class WorldController {
 				harvestLevel.baseInit(this);
 				break;
 			case Transport:
+				transportLevel.baseInit(this);
 				break;
 			case Restaurant:
 				restaurantLevel.baseInit(this);
@@ -150,7 +154,8 @@ public class WorldController {
 					InitiateLevel();
 					break;
 				case Transport:
-
+					gameMode = GameMode.End;
+					InitiateLevel();
 					break;
 				case Restaurant:
 					gameMode = GameMode.Supermarket;
@@ -160,6 +165,7 @@ public class WorldController {
 					gameMode = GameMode.End;
 					InitiateLevel();
 					break;
+
 				case End:
 					gameMode = GameMode.MainMenu;
 					level++;
@@ -243,6 +249,7 @@ public class WorldController {
 				harvestLevel.baseButtonControllers(buttonCode);
 				break;
 			case Transport:
+				transportLevel.baseButtonControllers(buttonCode);
 				break;
 			case Restaurant:
 				restaurantLevel.baseButtonControllers(buttonCode);
