@@ -292,12 +292,12 @@ public class Supermarket extends BaseLevel {
                 arcadePackIndex = -1;
                 break;
             default:
-                while (arcadePackIndex > -1 &&
-                        (fruitPackButtons[arcadeShelfIndex][arcadePackIndex] == null ||
-                        !fruitPackButtons[arcadeShelfIndex][arcadePackIndex].active)){
+                do {
                     arcadePackIndex += direction;
-                    if(arcadePackIndex > 2) arcadePackIndex = -1;
-                }
+                    if(arcadePackIndex > 2 || arcadePackIndex < -1) arcadePackIndex = -1;
+                } while (arcadePackIndex > -1 &&
+                    (fruitPackButtons[arcadeShelfIndex][arcadePackIndex] == null ||
+                            !fruitPackButtons[arcadeShelfIndex][arcadePackIndex].active));
                 //arcadePackIndex += direction;
                 //arcadePackIndex = MathUtils.clamp(arcadePackIndex, -1, 2);
                 break;
