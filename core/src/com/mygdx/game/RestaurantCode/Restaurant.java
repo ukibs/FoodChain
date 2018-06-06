@@ -134,15 +134,6 @@ public class Restaurant extends BaseLevel {
 
     }
 
-    //TODO: Hacer tutorial y cambio de nivel
-    @Override
-    public void changeLevel(SpriteBatch batch) {
-    }
-
-    @Override
-    public void tutorial(SpriteBatch batch) {
-
-    }
 
     private boolean getSpace()
     {

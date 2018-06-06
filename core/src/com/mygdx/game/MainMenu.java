@@ -118,7 +118,7 @@ public class MainMenu extends GameObject {
             for(int i = 0; i < 5; i++)
             {
                 text.draw(batch, (i+1)+"", Constants.WIDTH_RATIO * 0.5f, Constants.HEIGHT_RATIO * (2f - i * 1f));
-                text.draw(batch, worldController.scoreNames.get(i), Constants.WIDTH_RATIO * 1.5f, Constants.HEIGHT_RATIO * (2f - i * 1f));
+                text.draw(batch, worldController.scoreNames.get(i), Constants.WIDTH_RATIO * 1f, Constants.HEIGHT_RATIO * (2f - i * 1f), Constants.WIDTH_RATIO, 1, false);
                 text.draw(batch, worldController.scores[i] + "", Constants.WIDTH_RATIO * 2.5f, Constants.HEIGHT_RATIO * (2f - i * 1f));
             }
         }

@@ -51,16 +51,14 @@ public abstract class BaseLevel extends GameObject {
             }
         };
 
-        startLevel = new BaseButton(Assets.getInstance().button, "Start",worldController,
-                new Vector2(-Constants.WIDTH_RATIO, Constants.HEIGHT_RATIO*-3+Constants.HEIGHT_RATIO/4),new Vector2(Constants.WIDTH_RATIO, Constants.HEIGHT_RATIO/2)) {
+        startLevel = new BaseButton(Assets.getInstance().button, "Start", worldController, Constants.dimension(-2, -4.5f),Constants.dimension(4, 1)) {
             @Override
             public void buttonFuction() {
                 state = LevelState.InGame;
             }
         };
 
-        nextLevelButton = new BaseButton(Assets.getInstance().button, "Next",worldController,
-                new Vector2(-Constants.WIDTH_RATIO, Constants.HEIGHT_RATIO*-3+Constants.HEIGHT_RATIO/4),new Vector2(Constants.WIDTH_RATIO, Constants.HEIGHT_RATIO/2)) {
+        nextLevelButton = new BaseButton(Assets.getInstance().button, "Next", worldController, Constants.dimension(-2, -4.5f),Constants.dimension(4, 1)) {
             @Override
             public void buttonFuction() {
                 nextLevel = false;
@@ -79,15 +77,15 @@ public abstract class BaseLevel extends GameObject {
         switch (state)
         {
             case Tutorial:
-                batch.draw(Assets.getInstance().button, Constants.WIDTH_RATIO*(-3.8f), Constants.HEIGHT_RATIO*(-3.8f), Constants.WIDTH_RATIO*7.5f, Constants.HEIGHT_RATIO*7.5f);
+                batch.draw(Assets.getInstance().button, Constants.WIDTH_RATIO*(-3.8f), Constants.HEIGHT_RATIO*(-4.7f), Constants.WIDTH_RATIO*7.5f, Constants.HEIGHT_RATIO*8.5f);
+                Tutorials.render(batch, worldController.gameMode);
                 startLevel.render(batch);
-                tutorial(batch);
                 break;
             case End:
                 //Cuadro de texto
-                batch.draw(Assets.getInstance().button, Constants.WIDTH_RATIO*(-3.8f), Constants.HEIGHT_RATIO*(-3.8f), Constants.WIDTH_RATIO*7.5f, Constants.HEIGHT_RATIO*7.5f);
+                batch.draw(Assets.getInstance().button, Constants.WIDTH_RATIO*(-3.8f), Constants.HEIGHT_RATIO*(-4.7f), Constants.WIDTH_RATIO*7.5f, Constants.HEIGHT_RATIO*8.5f);
+                ChangeLevel.render(batch, worldController.gameMode, win);
                 nextLevelButton.render(batch);
-                changeLevel(batch);
                 break;
         }
     }
@@ -168,13 +166,10 @@ public abstract class BaseLevel extends GameObject {
         }
     }
 
-    public abstract void changeLevel(SpriteBatch batch);
-
-    public abstract void tutorial(SpriteBatch batch);
-
     public abstract void GUI(SpriteBatch batch);
 
     public abstract void LevelUpdate(float elapsedTime);
+
     public abstract void arcadeButtonControllers(int buttonIndex);
 
     public abstract void arcadeAxis(char axis, int value);

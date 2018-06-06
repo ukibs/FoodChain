@@ -131,16 +131,6 @@ public class Supermarket extends BaseLevel {
     }
 
     @Override
-    public void changeLevel(SpriteBatch batch) {
-        // TODO: Pintar en GUI lo que pasa al perder/ganar
-    }
-
-    @Override
-    public void tutorial(SpriteBatch batch) {
-
-    }
-
-    @Override
     public void GUI(SpriteBatch batch) {
 
         //

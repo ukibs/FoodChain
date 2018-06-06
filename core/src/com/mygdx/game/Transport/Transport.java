@@ -12,37 +12,26 @@ import com.mygdx.game.BaseButton;
 import com.mygdx.game.BaseLevel;
 import com.mygdx.game.Constants;
 
-
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
-import com.mygdx.game.Assets;
-import com.mygdx.game.BaseButton;
-import com.mygdx.game.BaseLevel;
-import com.mygdx.game.Constants;
-
-
-import java.util.ArrayList;
-
 /**
  * Created by jimmy on 05/06/18.
  */
 
 public class Transport extends BaseLevel {
-    public static float move = 50;
+    public static float move = 20;
     public static float speed = 20;
-    public static float currentSpeed = 0;
-    float x;
-    float initialSpeedX;
+
+    float currentSpeed;
+    float currentTemperature;
+
+    float initialSpeedIndicator;
     float speedBarPosition;
     float barDimension;
     float indicatorDimension;
-    float initialIndicator;
+    float initialTemperatureIndicator;
     float temperatureBarPosition;
-    ArrayList<Box> boxObject = new ArrayList<Box>();
+
     float spawnTime;
-    Box box;
-    //BaseButton start;
+
     BaseButton increase;
     BaseButton decrease;
     BaseButton speedIncrease;
@@ -50,31 +39,16 @@ public class Transport extends BaseLevel {
 
     Vector2 buttonDimension = new Vector2(Constants.WIDTH_RATIO * 1.5f, Constants.HEIGHT_RATIO * 1);
 
-    public Transport(){
-
-
-    }
-
-    @Override
-    public void changeLevel(SpriteBatch batch) {
-
-    }
-
-    @Override
-    public void tutorial(SpriteBatch batch) {
-
-    }
-
     @Override
     public void GUI(SpriteBatch batch) {
         batch.draw(Assets.getInstance().background, Constants.WIDTH_RATIO * -5, Constants.HEIGHT_RATIO * -5, Constants.WIDTH_RATIO * 10, Constants.HEIGHT_RATIO * 10);
         batch.draw(Assets.getInstance().truck,Constants.WIDTH_RATIO * -3, Constants.HEIGHT_RATIO * -3 , Constants.WIDTH_RATIO * 7, Constants.HEIGHT_RATIO* 7);
         //Temperature bar
         batch.draw(Assets.getInstance().temperature, temperatureBarPosition, Constants.HEIGHT_RATIO * -2, barDimension, Constants.HEIGHT_RATIO * 1);
-        batch.draw(Assets.getInstance().indicator, initialIndicator + x, Constants.HEIGHT_RATIO* -3,indicatorDimension, Constants.HEIGHT_RATIO * 1);
+        batch.draw(Assets.getInstance().indicator, initialTemperatureIndicator + currentTemperature, Constants.HEIGHT_RATIO* -3,indicatorDimension, Constants.HEIGHT_RATIO * 1);
         //Speed bar
         batch.draw(Assets.getInstance().speedometer,speedBarPosition, Constants.HEIGHT_RATIO * -2f, barDimension, Constants.HEIGHT_RATIO * 1);
-        batch.draw(Assets.getInstance().indicator,initialSpeedX + currentSpeed,Constants.HEIGHT_RATIO* -3,indicatorDimension, Constants.HEIGHT_RATIO * 1);
+        batch.draw(Assets.getInstance().indicator, initialSpeedIndicator + currentSpeed,Constants.HEIGHT_RATIO* -3,indicatorDimension, Constants.HEIGHT_RATIO * 1);
 
         speedDecrease.render(batch);
         speedIncrease.render(batch);
@@ -82,31 +56,25 @@ public class Transport extends BaseLevel {
         decrease.render(batch);
     }
     private void moveIndicator(float value){
-        if(initialIndicator + x + value > temperatureBarPosition &&
-                initialIndicator + x + value < temperatureBarPosition + barDimension - indicatorDimension){
-            x += value;
+        if(initialTemperatureIndicator + currentTemperature + value > temperatureBarPosition &&
+                initialTemperatureIndicator + currentTemperature + value < temperatureBarPosition + barDimension - indicatorDimension){
+            currentTemperature += value;
+
         }
     }
     private void moveSpeedometer(float value) {
-        if (initialSpeedX + currentSpeed + value > speedBarPosition &&
-                initialSpeedX + currentSpeed + value < initialSpeedX + barDimension - indicatorDimension) {
+        if (initialSpeedIndicator + currentSpeed + value > speedBarPosition &&
+                initialSpeedIndicator + currentSpeed + value < speedBarPosition + barDimension - indicatorDimension) {
             currentSpeed += value;
         }
     }
     private void checkTemperature(){
-        if (initialSpeedX + currentSpeed  < speedBarPosition + (barDimension / 3)){
-            System.out.println("too hot");
+        if (initialTemperatureIndicator + currentTemperature + indicatorDimension/2 < temperatureBarPosition + (barDimension / 3)){
             worldController.currentScore -= 0.01;
         }
-        if(initialSpeedX + currentSpeed  > speedBarPosition + (barDimension * 2/3) - indicatorDimension) {
-            System.out.println("too cold");
+        if(initialTemperatureIndicator + currentTemperature  + indicatorDimension > temperatureBarPosition + (barDimension * 2/3)) {
             worldController.currentScore -= 0.01;
         }
-
-//        } else{
-//            worldController.currentScore -= 0.01;
-//        }
-
     }
 
     @Override
@@ -117,20 +85,13 @@ public class Transport extends BaseLevel {
         speedDecrease.update(elapsedTime);
         increase.update(elapsedTime);
         decrease.update(elapsedTime);
-        if (spawnTime > 8){
-            moveSpeedometer(MathUtils.random(-20,20));
-            moveIndicator(MathUtils.random(-20,20));
+        if (spawnTime > 1f)
+        {
+            moveSpeedometer(MathUtils.random(-20 + 10 * worldController.level, 20 + 10 * worldController.level));
+            moveIndicator(MathUtils.random(-20 + 10 * worldController.level, 20 + 10 * worldController.level));
             spawnTime = 0;
         }
         checkTemperature();
-//        if (spawnTime > 2) {
-//            boxObject.add(new Box(worldController));
-//            spawnTime = 0;
-//        }
-//        for (int i = 0; i < boxObject.size(); i++) {
-//            boxObject.get(i).update(elapsedTime);
-//        }
-        //  box.update(elapsedTime);
     }
 
     @Override
@@ -158,16 +119,16 @@ public class Transport extends BaseLevel {
 
     @Override
     public void init() {
-        initialSpeedX = Constants.WIDTH_RATIO * 3;
         barDimension = Constants.WIDTH_RATIO * 3;
+        indicatorDimension = Constants.WIDTH_RATIO * 0.5f;
 
-        initialIndicator = Constants.WIDTH_RATIO * -3;
+        speedBarPosition = Constants.WIDTH_RATIO*1.5f;
         temperatureBarPosition = Constants.WIDTH_RATIO * -4.5f;
 
-        indicatorDimension = Constants.WIDTH_RATIO * 0.5f;
-        speedBarPosition = Constants.WIDTH_RATIO*1.5f;
+        initialTemperatureIndicator = temperatureBarPosition + barDimension/2 - indicatorDimension/2;
+        initialSpeedIndicator = speedBarPosition + barDimension/2 - indicatorDimension/2;
 
-        x = 0;
+        currentTemperature = 0;
         currentSpeed = 0;
 
         increase = new BaseButton(Assets.getInstance().blueButton,"",worldController,Constants.dimension(-2,-4),Constants.dimension(1,1)) {
@@ -182,7 +143,7 @@ public class Transport extends BaseLevel {
                 moveIndicator(-move);
             }
         };
-        speedIncrease = new BaseButton(Assets.getInstance().blueButton,"",worldController,Constants.dimension(4,-4),Constants.dimension(1,1)) {
+        speedIncrease = new BaseButton(Assets.getInstance().blueButton,"",worldController,Constants.dimension(3.5f,-4),Constants.dimension(1,1)) {
             @Override
             public void buttonFuction() {
                 moveSpeedometer(speed);
@@ -195,21 +156,5 @@ public class Transport extends BaseLevel {
             }
         };
     }
-
-    public void checkCollision() {
-        for (int i = 0; i < boxObject.size(); i++) {
-            Box currentBox = boxObject.get(i);
-            if (currentBox.getBounds().overlaps(box.getBounds())) {
-                if (!(currentBox.position.y > box.position.y + box.dimension.y * 4 / 5 &&
-                        currentBox.position.x > box.position.x &&
-                        currentBox.position.x + currentBox.dimension.x < box.position.x + box.dimension.x)) {
-                    worldController.currentScore -= 20;
-                }
-                boxObject.remove(i);
-            }
-        }
-    }
-
-
 }
 

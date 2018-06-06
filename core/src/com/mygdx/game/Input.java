@@ -24,13 +24,6 @@ public class Input implements InputProcessor {
 
     public void update(float delta) {
 
-        if(Gdx.input.isTouched())
-        {
-            Vector3 pos = new Vector3();
-            pos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-            worldController.camera.unproject(pos);
-            worldController.setLongTouch(pos.x, pos.y);
-        }
     }
 
     @Override
@@ -90,7 +83,7 @@ public class Input implements InputProcessor {
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-        worldController.setTouch(screenX, screenY);
+       // worldController.setTouch(screenX, screenY);
         return false;
     }
 
