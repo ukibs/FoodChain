@@ -86,7 +86,7 @@ public class MainMenu extends GameObject {
                 worldController.InitiateLevel();
             }
         };
-        text = new BitmapFont();
+        text = new BitmapFont(Gdx.files.internal("Fonts/Test.fnt"), false);
     }
 
     public void init()

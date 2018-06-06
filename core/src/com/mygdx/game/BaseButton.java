@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -19,7 +20,7 @@ public abstract class BaseButton extends GameObject {
     protected WorldController worldController;
 
     public BaseButton(Texture buttonImage, String buttonText, WorldController worldController, Vector2 position, Vector2 dimension){
-        font = new BitmapFont();
+        font = new BitmapFont(Gdx.files.internal("Fonts/Test.fnt"), false);
         this.buttonText = buttonText;
         this.buttonImage = buttonImage;
         this.worldController = worldController;
@@ -31,8 +32,8 @@ public abstract class BaseButton extends GameObject {
     public void render(SpriteBatch batch) {
         batch.draw(buttonImage, position.x, position.y, dimension.x, dimension.y);
         font.setColor(Color.BLACK);
-        font.getData().setScale(dimension.x*0.01f, dimension.y*0.02f);
-        font.draw(batch, buttonText, position.x+dimension.x/5, position.y+dimension.y*2/3);
+        font.getData().setScale(dimension.x*0.005f, dimension.y*0.01f);
+        font.draw(batch, buttonText, position.x+dimension.x/10, position.y+dimension.y*6/10);
     }
 
     @Override
