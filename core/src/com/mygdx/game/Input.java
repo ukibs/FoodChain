@@ -30,9 +30,11 @@ public class Input implements InputProcessor {
     public boolean keyDown(int keycode) {
         //processInput
         if(keycode == (com.badlogic.gdx.Input.Keys.A)) {
+            worldController.axisMoved('x', -1);
             return true;
         }
         if(keycode == (com.badlogic.gdx.Input.Keys.D)) {
+            worldController.axisMoved('x', 1);
             return true;
         }
         if(keycode == (com.badlogic.gdx.Input.Keys.W)) {
@@ -48,9 +50,11 @@ public class Input implements InputProcessor {
     public boolean keyUp(int keycode) {
 
         if(keycode == (com.badlogic.gdx.Input.Keys.A)) {
+            worldController.axisMoved('x', 0);
             return true;
         }
         if(keycode == (com.badlogic.gdx.Input.Keys.D)) {
+            worldController.axisMoved('x', 0);
             return true;
         }
         if(keycode == (com.badlogic.gdx.Input.Keys.W)) {

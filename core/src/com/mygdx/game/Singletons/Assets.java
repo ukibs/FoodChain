@@ -48,6 +48,7 @@ public class Assets {
 
 	//Controls
 	public Texture transportArcadeControls;
+	public Texture restaurantArcadeControls;
 
 	private Assets() {
 		//
@@ -99,7 +100,7 @@ public class Assets {
 		clients[2] = new Texture(Gdx.files.internal("Clients/client3.png"));
 		clients[3] = new Texture(Gdx.files.internal("Clients/client4.png"));
 		//
-		think = new Texture(Gdx.files.internal("think.png"));
+		think = new Texture(Gdx.files.internal("Clients/think.png"));
 		//
 		restaurantBackground = new Texture(Gdx.files.internal("restaurantBackground.jpg"));
 		// Supermarket
@@ -147,6 +148,7 @@ public class Assets {
 
 		//Controls
 		transportArcadeControls = new Texture("Controls/transportArcadeControls.png");
+		restaurantArcadeControls = new Texture("Controls/restaurantControlsArcade.png");
 
 		//
 		Gdx.app.debug("ASSETS", "Assets created");

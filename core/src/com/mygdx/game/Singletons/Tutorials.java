@@ -51,6 +51,7 @@ public class Tutorials {
                             "If you do not attend them quickly they will get angry and leave food that will be added to the waste bar\n You lose if waste bar is completed";
                     font.getData().setScale(Gdx.graphics.getWidth()*0.0007f);
                     font.draw(batch, explain, Constants.WIDTH_RATIO * -3.5f, Constants.HEIGHT_RATIO * 2.8f, Constants.WIDTH_RATIO*7, 1, true);
+                    batch.draw(Assets.getInstance().restaurantArcadeControls, Constants.WIDTH_RATIO*-2f, Constants.HEIGHT_RATIO*-2.5f, Constants.WIDTH_RATIO*4, Constants.HEIGHT_RATIO*3);
                     break;
                 case Supermarket:
                     break;
