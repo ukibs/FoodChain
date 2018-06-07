@@ -2,6 +2,7 @@ package com.mygdx.game.EndLevel;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -9,6 +10,7 @@ import com.mygdx.game.Singletons.Assets;
 import com.mygdx.game.BaseButton;
 import com.mygdx.game.BaseLevel;
 import com.mygdx.game.Constants;
+import com.mygdx.game.Singletons.ParticleManager;
 
 /**
  * Created by Martin on 08/05/2018.
@@ -49,6 +51,7 @@ public class EndLevel extends BaseLevel {
         }
         //
         returnButton.render(batch);
+        ParticleManager.getInstance().render(batch, 0);
     }
 
     @Override
@@ -58,6 +61,7 @@ public class EndLevel extends BaseLevel {
             charDownButtons[i].update(elapsedTime);
         }
         returnButton.update(elapsedTime);
+        ParticleManager.getInstance().update(0, elapsedTime);
     }
 
     @Override
@@ -96,6 +100,7 @@ public class EndLevel extends BaseLevel {
             }
         };
         SpawnCharButtons();
+        ParticleManager.getInstance().play(0, new Vector2(0, 0));
     }
 
     void SpawnCharButtons(){
