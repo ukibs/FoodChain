@@ -1,5 +1,6 @@
 package com.mygdx.game.EndLevel;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
@@ -10,7 +11,6 @@ import com.mygdx.game.Singletons.Assets;
 import com.mygdx.game.BaseButton;
 import com.mygdx.game.BaseLevel;
 import com.mygdx.game.Constants;
-import com.mygdx.game.Singletons.ParticleManager;
 
 /**
  * Created by Martin on 08/05/2018.
@@ -24,6 +24,7 @@ public class EndLevel extends BaseLevel {
     int[] chars = {65,65,65};
     Vector2 buttonDimension = new Vector2(Constants.WIDTH_RATIO*2, Constants.HEIGHT_RATIO*1.5f);
     Vector2 miniButtonDimension = new Vector2(Constants.WIDTH_RATIO, Constants.HEIGHT_RATIO*0.75f);
+    ParticleEffect particleEffect;
 
     int arcadeIndex = 0;
 
@@ -51,7 +52,8 @@ public class EndLevel extends BaseLevel {
         }
         //
         returnButton.render(batch);
-        ParticleManager.getInstance().render(batch, 0);
+        //ParticleManager.getInstance().render(batch, 0);
+        particleEffect.draw(batch);
     }
 
     @Override
@@ -61,7 +63,13 @@ public class EndLevel extends BaseLevel {
             charDownButtons[i].update(elapsedTime);
         }
         returnButton.update(elapsedTime);
-        ParticleManager.getInstance().update(0, elapsedTime);
+
+        //
+        particleEffect.setPosition(0, 0);
+        if(particleEffect.isComplete())
+            particleEffect.start();
+        //ParticleManager.getInstance().update(0, elapsedTime);
+        particleEffect.update(elapsedTime);
     }
 
     @Override
@@ -100,7 +108,13 @@ public class EndLevel extends BaseLevel {
             }
         };
         SpawnCharButtons();
-        ParticleManager.getInstance().play(0, new Vector2(0, 0));
+        //ParticleManager.getInstance().play(0, new Vector2(0, 0));
+
+        //
+        particleEffect = new ParticleEffect();
+        particleEffect.load(Gdx.files.internal("ParticleEffects/FireworksWithImage"), Gdx.files.internal("ParticleEffects"));
+        //particleEffect.scaleEffect(0.1f);
+        particleEffect.start();
     }
 
     void SpawnCharButtons(){
