@@ -29,6 +29,15 @@ public class Tutorials {
                 case Restaurant:
                     break;
                 case Supermarket:
+                    explain = "Tap on the shelves to buy the food\n" +
+                            "Be sure to have some food in all the shelves\n" +
+                            "But be careful to not let your food to go out of date\n" +
+                            "To avoid that you can tap on it\n" +
+                            "To put it on sales or donate it\n" +
+                            "Food on sales will be bought faster, but will bring you less money\n" +
+                            "Don't forget to manage correctly your money\n" +
+                            "And keep your clients happy";
+                    font.draw(batch, explain, Constants.WIDTH_RATIO * -3.5f, Constants.HEIGHT_RATIO * 2.8f, Constants.WIDTH_RATIO*7, 1, true);
                     break;
             }
         }
@@ -54,6 +63,14 @@ public class Tutorials {
                     batch.draw(Assets.getInstance().restaurantArcadeControls, Constants.WIDTH_RATIO*-2f, Constants.HEIGHT_RATIO*-2.5f, Constants.WIDTH_RATIO*4, Constants.HEIGHT_RATIO*3);
                     break;
                 case Supermarket:
+                    explain = "Move through the shelves to buy the food\n" +
+                            "Be sure to have some food in all the shelves\n" +
+                            "But be careful to not let your food to go out of date\n" +
+                            "To avoid that you can put it on sales or donate it\n" +
+                            "Food on sales will be bought faster, but will bring you less money\n" +
+                            "Don't forget to manage correctly your money\n" +
+                            "And keep your clients happy";
+                    font.draw(batch, explain, Constants.WIDTH_RATIO * -3.5f, Constants.HEIGHT_RATIO * 2.8f, Constants.WIDTH_RATIO*7, 1, true);
                     break;
             }
         }
