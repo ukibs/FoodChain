@@ -3,6 +3,7 @@ package com.mygdx.game.EndLevel;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Singletons.Assets;
 import com.mygdx.game.BaseButton;
@@ -22,10 +23,17 @@ public class EndLevel extends BaseLevel {
     Vector2 buttonDimension = new Vector2(Constants.WIDTH_RATIO*2, Constants.HEIGHT_RATIO*1.5f);
     Vector2 miniButtonDimension = new Vector2(Constants.WIDTH_RATIO, Constants.HEIGHT_RATIO*0.75f);
 
-    int arcadeIndex;
+    int arcadeIndex = 0;
 
     @Override
     public void GUI(SpriteBatch batch) {
+        //
+
+        //
+        Vector2 arcadePosition = Constants.dimension(arcadeIndex-1, -1.5f);
+        batch.draw(Assets.getInstance().score, arcadePosition.x, arcadePosition.y,
+                miniButtonDimension.x, buttonDimension.y/2);
+        //
         BitmapFont font = new BitmapFont();
         font.setColor(Color.BLACK);
         font.draw(batch, "CONGRATULATIONS", 0, Constants.HEIGHT_RATIO * 3);
@@ -62,10 +70,13 @@ public class EndLevel extends BaseLevel {
     public void arcadeAxis(char axis, int value) {
         switch (axis){
             case 'x':
-
+                arcadeIndex += value;
+                arcadeIndex = MathUtils.clamp(arcadeIndex, 0, 2);
                 break;
             case 'y':
-
+                chars[arcadeIndex] += value;
+                if(chars[arcadeIndex] < 65) chars[arcadeIndex] = 90;
+                if(chars[arcadeIndex] > 90) chars[arcadeIndex] = 65;
                 break;
         }
     }
