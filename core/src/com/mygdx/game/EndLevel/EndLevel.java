@@ -22,6 +22,8 @@ public class EndLevel extends BaseLevel {
     Vector2 buttonDimension = new Vector2(Constants.WIDTH_RATIO*2, Constants.HEIGHT_RATIO*1.5f);
     Vector2 miniButtonDimension = new Vector2(Constants.WIDTH_RATIO, Constants.HEIGHT_RATIO*0.75f);
 
+    int arcadeIndex;
+
     @Override
     public void GUI(SpriteBatch batch) {
         BitmapFont font = new BitmapFont();
@@ -52,12 +54,20 @@ public class EndLevel extends BaseLevel {
 
     @Override
     public void arcadeButtonControllers(int buttonIndex) {
-
+        if(buttonIndex == 0)
+            returnButton.buttonFuction();
     }
 
     @Override
     public void arcadeAxis(char axis, int value) {
+        switch (axis){
+            case 'x':
 
+                break;
+            case 'y':
+
+                break;
+        }
     }
 
     @Override

@@ -287,10 +287,12 @@ public class Supermarket extends BaseLevel {
                     adjustPackIndex(direction);
                 break;
             case 'x':
-                /*if(arcadeShelfIndex != -1 &&
-                        (fruitPackButtons[arcadeShelfIndex][arcadePackIndex] == null ||
-                                !fruitPackButtons[arcadeShelfIndex][arcadePackIndex].active))*/
-                    adjustPackIndex(0);
+                if(arcadePackIndex != -1){
+                    if(fruitPackButtons[arcadeShelfIndex][arcadePackIndex] == null ||
+                            !fruitPackButtons[arcadeShelfIndex][arcadePackIndex].active){
+                        adjustPackIndex(0);
+                    }
+                }
                 break;
             default:
                 arcadePackIndex = -1;
