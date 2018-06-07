@@ -45,6 +45,8 @@ public class Assets {
 	public Texture shelf;
 	public Texture[][] fruitPacks;
 	public Texture superBackground;
+	public Texture coin;
+	public Texture clientMeter;
 
 	//Victory
 	public Texture victoryBackground;
@@ -146,6 +148,9 @@ public class Assets {
 		fruitPacks[4][3] = new Texture("FruitShelves/Grapes3.png");
 		fruitPacks[4][4] = new Texture("FruitShelves/Grapes4.png");
 		fruitPacks[4][5] = new Texture("FruitShelves/Grapes5.png");
+		// Coin and client meter
+		coin = new Texture("item_gold_coin.png");
+		clientMeter = new Texture("bunny_head.png");
 		// Background
 		superBackground = new Texture("superBackground.jpg");
 

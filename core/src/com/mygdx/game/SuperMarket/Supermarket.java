@@ -183,6 +183,14 @@ public class Supermarket extends BaseLevel {
         trashButton.render(batch);
 
         //
+        batch.draw(Assets.getInstance().clientMeter,
+                Constants.WIDTH_RATIO * -4 -(buttonDimension.x/2), Constants.HEIGHT_RATIO * 3,
+                buttonDimension.x/2, buttonDimension.y);
+        batch.draw(Assets.getInstance().coin,
+                Constants.WIDTH_RATIO * 4 -(buttonDimension.x/2), Constants.HEIGHT_RATIO * 3,
+                buttonDimension.x/2, buttonDimension.y);
+
+        //
         BitmapFont font;
         //font = new BitmapFont(Gdx.files.internal("Fonts/Nineteen Ninety Seven.otf"), false);
         font = new BitmapFont(Gdx.files.internal("Fonts/Test.fnt"), false);
