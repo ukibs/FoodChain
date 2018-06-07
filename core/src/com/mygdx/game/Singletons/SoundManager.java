@@ -1,6 +1,7 @@
 package com.mygdx.game.Singletons;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
 import java.util.ArrayList;
@@ -20,9 +21,11 @@ public class SoundManager {
 
     static SoundManager instance;
     ArrayList<Sound> effects;
+    ArrayList<Music> musicTracks;
 
     private SoundManager()
     {
+        // Effects
         effects = new ArrayList<Sound>();
         effects.add(Gdx.audio.newSound(Gdx.files.internal("Effects/fruitLost.wav")));
         effects.add(Gdx.audio.newSound(Gdx.files.internal("Effects/clientFin.wav")));
@@ -30,7 +33,12 @@ public class SoundManager {
         effects.add(Gdx.audio.newSound(Gdx.files.internal("Effects/trash.wav")));
         effects.add(Gdx.audio.newSound(Gdx.files.internal("Effects/angry.wav")));
         effects.add(Gdx.audio.newSound(Gdx.files.internal("Effects/levelComplete.wav")));
-
+        // Music tracks
+        musicTracks = new ArrayList<Music>();
+        musicTracks.add(Gdx.audio.newMusic(Gdx.files.internal("Music/Menu.ogg")));
+        musicTracks.add(Gdx.audio.newMusic(Gdx.files.internal("Music/Harvest.ogg")));
+        musicTracks.add(Gdx.audio.newMusic(Gdx.files.internal("Music/Restaurant.ogg")));
+        musicTracks.add(Gdx.audio.newMusic(Gdx.files.internal("Music/SuperMarket.ogg")));
     }
 
     public static SoundManager getInstance()
