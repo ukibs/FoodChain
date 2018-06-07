@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Singletons.Assets;
 import com.mygdx.game.Constants;
 import com.mygdx.game.GameObject;
+import com.mygdx.game.Singletons.SoundManager;
 
 import java.util.ArrayList;
 
@@ -85,6 +86,8 @@ public class ClientManager extends GameObject {
                 clients.get(i).face = new Sprite(Assets.getInstance().clients[clientIndex]);
                 clients.get(i).active = true;
                 clients.get(i).currentShelf = shelfToUse;
+                //
+                SoundManager.getInstance().play(1);
                 return;
             }
         }

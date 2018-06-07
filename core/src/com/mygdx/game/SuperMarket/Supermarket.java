@@ -10,6 +10,7 @@ import com.mygdx.game.Singletons.Assets;
 import com.mygdx.game.BaseButton;
 import com.mygdx.game.BaseLevel;
 import com.mygdx.game.Constants;
+import com.mygdx.game.Singletons.SoundManager;
 
 /**
  * Created by Martin on 30/04/2018.
@@ -411,6 +412,7 @@ public class Supermarket extends BaseLevel {
         fruitPackButtons[currentShelfIndex][currentPackIndex] = null;
         // Lose global score
         worldController.currentScore -= 10;
+        SoundManager.getInstance().play(3);
         HideSalesAndDonateButtons();
     }
 
@@ -428,6 +430,7 @@ public class Supermarket extends BaseLevel {
         //
         if(CheckIfContainsOutOfDateFood(shelfIndex)) {
             clientSatisfaction -= 10;
+            SoundManager.getInstance().play(4);
             return;
         }
         //
@@ -442,6 +445,7 @@ public class Supermarket extends BaseLevel {
         // If there is no food in the shelf
         if(i == fruitPackButtons[shelfIndex].length){
             clientSatisfaction -= 10;
+            SoundManager.getInstance().play(4);
         }
     }
 
