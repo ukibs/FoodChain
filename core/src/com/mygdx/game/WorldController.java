@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.EndLevel.EndLevel;
 import com.mygdx.game.Harvest.Harvest;
 import com.mygdx.game.RestaurantCode.Restaurant;
+import com.mygdx.game.Singletons.SoundManager;
 import com.mygdx.game.SuperMarket.Supermarket;
 import com.mygdx.game.Transport.Transport;
 
@@ -66,6 +67,7 @@ public class WorldController {
 		supermarketLevel = new Supermarket();
 		endLevel = new EndLevel();
 		currentScore = maxScore();
+		InitiateLevel();
 		//
 		getScoresFromPrefs();
 	}
@@ -119,6 +121,8 @@ public class WorldController {
 				endLevel.baseInit(this);
 				break;
 		}
+
+		SoundManager.getInstance().playMusic(gameMode);
 	}
 
 	void setTouch(float x, float y)

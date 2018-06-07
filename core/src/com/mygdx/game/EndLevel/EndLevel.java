@@ -31,14 +31,14 @@ public class EndLevel extends BaseLevel {
     @Override
     public void GUI(SpriteBatch batch) {
         //
-
+        batch.draw(Assets.getInstance().victoryBackground, Constants.WIDTH_RATIO*-5, Constants.HEIGHT_RATIO*-5, Constants.WIDTH_RATIO*10, Constants.HEIGHT_RATIO*10);
         //
         Vector2 arcadePosition = Constants.dimension(arcadeIndex-1, -1.5f);
         batch.draw(Assets.getInstance().score, arcadePosition.x, arcadePosition.y,
                 miniButtonDimension.x, buttonDimension.y/2);
         //
         BitmapFont font = new BitmapFont();
-        font.setColor(Color.BLACK);
+        font.setColor(Color.WHITE);
         font.draw(batch, "CONGRATULATIONS", 0, Constants.HEIGHT_RATIO * 3);
         font.draw(batch, "The food is in good hands with you!", 0, Constants.HEIGHT_RATIO * 2f);
         font.draw(batch, "Your score: ", 0, Constants.HEIGHT_RATIO * 1);
@@ -65,10 +65,9 @@ public class EndLevel extends BaseLevel {
         returnButton.update(elapsedTime);
 
         //
-        particleEffect.setPosition(0, 0);
+        particleEffect.setPosition(Constants.WIDTH_RATIO*-3, Constants.HEIGHT_RATIO*-4);
         if(particleEffect.isComplete())
             particleEffect.start();
-        //ParticleManager.getInstance().update(0, elapsedTime);
         particleEffect.update(elapsedTime);
     }
 
@@ -108,12 +107,10 @@ public class EndLevel extends BaseLevel {
             }
         };
         SpawnCharButtons();
-        //ParticleManager.getInstance().play(0, new Vector2(0, 0));
 
         //
         particleEffect = new ParticleEffect();
         particleEffect.load(Gdx.files.internal("ParticleEffects/FireworksWithImage"), Gdx.files.internal("ParticleEffects"));
-        //particleEffect.scaleEffect(0.1f);
         particleEffect.start();
     }
 

@@ -46,6 +46,9 @@ public class Assets {
 	public Texture[][] fruitPacks;
 	public Texture superBackground;
 
+	//Victory
+	public Texture victoryBackground;
+
 	//Controls
 	public Texture transportArcadeControls;
 	public Texture restaurantArcadeControls;
@@ -146,6 +149,9 @@ public class Assets {
 		// Background
 		superBackground = new Texture("superBackground.jpg");
 
+		//Victory
+		victoryBackground = new Texture("victoryBackground.png");
+
 		//Controls
 		transportArcadeControls = new Texture("Controls/transportArcadeControls.png");
 		restaurantArcadeControls = new Texture("Controls/restaurantControlsArcade.png");
@@ -162,9 +168,4 @@ public class Assets {
 		return instance;
 
 	}
-
-	public Texture GetRandomFace(){
-		return faces[MathUtils.random(faces.length - 1)];
-	}
-
 }
