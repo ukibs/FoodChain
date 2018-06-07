@@ -4,11 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g3d.utils.BaseAnimationController;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
-
-import java.util.ArrayList;
 
 /**
  * Created by USUARIO on 30/04/2018.
@@ -28,10 +23,10 @@ public class MainMenu extends GameObject {
 
     MainMenu(WorldController worldController)
     {
-        background = Assets.getInstance().menuBackground;
+        background = com.mygdx.game.Singletons.Assets.getInstance().menuBackground;
         this.worldController = worldController;
         menuButtons = new BaseButton[2];
-        menuButtons[0] = new BaseButton(Assets.getInstance().button, "Play", worldController, Constants.dimension(-4, 1), Constants.dimension(3, 2)) {
+        menuButtons[0] = new BaseButton(com.mygdx.game.Singletons.Assets.getInstance().button, "Play", worldController, Constants.dimension(-4, 1), Constants.dimension(3, 2)) {
             @Override
             public void buttonFuction() {
                 worldController.gameMode = WorldController.GameMode.Harvest;
@@ -39,7 +34,7 @@ public class MainMenu extends GameObject {
             }
         };
 
-        menuButtons[1] = new BaseButton(Assets.getInstance().button, "Practice", worldController, Constants.dimension(-4, -2), Constants.dimension(3, 2)) {
+        menuButtons[1] = new BaseButton(com.mygdx.game.Singletons.Assets.getInstance().button, "Practice", worldController, Constants.dimension(-4, -2), Constants.dimension(3, 2)) {
             @Override
             public void buttonFuction() {
                 worldController.inPractice = true;
@@ -47,7 +42,7 @@ public class MainMenu extends GameObject {
         };
 
         practiceButtons = new BaseButton[2][2];
-        practiceButtons[0][0] = new BaseButton(Assets.getInstance().button, "Harvest", worldController, Constants.dimension(-4, 1), Constants.dimension(3, 2)) {
+        practiceButtons[0][0] = new BaseButton(com.mygdx.game.Singletons.Assets.getInstance().button, "Harvest", worldController, Constants.dimension(-4, 1), Constants.dimension(3, 2)) {
             @Override
             public void buttonFuction() {
                 worldController.gameMode = WorldController.GameMode.Harvest;
@@ -55,7 +50,7 @@ public class MainMenu extends GameObject {
             }
         };
 
-        practiceButtons[1][0] = new BaseButton(Assets.getInstance().button, "Transport", worldController, Constants.dimension(1,1), Constants.dimension(3, 2)) {
+        practiceButtons[1][0] = new BaseButton(com.mygdx.game.Singletons.Assets.getInstance().button, "Transport", worldController, Constants.dimension(1,1), Constants.dimension(3, 2)) {
             @Override
             public void buttonFuction() {
                 worldController.gameMode = WorldController.GameMode.Transport;
@@ -63,7 +58,7 @@ public class MainMenu extends GameObject {
             }
         };
 
-        practiceButtons[0][1] = new BaseButton(Assets.getInstance().button, "Restaurant", worldController, Constants.dimension(-4, -2), Constants.dimension(3,2)) {
+        practiceButtons[0][1] = new BaseButton(com.mygdx.game.Singletons.Assets.getInstance().button, "Restaurant", worldController, Constants.dimension(-4, -2), Constants.dimension(3,2)) {
             @Override
             public void buttonFuction() {
                 worldController.gameMode = WorldController.GameMode.Restaurant;
@@ -71,7 +66,7 @@ public class MainMenu extends GameObject {
             }
         };
 
-        practiceButtons[1][1] = new BaseButton(Assets.getInstance().button, "Super", worldController, Constants.dimension(1, -2), Constants.dimension(3,2)) {
+        practiceButtons[1][1] = new BaseButton(com.mygdx.game.Singletons.Assets.getInstance().button, "Super", worldController, Constants.dimension(1, -2), Constants.dimension(3,2)) {
             @Override
             public void buttonFuction() {
                 worldController.gameMode = WorldController.GameMode.Supermarket;
@@ -79,7 +74,7 @@ public class MainMenu extends GameObject {
             }
         };
 
-        backMenu = new BaseButton(Assets.getInstance().button, "Menu", worldController, Constants.dimension(-4.5f, -4), Constants.dimension(1.5f, 1)) {
+        backMenu = new BaseButton(com.mygdx.game.Singletons.Assets.getInstance().button, "Menu", worldController, Constants.dimension(-4.5f, -4), Constants.dimension(1.5f, 1)) {
             @Override
             public void buttonFuction() {
                 worldController.gameMode = WorldController.GameMode.MainMenu;
@@ -100,13 +95,13 @@ public class MainMenu extends GameObject {
 
     @Override
     public void render(SpriteBatch batch) {
-        batch.draw(Assets.getInstance().header, -Gdx.graphics.getWidth() / 2, -Gdx.graphics.getHeight() / 2, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        batch.draw(com.mygdx.game.Singletons.Assets.getInstance().header, -Gdx.graphics.getWidth() / 2, -Gdx.graphics.getHeight() / 2, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         if(!worldController.inPractice)
         {
             batch.draw(background, Constants.WIDTH_RATIO*-5, Constants.HEIGHT_RATIO*-5, Constants.WIDTH_RATIO*10, Constants.HEIGHT_RATIO*10);
-            batch.draw(Assets.getInstance().score, Constants.WIDTH_RATIO * 0f, Constants.HEIGHT_RATIO*-2.5f, Constants.WIDTH_RATIO *3f, Constants.HEIGHT_RATIO*6);
+            batch.draw(com.mygdx.game.Singletons.Assets.getInstance().score, Constants.WIDTH_RATIO * 0f, Constants.HEIGHT_RATIO*-2.5f, Constants.WIDTH_RATIO *3f, Constants.HEIGHT_RATIO*6);
 
-            batch.draw(Assets.getInstance().score, menuButtons[menuButtonSelected].position.x - Constants.WIDTH_RATIO*0.1f,
+            batch.draw(com.mygdx.game.Singletons.Assets.getInstance().score, menuButtons[menuButtonSelected].position.x - Constants.WIDTH_RATIO*0.1f,
                     menuButtons[menuButtonSelected].position.y - Constants.WIDTH_RATIO * 0.1f,
                     menuButtons[menuButtonSelected].dimension.x + Constants.WIDTH_RATIO * 0.2f,
                     menuButtons[menuButtonSelected].dimension.y + Constants.WIDTH_RATIO * 0.2f);
@@ -123,7 +118,7 @@ public class MainMenu extends GameObject {
             }
         }
         else {
-            batch.draw(Assets.getInstance().score, practiceButtons[practiceButtonsSelectedX][practiceButtonsSelectedY].position.x - Constants.WIDTH_RATIO*0.1f,
+            batch.draw(com.mygdx.game.Singletons.Assets.getInstance().score, practiceButtons[practiceButtonsSelectedX][practiceButtonsSelectedY].position.x - Constants.WIDTH_RATIO*0.1f,
                     practiceButtons[practiceButtonsSelectedX][practiceButtonsSelectedY].position.y - Constants.WIDTH_RATIO * 0.1f,
                     practiceButtons[practiceButtonsSelectedX][practiceButtonsSelectedY].dimension.x + Constants.WIDTH_RATIO * 0.2f,
                     practiceButtons[practiceButtonsSelectedX][practiceButtonsSelectedY].dimension.y + Constants.WIDTH_RATIO * 0.2f);

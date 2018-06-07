@@ -2,11 +2,10 @@ package com.mygdx.game.RestaurantCode;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.mygdx.game.Assets;
+import com.mygdx.game.Singletons.Assets;
 import com.mygdx.game.BaseButton;
 import com.mygdx.game.BaseLevel;
 import com.mygdx.game.Constants;
-import com.mygdx.game.GameObject;
 
 /**
  * Created by USUARIO on 01/05/2018.

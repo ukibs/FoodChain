@@ -1,13 +1,14 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.compression.lzma.Base;
+import com.mygdx.game.Singletons.*;
+import com.mygdx.game.Singletons.Assets;
+import com.mygdx.game.Singletons.ChangeLevel;
+import com.mygdx.game.Singletons.SoundManager;
+import com.mygdx.game.Singletons.Tutorials;
 
 import java.util.ArrayList;
 
@@ -42,7 +43,7 @@ public abstract class BaseLevel extends GameObject {
     {
         this.worldController = worldController;
         win = false;
-        menuButton = new BaseButton(Assets.getInstance().button, "Menu",worldController,
+        menuButton = new BaseButton(com.mygdx.game.Singletons.Assets.getInstance().button, "Menu",worldController,
                 new Vector2(-Constants.WIDTH_RATIO*4.5f, Constants.HEIGHT_RATIO*4+Constants.HEIGHT_RATIO/4),new Vector2(Constants.WIDTH_RATIO, Constants.HEIGHT_RATIO/2)) {
             @Override
             public void buttonFuction() {
@@ -51,21 +52,21 @@ public abstract class BaseLevel extends GameObject {
             }
         };
 
-        startLevel = new BaseButton(Assets.getInstance().button, "Start", worldController, Constants.dimension(-2, -4.5f),Constants.dimension(4, 1)) {
+        startLevel = new BaseButton(com.mygdx.game.Singletons.Assets.getInstance().button, "Start", worldController, Constants.dimension(-2, -4.2f),Constants.dimension(3.5f, 1)) {
             @Override
             public void buttonFuction() {
                 state = LevelState.InGame;
             }
         };
 
-        nextLevelButton = new BaseButton(Assets.getInstance().button, "Next", worldController, Constants.dimension(-2, -4.5f),Constants.dimension(4, 1)) {
+        nextLevelButton = new BaseButton(com.mygdx.game.Singletons.Assets.getInstance().button, "Next", worldController, Constants.dimension(-2, -4.2f),Constants.dimension(3.5f, 1)) {
             @Override
             public void buttonFuction() {
                 nextLevel = false;
                 worldController.finishLevel(win);
             }
         };
-        time = new BitmapFont();
+        time = new BitmapFont(Gdx.files.internal("Fonts/Test.fnt"), false);
         state = LevelState.Tutorial;
         elapsedTime = 0;
         init();
@@ -77,14 +78,14 @@ public abstract class BaseLevel extends GameObject {
         switch (state)
         {
             case Tutorial:
-                batch.draw(Assets.getInstance().button, Constants.WIDTH_RATIO*(-3.8f), Constants.HEIGHT_RATIO*(-4.7f), Constants.WIDTH_RATIO*7.5f, Constants.HEIGHT_RATIO*8.5f);
-                Tutorials.render(batch, worldController.gameMode);
+                batch.draw(com.mygdx.game.Singletons.Assets.getInstance().board, Constants.WIDTH_RATIO*(-3.8f), Constants.HEIGHT_RATIO*(-4.7f), Constants.WIDTH_RATIO*7.5f, Constants.HEIGHT_RATIO*8.5f);
+                Tutorials.render(batch, worldController.gameMode, time);
                 startLevel.render(batch);
                 break;
             case End:
                 //Cuadro de texto
-                batch.draw(Assets.getInstance().button, Constants.WIDTH_RATIO*(-3.8f), Constants.HEIGHT_RATIO*(-4.7f), Constants.WIDTH_RATIO*7.5f, Constants.HEIGHT_RATIO*8.5f);
-                ChangeLevel.render(batch, worldController.gameMode, win);
+                batch.draw(Assets.getInstance().board, Constants.WIDTH_RATIO*(-3.8f), Constants.HEIGHT_RATIO*(-4.7f), Constants.WIDTH_RATIO*7.5f, Constants.HEIGHT_RATIO*8.5f);
+                ChangeLevel.render(batch, worldController.gameMode, win, time);
                 nextLevelButton.render(batch);
                 break;
         }
@@ -138,11 +139,11 @@ public abstract class BaseLevel extends GameObject {
     {
         GUI(batch);
         //Cabecera
-        batch.draw(Assets.getInstance().header, Constants.dimension(-5,4).x,Constants.dimension(-5,4).y, Constants.WIDTH_RATIO*10, Constants.HEIGHT_RATIO);
-        batch.draw(Assets.getInstance().wastedBar[0], Constants.WIDTH_RATIO*(-2), Constants.dimension(0, 4.1f).y, Constants.WIDTH_RATIO*5.5f, Constants.HEIGHT_RATIO*0.75f);
-        batch.draw(Assets.getInstance().wastedBar[1], Constants.WIDTH_RATIO*(-2), Constants.dimension(0, 4.1f).y, Constants.WIDTH_RATIO*5.5f*(worldController.maxScore()-worldController.currentScore)/worldController.maxScore(), Constants.HEIGHT_RATIO*0.75f);
+        batch.draw(com.mygdx.game.Singletons.Assets.getInstance().header, Constants.dimension(-5,4).x,Constants.dimension(-5,4).y, Constants.WIDTH_RATIO*10, Constants.HEIGHT_RATIO);
+        batch.draw(com.mygdx.game.Singletons.Assets.getInstance().wastedBar[0], Constants.WIDTH_RATIO*(-2), Constants.dimension(0, 4.1f).y, Constants.WIDTH_RATIO*5.5f, Constants.HEIGHT_RATIO*0.75f);
+        batch.draw(com.mygdx.game.Singletons.Assets.getInstance().wastedBar[1], Constants.WIDTH_RATIO*(-2), Constants.dimension(0, 4.1f).y, Constants.WIDTH_RATIO*5.5f*(worldController.maxScore()-worldController.currentScore)/worldController.maxScore(), Constants.HEIGHT_RATIO*0.75f);
         menuButton.render(batch);
-        time.getData().setScale(Gdx.graphics.getWidth()*0.0015f);
+        time.getData().setScale(Gdx.graphics.getWidth()*0.0007f);
         time.draw(batch, "Time: "+((int)elapsedTime), Constants.WIDTH_RATIO*(3.9f), Constants.dimension(0, 4.6f).y);
     }
 
@@ -152,7 +153,7 @@ public abstract class BaseLevel extends GameObject {
         {
             state = LevelState.End;
             win = false;
-            SoundManager.getInstance().play(SoundManager.levelLose);
+            com.mygdx.game.Singletons.SoundManager.getInstance().play(com.mygdx.game.Singletons.SoundManager.levelLose);
         }
     }
 
@@ -162,7 +163,7 @@ public abstract class BaseLevel extends GameObject {
         {
             state = LevelState.End;
             win = true;
-            SoundManager.getInstance().play(SoundManager.levelComplete);
+            com.mygdx.game.Singletons.SoundManager.getInstance().play(SoundManager.levelComplete);
         }
     }
 

@@ -56,7 +56,6 @@ public class WorldController {
 		gameMode = GameMode.MainMenu;
 
 		prefs = Gdx.app.getPreferences("My Preferences");
-		level = prefs.getInteger("level");
 	}
 
 	void init(){

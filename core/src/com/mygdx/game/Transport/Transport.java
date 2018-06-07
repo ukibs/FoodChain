@@ -7,7 +7,7 @@ package com.mygdx.game.Transport;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.game.Assets;
+import com.mygdx.game.Singletons.Assets;
 import com.mygdx.game.BaseButton;
 import com.mygdx.game.BaseLevel;
 import com.mygdx.game.Constants;

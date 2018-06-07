@@ -1,47 +1,53 @@
-package com.mygdx.game;
+package com.mygdx.game.Singletons;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
-
-import java.util.ArrayList;
 
 public class Assets {
 
 	static Assets instance;
-	public Texture temperature;
-	public Texture indicator;
-	public Texture speedometer;
+
+	//Bases
 	public Texture button;
 	public Texture header;
-	public Texture blueButton;
-	public Texture whiteButton;
 	public Texture[] wastedBar;
-	//
+	public Texture board;
+	public Texture win;
+	public Texture lose;
+
+	//Menu
 	public Texture menuBackground;
 	public Texture score;
-	//
+
+	//Harvest
 	public Texture[] fruitHarvest;
 	public Texture basket;
 	public Texture harvestBackground;
-	//
-	public Texture[] transport;
+
+	//Transport
 	public Texture truck;
 	public Texture background;
-	//
+	public Texture temperature;
+	public Texture indicator;
+	public Texture speedometer;
+	public Texture blueButton;
+	public Texture whiteButton;
+
+	//Restaurant
 	public Texture[] faces;
 	public Texture[] food;
 	public Texture[] clients;
 	public Texture think;
 	public Texture restaurantBackground;
+
 	// Supermarket
 	public Texture shelf;
 	public Texture[][] fruitPacks;
 	public Texture superBackground;
+
+	//Controls
+	public Texture transportArcadeControls;
 
 	private Assets() {
 		//
@@ -49,6 +55,9 @@ public class Assets {
 		wastedBar = new Texture[2];
 		wastedBar[0] = new Texture(Gdx.files.internal("barFood.png"));
 		wastedBar[1] = new Texture(Gdx.files.internal("waste.jpg"));
+		board = new Texture(Gdx.files.internal("board.png"));
+		win = new Texture("win.png");
+		lose = new Texture("lose.png");
 		//
 		button = new Texture(Gdx.files.internal("button.png"));
 		//
@@ -70,10 +79,6 @@ public class Assets {
 		blueButton = new Texture(Gdx.files.internal("Transport/blue_button.png"));
 		whiteButton = new Texture(Gdx.files.internal("Transport/white_button.png"));
 		speedometer = new Texture(Gdx.files.internal("Transport/speedometer.png"));
-		transport = new Texture[2];
-		transport[0] = new Texture(Gdx.files.internal("Transport/box.png"));
-		//transport[1] = new Texture(Gdx.files.internal("Transport/box.png"));
-		//transport[2] = new Texture(Gdx.files.internal("Transport/box.png"));
 		//
 		faces = new Texture[4];
 		faces[0] = new Texture(Gdx.files.internal("Clients/HappyFace.png"));
@@ -139,6 +144,10 @@ public class Assets {
 		fruitPacks[4][5] = new Texture("FruitShelves/Grapes5.png");
 		// Background
 		superBackground = new Texture("superBackground.jpg");
+
+		//Controls
+		transportArcadeControls = new Texture("Controls/transportArcadeControls.png");
+
 		//
 		Gdx.app.debug("ASSETS", "Assets created");
 	}

@@ -2,7 +2,6 @@ package com.mygdx.game.RestaurantCode;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -35,7 +34,7 @@ public class ClientRestaurant extends GameObject {
         this.restaurantLevel = restaurant;
         this.position = position;
         font = new BitmapFont();
-        face = Assets.getInstance().clients[MathUtils.random(0,3)];
+        face = com.mygdx.game.Singletons.Assets.getInstance().clients[MathUtils.random(0,3)];
     }
 
     public void init(int numOrders)
@@ -52,19 +51,19 @@ public class ClientRestaurant extends GameObject {
         if(!active)
             return;
         //
-        batch.draw(Assets.getInstance().think, position.x, position.y+Constants.HEIGHT_RATIO*2.8f, dimension.x, dimension.y/2f);
+        batch.draw(com.mygdx.game.Singletons.Assets.getInstance().think, position.x, position.y+Constants.HEIGHT_RATIO*2.8f, dimension.x, dimension.y/2f);
         //
         batch.draw(face, position.x, position.y, dimension.x, dimension.y);
         switch (clientState)
         {
             case Ordering:
-                batch.draw(Assets.getInstance().food[currentOrder], position.x+Constants.WIDTH_RATIO*0.35f, position.y+Constants.HEIGHT_RATIO*3.5f, dimension.x/3, dimension.y/5f);
+                batch.draw(com.mygdx.game.Singletons.Assets.getInstance().food[currentOrder], position.x+Constants.WIDTH_RATIO*0.35f, position.y+Constants.HEIGHT_RATIO*3.5f, dimension.x/3, dimension.y/5f);
                 break;
             case Eating:
 
                 break;
             case Going:
-                batch.draw(Assets.getInstance().food[4], position.x+Constants.WIDTH_RATIO*0.35f, position.y+Constants.HEIGHT_RATIO*3.3f, dimension.x/3, dimension.y/3.3f);
+                batch.draw(com.mygdx.game.Singletons.Assets.getInstance().food[4], position.x+Constants.WIDTH_RATIO*0.35f, position.y+Constants.HEIGHT_RATIO*3.3f, dimension.x/3, dimension.y/3.3f);
                 break;
         }
     }
@@ -120,7 +119,7 @@ public class ClientRestaurant extends GameObject {
         else
         {
             active = false;
-            SoundManager.getInstance().play(SoundManager.getFruit);
+            com.mygdx.game.Singletons.SoundManager.getInstance().play(com.mygdx.game.Singletons.SoundManager.getFruit);
         }
     }
 
@@ -134,6 +133,6 @@ public class ClientRestaurant extends GameObject {
         restaurantLevel.wastedFood(getOrdersDone());
         active = false;
         elapsedTime = 0;
-        SoundManager.getInstance().play(SoundManager.angry);
+        com.mygdx.game.Singletons.SoundManager.getInstance().play(com.mygdx.game.Singletons.SoundManager.angry);
     }
 }

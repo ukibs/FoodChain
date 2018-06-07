@@ -1,19 +1,13 @@
 package com.mygdx.game.Harvest;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.mygdx.game.Assets;
+import com.mygdx.game.Singletons.Assets;
 import com.mygdx.game.BaseLevel;
 import com.mygdx.game.Constants;
-import com.mygdx.game.GameObject;
-import com.mygdx.game.SoundManager;
+import com.mygdx.game.Singletons.SoundManager;
 
 import java.util.ArrayList;
-
-import sun.rmi.runtime.Log;
 
 /**
  * Created by Martin on 29/04/2018.

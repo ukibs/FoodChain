@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.game.Assets;
+import com.mygdx.game.Singletons.Assets;
 import com.mygdx.game.Constants;
 import com.mygdx.game.GameObject;
 import com.mygdx.game.WorldController;

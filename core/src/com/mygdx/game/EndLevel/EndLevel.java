@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.game.Assets;
+import com.mygdx.game.Singletons.Assets;
 import com.mygdx.game.BaseButton;
 import com.mygdx.game.BaseLevel;
 import com.mygdx.game.Constants;
